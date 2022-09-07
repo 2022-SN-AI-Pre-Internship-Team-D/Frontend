@@ -1,10 +1,14 @@
 import 'tailwindcss/tailwind.css';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Test from 'page';
 
 function App() {
   return (
-    <div className="flex justify-center">
-      <span className="text-xl text-blue-700">letter-man Project Start !!!!</span>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Test />} />
+      </Routes>
+    </Router>
   );
 }
 
