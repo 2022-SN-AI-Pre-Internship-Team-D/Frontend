@@ -1,11 +1,12 @@
 import 'tailwindcss/tailwind.css';
+import ColorSystem from 'utils/ColorSystem';
 
-function test() {
+function Test() {
   return (
-    <div className="flex justify-center">
+    <div className="flex justify-center" style={{ backgroundColor: ColorSystem.MainColor.Primary }}>
       <span className="text-xl text-blue-700">index</span>
     </div>
   );
 }
 
-export default test;
+export default Test;
