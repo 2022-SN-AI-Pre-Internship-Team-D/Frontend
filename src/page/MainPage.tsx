@@ -1,7 +1,7 @@
 import 'tailwindcss/tailwind.css';
 import ColorSystem from 'utils/ColorSystem';
 import React from 'react';
-import './pageStyle.css';
+import '../utils/pageStyle.css';
 
 function MainPage() {
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {

@@ -1,5 +1,4 @@
 import 'tailwindcss/tailwind.css';
-import './pageStyle.css';
 import ColorSystem from 'utils/ColorSystem';
 import FooterCookies from 'components/RemainingDays/FooterCookies';
 
