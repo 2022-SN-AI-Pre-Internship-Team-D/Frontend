@@ -1,12 +1,12 @@
 import 'tailwindcss/tailwind.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Test from 'page';
+import LoginPage from 'page/LoginPage';
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Test />} />
+        <Route path="/" element={<LoginPage/>} />
       </Routes>
     </Router>
   );

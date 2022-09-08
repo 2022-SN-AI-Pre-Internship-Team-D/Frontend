@@ -4,6 +4,7 @@ const ColorSystem = {
     Hover: '#0A9471',
     Secondary: '#81DE66',
     tertiary: '#11DF88',
+    text:'#9CA6C5'
   },
   SubColor: {
     Primary: '#ECF0FF',
