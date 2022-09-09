@@ -7,12 +7,12 @@ const ColorSystem = {
     text:'#9CA6C5'
   },
   SubColor: {
-    Primary: '#ECF0FF',
+    Primary: '#ECF0FF', // 하늘색
   },
 
-  PointGradient: {
-    Primary: 'linear-gradient(276.64deg, #FF1CA4 0%, #DF1CFF 100%)',
-  },
+  // PointGradient: {
+  //   Primary: 'linear-gradient(276.64deg, #FF1CA4 0%, #DF1CFF 100%)',
+  // },
 };
 
 export default ColorSystem;
