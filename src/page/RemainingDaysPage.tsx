@@ -13,7 +13,6 @@ function RemainingDaysPage() {
 
       {/* 집 */}
       <img src="images/back2.png" alt="a" className="absolute bottom-0 left-0 w-60 md:w-80 lg:w-2/6" />
-      {/* 유령 */}
 
       {/* 나무 */}
       <img src="images/back1.png" alt="a" className="absolute bottom-0 right-0 w-80 md:w-96 lg:w-5/12" />
