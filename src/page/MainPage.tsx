@@ -1,12 +1,21 @@
 import 'tailwindcss/tailwind.css';
 import ColorSystem from 'utils/ColorSystem';
-import React from 'react';
+import React, { useState } from 'react';
 import '../utils/pageStyle.css';
+import ResultModal from 'components/ResultModal';
 
 function MainPage() {
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     console.log(event.target);
   };
+
+  // ⭕️
+  const handleModal = () => {
+    setModalOC(true);
+  };
+
+  const [modalOC, setModalOC] = useState(false);
+  // ⭕️
 
   return (
     <div
@@ -41,13 +50,16 @@ function MainPage() {
       </button>
       {/* 호박 선물 */}
       <div className="flex flex-row absolute bottom-0 right-0 w-60 md:w-80 lg:w-2/5 ">
-        <button onClick={handleClick} className="scaleup" type="button">
+        <button onClick={handleModal} className="scaleup" type="button">
           <img src="images/halloweenimg.png" alt="a" className="origin-center hover:origin-top" />
         </button>
         <button onClick={handleClick} className="scaleup" type="button">
           <img src="images/valentineimg.png" alt="a" />
         </button>
       </div>
+      {/* ⭕️ */}
+      <ResultModal openinit={modalOC} closeModal={() => setModalOC(false)} />
+      {/* ⭕️ */}
     </div>
   );
 }

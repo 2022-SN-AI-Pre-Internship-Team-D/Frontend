@@ -1,24 +1,35 @@
-import { Fragment, useRef, useState } from 'react';
+import { Fragment, useRef, useState, useEffect } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import ColorSystem from 'utils/ColorSystem';
 
-export default function ResultModal() {
-  const [open, setOpen] = useState(false);
+interface Props {
+  openinit: any;
+  closeModal: any;
+}
+export default function ResultModal({ openinit, closeModal }: Props) {
+  const [open, setOpen] = useState(openinit);
+
+  //   useEffect(() => {
+  //     setOpen(openinit);
+  //     console.log(open);
+  //   }, []);
+  //   console.log(open);
+  //   console.log('what is open? ', open);
 
   const cancelButtonRef = useRef(null);
 
   return (
     <div>
-      <button
+      {/* <button
         className="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
         type="button"
         data-modal-toggle="popup-modal"
         onClick={(e) => setOpen(true)}
       >
         Toggle modal
-      </button>
-      <Transition.Root show={open} as={Fragment}>
-        <Dialog as="div" className="relative z-10" initialFocus={cancelButtonRef} onClose={setOpen}>
+      </button> */}
+      <Transition.Root show={openinit} as={Fragment}>
+        <Dialog as="div" className="relative z-10" initialFocus={cancelButtonRef} onClose={closeModal}>
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
@@ -42,27 +53,25 @@ export default function ResultModal() {
                 leaveFrom="opacity-100 translate-y-0 sm:scale-100"
                 leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
               >
-                <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+                <Dialog.Panel>
                   <div
-                    className="flex justify-center bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4"
+                    className="overflow-hidden rounded-lg shadow-xl md:w-128 md:h-96 w-64 h-48 flex justify-center items-center"
                     style={{ backgroundColor: ColorSystem.MainColor.Primary }}
                   >
-                    <div className="sm:flex sm:items-start">
-                      <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                        <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900">
-                          Deactivate account
-                        </Dialog.Title>
-                        <div className="mt-2 flex justify-center">
-                          <img src="images/letterimg.png" alt="a" className="w-48" />
-                        </div>
+                    <div className="mt-3 flex justify-center items-center flex-col md:w-128 md:h-96 w-64 h-48">
+                      <Dialog.Title as="h3" className="text-lg text-slate-100 md:w-52 w-24">
+                        편지 작성이 완료되었습니다!
+                      </Dialog.Title>
+                      <div className="mt-2 flex justify-center">
+                        <img src="images/letterimg.png" alt="a" className="md:w-48 w-24" />
                       </div>
                     </div>
                   </div>
 
                   <button
                     type="button"
-                    className="absolute top-0 right-0 inline-flex w-full justify-center rounded-full border border-transparent bg-slate-700 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm"
-                    onClick={() => setOpen(false)}
+                    className="absolute top-0 right-0 rounded-full m-2 bg-slate-700 px-3 py-1 font-medium text-white "
+                    onClick={closeModal}
                   >
                     X
                   </button>
