@@ -59,7 +59,7 @@ export default function ResultModal({ openinit, closeModal }: Props) {
                     style={{ backgroundColor: ColorSystem.MainColor.Primary }}
                   >
                     <div className="mt-3 flex justify-center items-center flex-col md:w-128 md:h-96 w-64 h-48">
-                      <Dialog.Title as="h3" className="text-lg text-slate-100 md:w-52 w-24">
+                      <Dialog.Title as="h3" className="font-bold text-lg text-slate-100 md:w-52 w-24">
                         편지 작성이 완료되었습니다!
                       </Dialog.Title>
                       <div className="mt-2 flex justify-center">
