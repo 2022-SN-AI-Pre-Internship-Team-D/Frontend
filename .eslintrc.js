@@ -1,13 +1,20 @@
 module.exports = {
-  parser: "@typescript-eslint/parser",
-  plugins: ["@typescript-eslint", "prettier"],
+  root: true,
+  env: {
+    browser: true,
+    es6: true,
+  },
+  parser: '@typescript-eslint/parser',
+  plugins: ['@typescript-eslint', 'prettier'],
   extends: [
-    "airbnb",
-    "plugin:import/errors",
-    "plugin:import/warnings",
-    "plugin:prettier/recommended",
-    "plugin:@typescript-eslint/recommended",
-    "prettier/@typescript-eslint",
+    'airbnb',
+    'plugin:import/errors',
+    'plugin:import/warnings',
+    'plugin:prettier/recommended',
+    'plugin:@typescript-eslint/recommended',
+    'eslint:recommended',
+    'plugin:react/jsx-runtime', // >> 이거 추가. (안하면 컴포넌트 내부에 react 자동사용을 하는 것 같음)
+    // 'prettier/@typescript-eslint', >> 주석처리하고
   ],
   rules: {
     'no-unused-vars': 'off',
