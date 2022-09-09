@@ -1,20 +1,13 @@
 module.exports = {
-  root: true,
-  env: {
-    browser: true,
-    es6: true,
-  },
-  parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint', 'prettier'],
+  parser: "@typescript-eslint/parser",
+  plugins: ["@typescript-eslint", "prettier"],
   extends: [
-    'airbnb',
-    'plugin:import/errors',
-    'plugin:import/warnings',
-    'plugin:prettier/recommended',
-    'plugin:@typescript-eslint/recommended',
-    'eslint:recommended',
-    'plugin:react/jsx-runtime',
-    // 'prettier/@typescript-eslint',
+    "airbnb",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:prettier/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier/@typescript-eslint",
   ],
   rules: {
     'no-unused-vars': 'off',
