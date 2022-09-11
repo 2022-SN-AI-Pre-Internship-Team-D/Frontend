@@ -5,9 +5,9 @@ import LoginPage from 'page/LoginPage';
 import MailListPage from 'page/MailListPage';
 import MailWritePage from 'page/MailWritePage';
 import SigninPage from 'page/SigninPage';
+import MyPage from  'page/Mypage';
 import MainPage from './page/MainPage';
 import RemainingDaysPage from './page/RemainingDaysPage';
-import MyPage from  'page/Mypage';
 
 function App() {
   return (
