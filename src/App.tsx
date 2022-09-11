@@ -13,7 +13,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<LoginPage />} />
-        <Route path="/" element={<MainPage />} />
+        <Route path="/mainpage" element={<MainPage />} />
         <Route path="/remainingdayspage" element={<RemainingDaysPage />} />
         <Route path="/maillistpage" element={<MailListPage />} />
         <Route path="/mailwritepage" element={<MailWritePage />} />
