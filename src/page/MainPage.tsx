@@ -23,8 +23,10 @@ function MainPage() {
       style={{ backgroundColor: ColorSystem.MainColor.Primary }}
     >
       {/* 2023 */}
-      <button onClick={handleClick} className="scaleup flex justify-center h-fit  w-60 md:w-80 lg:w-2/6" type="button">
-        <img src="images/newyearimg.png" alt="a" className="" />
+      <button onClick={handleClick} className="scaleup flex justify-center h-fit w-60 md:w-80 lg:w-2/6" type="button">
+        <a href="/maillistpage">
+          <img src="images/newyearimg.png" alt="a" className="" />
+        </a>
       </button>
 
       <div className="absolute top-5 left-10">
@@ -32,8 +34,10 @@ function MainPage() {
       </div>
       {/* 편지 */}
       <div className="flex flex-col absolute top-5 left-5 md:m-10 w-20 md:w-28 lg:w-1/12 ">
-        <button onClick={handleClick} type="button" className="scaleup">
-          <img src="images/letterimg.png" alt="a" />
+        <button type="button" className="scaleup">
+          <a href="/mailwritepage">
+            <img src="images/letterimg.png" alt="a" />
+          </a>
         </button>
       </div>
       {/* 추석 */}
@@ -54,7 +58,9 @@ function MainPage() {
           <img src="images/halloweenimg.png" alt="a" className="origin-center hover:origin-top" />
         </button>
         <button onClick={handleClick} className="scaleup" type="button">
-          <img src="images/valentineimg.png" alt="a" />
+          <a href="/remainingdayspage">
+            <img src="images/valentineimg.png" alt="a" />
+          </a>
         </button>
       </div>
       {/* ⭕️ */}

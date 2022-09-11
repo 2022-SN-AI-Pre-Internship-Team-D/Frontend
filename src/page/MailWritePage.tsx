@@ -30,20 +30,25 @@ function MailWritePage() {
     >
       <div
         className="rounded-xl flex flex-col items-center bg-white p-4 md:w-1/6"
-        style={{ height: '43rem', width: '38rem' }}
+        style={{ height: '40rem', width: '38rem' }}
       >
+        <img src={postcard} alt="postcard" className="w-24" />
         <div>
           <button type="button" onClick={handleClick} className="m-10 mt-5 w-96 h-48 rounded-xl bg-subBackground">
             +<input ref={hiddenFileInput} type="file" hidden onChange={(e) => onChangeImage(e)} className="" />
           </button>
         </div>
-        <div className=" text-center bg-[url('images/letterbg.png')] rounded-lg h-fit " style={{ width: '580px' }}>
+        <div
+          className=" text-center bg-[url('images/letterbg.png')] rounded-lg h-fit "
+          style={{ width: '580px', height: '20rem' }}
+        >
           <textarea
             placeholder="To.."
             cols={45}
-            rows={9}
+            rows={6}
             maxLength={300}
-            className="p-4 rounded-lg bg-transparent text-xl leading-9 focus:outline-none "
+            className="p-4 h-56 rounded-lg bg-transparent text-xl leading-9 focus:outline-none "
+            style={{ width: '530px', resize: 'none' }}
           />
         </div>
       </div>
