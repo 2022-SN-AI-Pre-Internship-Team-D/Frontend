@@ -7,6 +7,7 @@ import MailWritePage from 'page/MailWritePage';
 import SigninPage from 'page/SigninPage';
 import MainPage from './page/MainPage';
 import RemainingDaysPage from './page/RemainingDaysPage';
+import MyPage from  'page/Mypage';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/maillistpage" element={<MailListPage />} />
         <Route path="/mailwritepage" element={<MailWritePage />} />
         <Route path="/signin" element={<SigninPage />} />
+        <Route path="/mypage" element={<MyPage/>} />
       </Routes>
     </Router>
   );
