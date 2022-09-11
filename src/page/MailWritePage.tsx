@@ -1,7 +1,6 @@
 import 'tailwindcss/tailwind.css';
 import React, { useState } from 'react';
 import ColorSystem from 'utils/ColorSystem';
-import MailInput from 'components/MailList/MailInput';
 import postcard from '@images/postcard.png';
 
 function MailWritePage() {
