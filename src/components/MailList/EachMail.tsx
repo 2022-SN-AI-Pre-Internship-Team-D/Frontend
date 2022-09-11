@@ -1,8 +1,8 @@
 import MailInput from 'components/MailList/MailInput';
 import 'tailwindcss/tailwind.css';
-import cookie from '../../images/cookieimg.png';
-import postcard from '../../images/postcard.png';
-import shareimg from '../../images/shareimg.png';
+import cookie from '@images/cookieimg.png';
+import postcard from '@images/postcard.png';
+import shareimg from '@images/shareimg.png';
 
 function EachMail() {
   return (
