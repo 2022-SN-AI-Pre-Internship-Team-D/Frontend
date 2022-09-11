@@ -38,13 +38,13 @@ function SigninPage() {
                             <div>
                                 <label className='m-1.5 text-white' htmlFor='password'>
                                     <span className='ml-9 my-4 text-lg'>비밀번호</span>
-                                    <input className='border-4 border-[#677DC6] w-96 mx-5 my-2 px-2.5 py-2.5 rounded-2xl text-background' id='password'/>
+                                    <input className='border-4 border-[#677DC6] w-96 mx-5 my-2 px-2.5 py-2.5 rounded-2xl text-background' type="password" id='password'/>
                                 </label>
                             </div>
                             <div>
                                 <label className='m-1.5 text-white' htmlFor='passwordcheck'>
                                     <span className='my-4 text-lg'>비밀번호 확인</span>
-                                    <input className='border-4 border-[#677DC6] w-96 mx-5 my-2 px-2.5 py-2.5 rounded-2xl text-background' id='passwordcheck'/>
+                                    <input className='border-4 border-[#677DC6] w-96 mx-5 my-2 px-2.5 py-2.5 rounded-2xl text-background' type="password" id='passwordcheck'/>
                                 </label>
                             </div>
                             <div>
@@ -56,7 +56,7 @@ function SigninPage() {
                             </div>
                         </div>
 
-                        <div className="my-10 flex justify-end">
+                        <div className="my-8 flex justify-end">
                             <button type='button' className="mr-5">
                                 <p className="text-white text-xl p-2">다음 &#62;</p>
                             </button>
