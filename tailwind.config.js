@@ -16,7 +16,6 @@ module.exports = {
         'button':'#677DC6',
         'holder':'#9CA6C5',
         'background':'#0E1733',
-        'plusbutton':'#FFC8B7',
       }
     },
   },
