@@ -8,7 +8,8 @@ function MailInput() {
   return (
     <div className=" text-center bg-[url('images/letterbg.png')] rounded-lg h-fit " style={{ width: '580px' }}>
       <textarea
-        placeholder="To..."
+        placeholder=""
+        disabled
         cols={45}
         rows={9}
         maxLength={300}
