@@ -15,7 +15,8 @@ module.exports = {
         'regal-blue': '#243c5a',
         'button':'#677DC6',
         'holder':'#9CA6C5',
-        'background':'#0E1733'
+        'background':'#0E1733',
+        'plusbutton':'#FFC8B7',
       }
     },
   },
