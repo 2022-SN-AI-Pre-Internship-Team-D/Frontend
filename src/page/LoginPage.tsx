@@ -1,6 +1,6 @@
 import 'tailwindcss/tailwind.css';
-import pencilImg from '@images/pencilImage.svg';
-import Enter from '@images/Enter.png';
+import pencilImg from 'images/pencilImage.svg';
+import Enter from 'images/Enter.png';
 import React from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';

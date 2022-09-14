@@ -1,7 +1,7 @@
 import 'tailwindcss/tailwind.css';
 import ColorSystem from 'utils/ColorSystem';
 import React, { useState } from 'react';
-import '../utils/pageStyle.css';
+import 'utils/pageStyle.css';
 import ResultModal from 'components/ResultModal';
 
 function MainPage() {
