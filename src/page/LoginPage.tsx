@@ -1,8 +1,41 @@
 import 'tailwindcss/tailwind.css';
 import pencilImg from '@images/pencilImage.svg';
 import Enter from '@images/Enter.png';
+import React from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+
+interface LoginInfo {
+  email: FormDataEntryValue | null;
+  password: FormDataEntryValue | null;
+}
 
 function LoginPage() {
+  const navigate = useNavigate();
+  const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const data = new FormData(e.currentTarget);
+
+    const userInfo: LoginInfo = {
+      email: data.get('email'),
+      password: data.get('password'),
+    };
+
+    (async () => {
+      await axios
+        .post(`/users/sign-in/`, userInfo)
+        .then((res) => {
+          console.log(res.data.access);
+          console.log(res.data.refresh);
+          console.log('로그인 성공');
+          navigate('/mainpage');
+        })
+        .catch((error) => {
+          alert('정보가 잘못되었습니다.');
+        });
+    })();
+  };
+
   return (
     <div className="h-screen bg-[#0E1733] flex justify-center flex-col items-center">
       <div style={{ marginLeft: '60px' }} className="flex">
@@ -10,13 +43,16 @@ function LoginPage() {
         <img style={{ position: 'relative', right: '20px', top: '45px' }} src={pencilImg} alt="pencil" />
       </div>
 
-      <div className="w-2/4 h-2/4 m-50 items-center flex-col flex justify-center center p-20 bg-grey rounded-lg">
+      <form
+        className="w-2/4 h-2/4 m-50 items-center flex-col flex justify-center center p-20 bg-grey rounded-lg"
+        onSubmit={handleLogin}
+      >
         <div className=" justify-center flex flex-col w-80">
           <label className=" text-background flex flex-col" htmlFor="email">
             <p className="mb-2">이메일</p>
             <input
               className=" placeholder-[#9CA6C5]  border-4 border-[#677DC6] text-sm font-light drop-shadow-lg mb-3 px-3 py-2.5 rounded-2xl"
-              id="email"
+              name="email"
               placeholder="email address"
             />
           </label>
@@ -24,8 +60,9 @@ function LoginPage() {
             <p className="mb-2">비밀번호</p>
             <input
               className="placeholder-[#9CA6C5] border-4 border-[#677DC6] text-sm font-light drop-shadow-lg mb-3 px-3 py-2.5 rounded-2xl"
-              id="password"
+              name="password"
               placeholder="password"
+              type="password"
             />
           </label>
         </div>
@@ -33,7 +70,7 @@ function LoginPage() {
         <div className="flex-row flex relative mt-8  content-center">
           <img style={{ position: 'absolute', top: '-2px', left: '14px', zIndex: '1' }} src={Enter} alt="pencil" />
           <button
-            type="button"
+            type="submit"
             className=" rounded-xl border-none bg-[#677DC6] w-36 mr-4 drop-shadow-lg px-14 pr-4 py-2.5  text-white font-semibold  bg-button-500"
           >
             Login
@@ -46,7 +83,7 @@ function LoginPage() {
             Sign In
           </button>
         </div>
-      </div>
+      </form>
     </div>
   );
 }
