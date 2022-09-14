@@ -17,6 +17,7 @@ module.exports = {
     // 'prettier/@typescript-eslint', >> 주석처리하고
   ],
   rules: {
+    'no-undef': 'off',
     'no-unused-vars': 'off',
     'linebreak-style': 0,
     'import/prefer-default-export': 0,

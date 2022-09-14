@@ -1,7 +1,7 @@
 import 'tailwindcss/tailwind.css';
 import React, { useState } from 'react';
 import ColorSystem from 'utils/ColorSystem';
-import postcard from '@images/postcard.png';
+import postcard from 'images/postcard.png';
 
 function MailWritePage() {
   const onChangeImage = async (event: React.ChangeEvent<HTMLInputElement>) => {
