@@ -10,8 +10,11 @@ function MailListPage() {
   const [mailCount, setMailCount] = useState('0');
 
   const changeBeforePage = () => {
-    window.scrollTo(0, 0);
-    return setPage(page - 1);
+    if (page > 1) {
+      window.scrollTo(0, 0);
+      return setPage(page - 1);
+    }
+    return alert('첫 페이지입니다. ');
   };
   const changeFrontPage = () => {
     window.scrollTo(0, 0);
@@ -24,6 +27,10 @@ function MailListPage() {
         .get(`letters/users/ce23c44db01743d0bde411e8f3b4fbac/birth/all/pages/${page}`)
         .then((res) => {
           setMailList(res.data);
+          if (res.status === 204) {
+            alert('더이상 편지가 존재하지 않습니다.');
+            setPage(page - 1);
+          }
         })
         .catch((error) => {
           console.log(error);
