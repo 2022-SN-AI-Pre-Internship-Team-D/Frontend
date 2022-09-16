@@ -36,9 +36,9 @@ function LoginPage() {
     })();
   };
 
-    const goToSign = () => {
-      navigate("/signin");
-    };
+  const goToSign = () => {
+    navigate('/signin');
+  };
 
   return (
     <div className="h-screen bg-[#0E1733] flex justify-center flex-col items-center">

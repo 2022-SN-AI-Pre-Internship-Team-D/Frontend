@@ -3,7 +3,23 @@ import React, { useState } from 'react';
 import ColorSystem from 'utils/ColorSystem';
 import postcard from 'images/postcard.png';
 
+interface WriteInfo {
+  text: FormDataEntryValue | null;
+  file: FormDataEntryValue | null;
+  // media: FormDataEntryValue | null;
+}
+
 function MailWritePage() {
+  const handleWrite = (e: React.FormEvent<HTMLFormElement>) => {
+    const data = new FormData(e.currentTarget);
+    const MailInfo: WriteInfo = {
+      text: data.get('file'),
+      file: data.get('text'),
+      //  media: data.get(''),
+    };
+    console.log(MailInfo);
+  };
+
   const onChangeImage = async (event: React.ChangeEvent<HTMLInputElement>) => {
     try {
       console.log(event);
@@ -27,14 +43,23 @@ function MailWritePage() {
       className="flex justify-center items-center h-screen py-20 flex-col"
       style={{ backgroundColor: ColorSystem.MainColor.Primary }}
     >
-      <div
+      <form
         className="rounded-xl flex flex-col items-center bg-white p-4 md:w-1/6"
+        onSubmit={handleWrite}
         style={{ height: '40rem', width: '38rem' }}
       >
         <img src={postcard} alt="postcard" className="w-24" />
         <div>
           <button type="button" onClick={handleClick} className="m-10 mt-5 w-96 h-48 rounded-xl bg-subBackground">
-            +<input ref={hiddenFileInput} type="file" hidden onChange={(e) => onChangeImage(e)} className="" />
+            +
+            <input
+              name="file"
+              ref={hiddenFileInput}
+              type="file"
+              hidden
+              onChange={(e) => onChangeImage(e)}
+              className=""
+            />
           </button>
         </div>
         <div
@@ -42,6 +67,7 @@ function MailWritePage() {
           style={{ width: '580px', height: '20rem' }}
         >
           <textarea
+            name="text"
             placeholder="To.."
             cols={45}
             rows={6}
@@ -50,11 +76,11 @@ function MailWritePage() {
             style={{ width: '530px', resize: 'none' }}
           />
         </div>
-      </div>
-      <button type="button" className=" bg-white px-10 py-2 mt-5 rounded-full border-4 border-subBackground">
-        {' '}
-        전송
-      </button>
+        <button type="submit" className=" bg-white px-10 py-2 mt-5 rounded-full border-4 border-subBackground">
+          {' '}
+          전송
+        </button>
+      </form>
     </div>
   );
 }

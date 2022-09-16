@@ -1,5 +1,7 @@
 import 'tailwindcss/tailwind.css';
 import userprofile from 'images/userprofile.png';
+import axios from 'axios';
+import { userInfo } from 'os';
 
 function MyPage() {
   return (
