@@ -11,7 +11,7 @@ interface SignUpInfo {
   birth: FormDataEntryValue | null;
 }
 
-function SigninPage() {
+function SignupPage() {
   const navigate = useNavigate();
 
   const handleSignUp = (e: React.FormEvent<HTMLFormElement>) => {
@@ -141,4 +141,4 @@ function SigninPage() {
     </div>
   );
 }
-export default SigninPage;
+export default SignupPage;
