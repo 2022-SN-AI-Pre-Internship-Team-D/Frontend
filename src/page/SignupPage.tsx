@@ -54,9 +54,6 @@ function SignupPage() {
         });
     })();
   };
-  const goToMain = () => {
-    navigate("/");
-  };
 
   return (
     <div className="h-screen" style={{ backgroundColor: ColorSystem.MainColor.Primary }}>
@@ -133,7 +130,7 @@ function SignupPage() {
               </div>
 
               <div className="my-8 flex justify-end">
-                <button type="submit" className="mr-5" onClick={goToMain}>
+                <button type="submit" className="mr-5">
                   <p className="text-white text-xl p-2">다음 &#62;</p>
                 </button>
               </div>
