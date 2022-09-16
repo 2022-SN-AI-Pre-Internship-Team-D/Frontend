@@ -54,8 +54,10 @@ function MainPage() {
       </button>
       {/* 호박 선물 */}
       <div className="flex flex-row absolute bottom-0 right-0 w-60 md:w-80 lg:w-2/5 ">
-        <button onClick={handleModal} className="scaleup" type="button">
-          <img src="images/halloweenimg.png" alt="a" className="origin-center hover:origin-top" />
+        <button className="scaleup" type="button">
+          <a href="/mailwritepage">
+            <img src="images/halloweenimg.png" alt="a" className="origin-center hover:origin-top" />
+          </a>
         </button>
         <button onClick={handleClick} className="scaleup" type="button">
           <a href="/remainingdayspage">
