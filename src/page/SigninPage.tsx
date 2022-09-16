@@ -2,6 +2,7 @@ import 'tailwindcss/tailwind.css';
 import ColorSystem from 'utils/ColorSystem';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import React, { useState } from 'react';
 
 interface SignUpInfo {
   username: FormDataEntryValue | null;
@@ -73,7 +74,8 @@ function SigninPage() {
                 <div>
                   <span className="flex justify-center text-5xl text-[#677DC6]">+</span>
                 </div>
-                <input id="dropzone-file" type="file" className="hidden" />
+                <input id="dropzone-file" type="file" className="hidden" accept='image/*' 
+                />
               </label>
             </div>
 
