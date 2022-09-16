@@ -75,12 +75,12 @@ function LoginPage() {
           >
             Login
           </button>
-          <img style={{ position: 'absolute', top: '-2px', right: '110px', zIndex: '1' }} src={Enter} alt="pencil" />
+          <img style={{ position: 'absolute', top: '-2px', right: '93px', zIndex: '1' }} src={Enter} alt="pencil" />
           <button
             type="button"
             className="rounded-xl border-none bg-[#677DC6]  w-36 ml-4 drop-shadow-lg px-14 pr-4 py-2.5 text-white font-semibold  bg-button-500"
           >
-            Sign In
+            Sign Up
           </button>
         </div>
       </form>
