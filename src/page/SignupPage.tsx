@@ -11,7 +11,7 @@ interface SignUpInfo {
   birth: FormDataEntryValue | null;
 }
 
-function SigninPage() {
+function SignupPage() {
   const navigate = useNavigate();
 
   const handleSignUp = (e: React.FormEvent<HTMLFormElement>) => {
@@ -53,6 +53,9 @@ function SigninPage() {
           }
         });
     })();
+  };
+  const goToMain = () => {
+    navigate("/");
   };
 
   return (
@@ -130,7 +133,7 @@ function SigninPage() {
               </div>
 
               <div className="my-8 flex justify-end">
-                <button type="submit" className="mr-5">
+                <button type="submit" className="mr-5" onClick={goToMain}>
                   <p className="text-white text-xl p-2">다음 &#62;</p>
                 </button>
               </div>
@@ -141,4 +144,4 @@ function SigninPage() {
     </div>
   );
 }
-export default SigninPage;
+export default SignupPage;
