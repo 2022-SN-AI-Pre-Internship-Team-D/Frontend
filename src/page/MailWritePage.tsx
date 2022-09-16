@@ -2,7 +2,6 @@ import 'tailwindcss/tailwind.css';
 import React, { useState } from 'react';
 import ColorSystem from 'utils/ColorSystem';
 import postcard from 'images/postcard.png';
-import { Link, useNavigate } from 'react-router-dom';
 // import axios from 'axios';
 import ResultModal from 'components/ResultModal';
 
@@ -25,13 +24,20 @@ function MailWritePage() {
   // Call a function (passed as a prop from the parent component)
   // to handle the user-selected file
 
-    // ⭕️
-    const handleModal = () => {
-      setModalOC(true);
-    };
-  
-    const [modalOC, setModalOC] = useState(false);
-    // ⭕️
+  // ⭕️
+  const handleModal = () => {
+    setModalOC(true);
+  };
+
+  const [modalOC, setModalOC] = useState(false);
+  // ⭕️
+
+  // const onCapture = () => {
+  //   console.log("onCapture");
+  //   html2canvas(document.getElementById('div').then(canvas =>{
+  //     onSaveAs(canvas.toDataURL("image/png"), "image-download.png")
+  //   }));
+  // };
 
   return (
     <div
@@ -62,13 +68,6 @@ function MailWritePage() {
           />
         </div>
       </div>
-      {/* <Link to="/">
-        <button type="submit" className=" bg-white px-10 py-2 mt-5 rounded-full border-4 border-subBackground"
-        >
-          {' '}
-          전송
-        </button>
-      </Link> */}
       <button type="button" className=" bg-white px-10 py-2 mt-5 rounded-full border-4 border-subBackground"
         onClick={handleModal}>
           {' '}
