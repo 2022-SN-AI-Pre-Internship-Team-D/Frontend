@@ -7,6 +7,8 @@ import { useEffect, useState } from 'react';
 function RemainingDaysPage() {
   const [dDay, setDDayCount] = useState('0');
   const [mailCount, setMailCount] = useState('0');
+  const [birthdDay, setbirthDay] = useState('0');
+  // const [birthdDay, setbirthDay] = useState('0');
 
 
   useEffect(() => {
@@ -32,8 +34,7 @@ function RemainingDaysPage() {
       .catch((error) => {
         console.log(error);
       });
-  })();
-
+    })();
 
   }, []);
 
