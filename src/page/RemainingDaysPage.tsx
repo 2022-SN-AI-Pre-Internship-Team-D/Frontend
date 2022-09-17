@@ -6,7 +6,8 @@ import { useEffect, useState } from 'react';
 
 function RemainingDaysPage() {
   const [dDay, setDDayCount] = useState('0');
-  const [mailCount, setMailCount] = useState([]);
+  const [mailCount, setMailCount] = useState('0');
+
 
   useEffect(() => {
     (async () => {
