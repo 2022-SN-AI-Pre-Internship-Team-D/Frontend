@@ -7,6 +7,7 @@ import MailWritePage from 'page/MailWritePage';
 import SignupPage from 'page/SignupPage';
 import MyPage from  'page/Mypage';
 import BirthMailListPage from 'page/BirthMailListPage';
+import BirthDaysPage from 'page/BirthDaysPage';
 import MainPage from './page/MainPage';
 import RemainingDaysPage from './page/RemainingDaysPage';
 
@@ -22,6 +23,7 @@ function App() {
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/mypage" element={<MyPage/>} />
         <Route path="/birthmaillistpage" element={<BirthMailListPage/>} />
+        <Route path="/birthdaydayspage" element={<BirthDaysPage/>} />
       </Routes>
     </Router>
   );
