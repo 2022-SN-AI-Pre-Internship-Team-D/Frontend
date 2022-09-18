@@ -29,7 +29,7 @@ function SignupPage() {
     console.log(data.get('image'));
     (async () => {
       await axios
-        .post(`/users/sign-up/`, signUpUserInfo)
+        .post(`/users/sign-up/`, signUpUserInfo, {headers: { "Content-Type": "multipart/form-data"}})
         .then((res) => {
           console.log('회원가입 성공');
           console.log(res.data);
