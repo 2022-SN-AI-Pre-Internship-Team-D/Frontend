@@ -9,6 +9,7 @@ interface SignUpInfo {
   password: FormDataEntryValue | null;
   password2: FormDataEntryValue | null;
   birth: FormDataEntryValue | null;
+  image: FormDataEntryValue | null;
 }
 
 function SignupPage() {
@@ -17,25 +18,26 @@ function SignupPage() {
   const handleSignUp = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const data = new FormData(e.currentTarget);
-
     const signUpUserInfo: SignUpInfo = {
       username: data.get('username'),
       email: data.get('email'),
       password: data.get('password'),
       password2: data.get('password2'),
       birth: data.get('birth'),
+      image: data.get('image'),
     };
-
+    console.log(data.get('image'));
     (async () => {
       await axios
-        .post(`/users/sign-up/`, signUpUserInfo)
+        .post(`/users/sign-up/`, signUpUserInfo, {headers: { "Content-Type": "multipart/form-data"}})
         .then((res) => {
-          console.log('로그인 성공');
-          // console.log(res.data);
+          console.log('회원가입 성공');
+          console.log(res.data);
           // {username: 'test213', email: 'test12@naver.com', birth: '2022-08-30'}
           navigate('/');
         })
         .catch((error) => {
+          console.log(signUpUserInfo);
           if (error.response.data.username !== undefined) {
             if (error.response.data.email !== undefined) {
               alert('닉네임, 이메일이 중복되었습니다.');
@@ -55,6 +57,7 @@ function SignupPage() {
     })();
   };
 
+
   return (
     <div className="h-screen" style={{ backgroundColor: ColorSystem.MainColor.Primary }}>
       <div className="flex flex-col justify-center h-screen">
@@ -62,22 +65,25 @@ function SignupPage() {
           <span>회원가입</span>
         </div>
 
+      <form onSubmit={handleSignUp}>
         <div className="mt-2">
           <div className="flex flex-row justify-center">
-            <div className="flex justify-center items-center mr-10 ml-10 pb-28">
-              <label
-                htmlFor="dropzone-file"
-                className="cursor-pointer flex flex-col justify-center items-center w-80 h-80 
-                        rounded-full border-4 border-[#677DC6] bg-white hover:bg-[#677DC6]"
-              >
-                <div>
-                  <span className="flex justify-center text-5xl text-[#677DC6]">+</span>
-                </div>
-                <input id="dropzone-file" type="file" className="hidden" />
-              </label>
-            </div>
+              <div className="flex justify-center items-center mr-10 ml-10 pb-28">
+                <label
+                  htmlFor="dropzone-file"
+                  className="cursor-pointer flex flex-col justify-center items-center w-80 h-80 
+                          rounded-full border-4 border-[#677DC6] bg-white hover:bg-[#677DC6]"
+                >
+                  <div>
+                    <span className="flex justify-center text-5xl text-[#677DC6]">+</span>
+                  </div>
+                  <input id="dropzone-file" type="file" name="image" className="hidden"/>
+                  {/* className="hidden" */}
+                </label>
+              </div>
+            {/* </form> */}
 
-            <form onSubmit={handleSignUp}>
+            {/* <form onSubmit={handleSignUp}> */}
               <div className="ml-10 flex flex-col justify-end">
                 <div>
                   <label className="m-1.5 text-white" htmlFor="nickname">
@@ -127,16 +133,16 @@ function SignupPage() {
                     />
                   </label>
                 </div>
-              </div>
 
               <div className="my-8 flex justify-end">
                 <button type="submit" className="mr-5">
                   <p className="text-white text-xl p-2">다음 &#62;</p>
                 </button>
               </div>
-            </form>
+            </div>
           </div>
         </div>
+        </form>
       </div>
     </div>
   );
