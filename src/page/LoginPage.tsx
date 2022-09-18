@@ -1,7 +1,7 @@
 import 'tailwindcss/tailwind.css';
 import pencilImg from 'images/pencilImage.svg';
 import Enter from 'images/Enter.png';
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { checkAccessToken } from 'utils/tokenManager';
@@ -13,6 +13,7 @@ interface LoginInfo {
 
 function LoginPage() {
   const navigate = useNavigate();
+
   const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const data = new FormData(e.currentTarget);
@@ -27,9 +28,9 @@ function LoginPage() {
         .post(`/users/sign-in/`, userInfo)
         .then((res) => {
           console.log(res.data.access);
-          console.log(res.data.refresh);
+          // console.log(res.data.refresh);
           console.log('로그인 성공');
-          checkAccessToken(res.data.access);
+          localStorage.setItem('access_token', JSON.stringify(res.data.access));
           // navigate('/mainpage');
         })
         .catch((error) => {
@@ -41,6 +42,9 @@ function LoginPage() {
   const goToSign = () => {
     navigate('/signup');
   };
+
+  // const tk: string | null = localStorage.getItem('access_token');
+  // checkAccessToken(tk!);
 
   return (
     <div className="h-screen bg-[#0E1733] flex justify-center flex-col items-center">

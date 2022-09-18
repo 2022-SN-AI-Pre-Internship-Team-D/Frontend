@@ -10,20 +10,35 @@ interface jwtType {
   user_uuid: string;
 }
 
+interface TokenInfo {
+  token: string;
+}
+
 // 👉 액세스, 리프레쉬 토큰 체크 함수
-const checkAccessToken = async ({ Token = '' }) => {
+const checkAccessToken = async (Token: string) => {
+  const tokenForm: TokenInfo = {
+    token: Token,
+  };
   await axios
-    .post(`/users/token/verify/`, { token: { Token } })
+    .post(`/users/token/verify/`, tokenForm)
     .then((res) => {
-      console.log(res.data);
+      if (res.status === 200) {
+        console.log('토큰 아직 유효함');
+      }
     })
-    .catch((error) => console.log(error, 'error'));
+    .catch((error) => {
+      if (error.response.status) {
+        console.log('만료된거');
+      } else {
+        console.log(error);
+      }
+    });
 };
 
 // 👉 로그인 axios 과정에서 이거 사용하면 될 듯
 const decodeAccessToken = ({ accessToken = '' }) => {
   const decoded = jwtDecode<jwtType>(accessToken);
-  console.log(decoded.user_uuid);
+  console.log(decoded.user_uuid, '체크ㄴ');
   // 여기서 uuid 전역관리 고고
 };
 
