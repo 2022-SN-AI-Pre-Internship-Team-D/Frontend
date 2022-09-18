@@ -4,7 +4,7 @@ import Enter from 'images/Enter.png';
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { checkAccessToken } from 'utils/tokenManager';
+import { getToken, setToken, decodeAccessToken, checkAccessToken } from 'utils/tokenManager';
 
 interface LoginInfo {
   email: FormDataEntryValue | null;
@@ -27,11 +27,11 @@ function LoginPage() {
       await axios
         .post(`/users/sign-in/`, userInfo)
         .then((res) => {
-          console.log(res.data.access);
-          // console.log(res.data.refresh);
           console.log('로그인 성공');
-          localStorage.setItem('access_token', JSON.stringify(res.data.access));
-          // navigate('/mainpage');
+          setToken(res.data.access, res.data.refresh); // 토큰 localstorage에 저장
+          console.log(getToken(), ' localstorage 들어갔는지 확인');
+          decodeAccessToken(getToken().access || ''); // 🤚 이거 다음에 확인
+          navigate('/mainpage');
         })
         .catch((error) => {
           alert('정보가 잘못되었습니다.');

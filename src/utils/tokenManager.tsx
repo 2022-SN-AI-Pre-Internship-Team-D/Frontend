@@ -1,5 +1,6 @@
 import jwtDecode from 'jwt-decode';
 import axios from 'axios';
+import { useState } from 'react';
 
 interface jwtType {
   token_type: string;
@@ -19,6 +20,7 @@ const checkAccessToken = async (Token: string) => {
   const tokenForm: TokenInfo = {
     token: Token,
   };
+
   await axios
     .post(`/users/token/verify/`, tokenForm)
     .then((res) => {
@@ -29,6 +31,7 @@ const checkAccessToken = async (Token: string) => {
     .catch((error) => {
       if (error.response.status) {
         console.log('만료된거');
+        localStorage.removeItem('access_token');
       } else {
         console.log(error);
       }
@@ -36,7 +39,7 @@ const checkAccessToken = async (Token: string) => {
 };
 
 // 👉 로그인 axios 과정에서 이거 사용하면 될 듯
-const decodeAccessToken = ({ accessToken = '' }) => {
+const decodeAccessToken = (accessToken: string) => {
   const decoded = jwtDecode<jwtType>(accessToken);
   console.log(decoded.user_uuid, '체크ㄴ');
   // 여기서 uuid 전역관리 고고
@@ -50,10 +53,14 @@ const getToken = () => {
   return { access, refresh };
 };
 
+const setToken = (accessToken: string, refreshToken: string) => {
+  localStorage.setItem('access_token', accessToken);
+  localStorage.setItem('refresh_token', refreshToken);
+};
 // // 로컬 스토리지에 있는 토큰을 clear
 // const deleteToken = (clearToken: string) => {
 //   localStorage.removeItem(clearToken);
 //   window.location.replace("/mainpage");
 // };
 
-export { checkAccessToken, decodeAccessToken, getToken };
+export { checkAccessToken, decodeAccessToken, getToken, setToken };
