@@ -1,9 +1,10 @@
 import 'tailwindcss/tailwind.css';
 import ColorSystem from 'utils/ColorSystem';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import 'utils/pageStyle.css';
 import ResultModal from 'components/ResultModal';
-import { Link} from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 
 function MainPage() {
@@ -19,12 +20,58 @@ function MainPage() {
   const [modalOC, setModalOC] = useState(false);
   // ⭕️
 
+  const navigate = useNavigate();
+  
+  const [dDay, setDDay] = useState('0');
+
+  useEffect(() => {
+    // 할로윈
+    (async () => {
+      await axios
+        .get('/letters/events/8f0d683f-c566-464d-8669-923f13de9635/check-date')
+        .then((res) => {
+          setDDay(res.data.status);
+          console.log(res.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    })();
+
+    // 크리스마스
+    // (async () => {
+    //   await axios
+    //     .get('/letters/events/345e895d-df8e-4140-9579-2dad70134de1/check-date')
+    //     .then((res) => {
+    //       setDDay(res.data.status);
+    //       console.log(res.data);
+    //     })
+    //     .catch((error) => {
+    //       console.log(error);
+    //     });
+    // })();
+
+  }, []);
+  console.log({dDay});
+
+  const dDayReturn = () => {
+    if (dDay === 'True') {
+      console.log("편지 열람 가능");
+      navigate('/maillistpage');
+    }
+    else {
+      console.log("편지 열람 불가")
+      navigate('/remainingdayspage');
+    }
+  }
+
+
   return (
     <div
       className="flex justify-center font-press-start  h-screen"
       style={{ backgroundColor: ColorSystem.MainColor.Primary }}
     >
-      {/* 2023 */}
+      {/* 2023(새해) */}
       <button onClick={handleClick} className="scaleup flex justify-center h-fit w-60 md:w-80 lg:w-2/6" type="button">
         <a href="/maillistpage">
           <img src="images/newyearimg.png" alt="a" className="" />
@@ -36,7 +83,7 @@ function MainPage() {
         <span className="flex justify-center text-white font-bold text-2xl">ellie010707 님</span>
         </Link>
       </div>
-      {/* 편지 */}
+      {/* 편지(생일) */}
       <div className="flex flex-col absolute top-5 left-5 md:m-10 w-20 md:w-28 lg:w-1/12 ">
         <button type="button" className="scaleup">
           <a href="/mailwritepage">
@@ -48,7 +95,7 @@ function MainPage() {
       <button onClick={handleClick} className="scaleup absolute bottom-0 left-0 w-60 md:w-80 lg:w-2/6" type="button">
         <img src="images/thankimg.png" alt="a" />
       </button>
-      {/* 나무 */}
+      {/* 나무(크리스마스) */}
       <button onClick={handleClick} className="" type="button">
         <img
           src="images/treeimg.png"
@@ -56,11 +103,13 @@ function MainPage() {
           className="scaleup absolute bottom-0 right-0 m-1 md:m-3  w-60 md:w-80 lg:w-2/6 "
         />
       </button>
-      {/* 호박 선물 */}
+      {/* 호박 선물(할로윈) */}
       <div className="flex flex-row absolute bottom-0 right-0 w-60 md:w-80 lg:w-2/5 ">
-        <button onClick={handleModal} className="scaleup" type="button">
+        <button onClick={dDayReturn} className="scaleup" type="button">
           <img src="images/halloweenimg.png" alt="a" className="origin-center hover:origin-top" />
         </button>
+
+        {/* 발렌타인 */}
         <button onClick={handleClick} className="scaleup" type="button">
           <a href="/remainingdayspage">
             <img src="images/valentineimg.png" alt="a" />
