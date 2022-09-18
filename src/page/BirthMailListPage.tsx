@@ -24,7 +24,7 @@ function MailListPage() {
   useEffect(() => {
     (async () => {
       await axios
-        .get(`letters/users/9f8633a7-4f7f-4540-b197-d6aae6982f53/events/357b7c5e-eaea-417e-8fa0-d4b2610fca07/all/pages/${page}`)
+        .get(`letters/users/ce23c44db01743d0bde411e8f3b4fbac/birth/all/pages/${page}`)
         .then((res) => {
           setMailList(res.data);
           if (res.status === 204) {
@@ -39,7 +39,7 @@ function MailListPage() {
 
     (async () => {
       await axios
-        .get(`letters/users/9f8633a7-4f7f-4540-b197-d6aae6982f53/events/357b7c5e-eaea-417e-8fa0-d4b2610fca07/counts`)
+        .get(`letters/users/ce23c44db01743d0bde411e8f3b4fbac/birth/counts`)
         .then((res) => {
           setMailCount(res.data[0].count);
         })
@@ -51,7 +51,7 @@ function MailListPage() {
 
   return (
     <div
-      className="flex justify-center items-center flex-col"
+      className="flex justify-center items-center flex-col "
       style={{ backgroundColor: ColorSystem.MainColor.Primary }}
     >
       <span className="text-white m-14 text-2xl">총 {mailCount}개의 편지를 받았습니다.</span>
