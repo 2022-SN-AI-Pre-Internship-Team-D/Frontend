@@ -16,7 +16,7 @@ function EachCookie({ setting = '' }) {
       src="images/cookieimg.png"
       alt="asdf"
       className={`${
-        updown ? ' w-20 md:w-28 lg:w-2/6 mb-5 md:mb-7 lg:mb-10' : ' w-20 md:w-28 lg:w-2/6 mt-5 md:mt-7 lg:mt-10'
+        updown ? ' w-20 md:w-24 lg:w-28 mb-5 md:mb-7 lg:mb-10' : ' w-20 md:w-24 lg:w-28 mt-5 md:mt-7 lg:mt-10'
       }`}
     />
   );

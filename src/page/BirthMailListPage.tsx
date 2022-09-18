@@ -4,7 +4,7 @@ import 'tailwindcss/tailwind.css';
 import ColorSystem from 'utils/ColorSystem';
 import { useState, useEffect } from 'react';
 
-function MailListPage() {
+function BirthMailListPage() {
   const [mailList, setMailList] = useState([]); // <any[]>
   const [page, setPage] = useState(1);
   const [mailCount, setMailCount] = useState('0');
@@ -71,4 +71,4 @@ function MailListPage() {
     </div>
   );
 }
-export default MailListPage;
+export default BirthMailListPage;

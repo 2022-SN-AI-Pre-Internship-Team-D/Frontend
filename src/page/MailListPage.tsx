@@ -3,6 +3,7 @@ import EachMail from 'components/MailList/EachMail';
 import 'tailwindcss/tailwind.css';
 import ColorSystem from 'utils/ColorSystem';
 import { useState, useEffect } from 'react';
+import MoreButton from 'components/MailList/MoreButton';
 
 function MailListPage() {
   const [mailList, setMailList] = useState([]); // <any[]>
@@ -24,7 +25,9 @@ function MailListPage() {
   useEffect(() => {
     (async () => {
       await axios
-        .get(`letters/users/9f8633a7-4f7f-4540-b197-d6aae6982f53/events/357b7c5e-eaea-417e-8fa0-d4b2610fca07/all/pages/${page}`)
+        .get(
+          `letters/users/ce23c44db01743d0bde411e8f3b4fbac/events/e6c8b478-192c-4fdb-8798-4eab6e8c4c93/all/pages/${page}`,
+        )
         .then((res) => {
           setMailList(res.data);
           if (res.status === 204) {
@@ -39,7 +42,7 @@ function MailListPage() {
 
     (async () => {
       await axios
-        .get(`letters/users/9f8633a7-4f7f-4540-b197-d6aae6982f53/events/357b7c5e-eaea-417e-8fa0-d4b2610fca07/counts`)
+        .get(`letters/users/ce23c44db01743d0bde411e8f3b4fbac/events/e6c8b478-192c-4fdb-8798-4eab6e8c4c93/counts`)
         .then((res) => {
           setMailCount(res.data[0].count);
         })
@@ -60,13 +63,8 @@ function MailListPage() {
         <EachMail content={item.text} key={item.id} />
       ))}
       <div className="flex flex-row mb-8">
-        <button type="button" className="m-2 bg-white rounded-full p-1" onClick={changeBeforePage}>
-          이전
-        </button>
-
-        <button type="button" className="m-2 bg-white rounded-full p-1" onClick={changeFrontPage}>
-          다음
-        </button>
+        <MoreButton handlePage={changeBeforePage} title="<" />
+        <MoreButton handlePage={changeFrontPage} title=">" />
       </div>
     </div>
   );
