@@ -39,8 +39,8 @@ function RemainingDaysPage() {
   return (
     <div className="flex justify-center h-screen" style={{ backgroundColor: ColorSystem.MainColor.Primary }}>
       <div className="flex justify-center flex-col items-center">
-        <p className="text-white text-4xl mb-3">{dDay}days left</p>
-        <p className="text-slate-300">{mailCount}개의 편지가 당신을 기다리고 있습니다.</p>
+        <p className="text-white text-4xl mb-3">{dDay} days left</p>
+        <p className="text-slate-300">{mailCount} 개의 편지가 당신을 기다리고 있습니다.</p>
         <img src="images/back3.png" alt="a" className="w-60 md:w-80 lg:96" />
       </div>
 

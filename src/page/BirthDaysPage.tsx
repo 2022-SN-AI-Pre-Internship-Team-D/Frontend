@@ -8,27 +8,27 @@ function BirthDaysPage() {
   const [birthdDay, setbirthDay] = useState('0');
   const [birthMailCount, setbirthMailCount] = useState('0');
 
-
   useEffect(() => {
+    // 생일까지 남은 디데이
     (async () => {
-      // 생일에 받은 편지 수
-      // axios 에러 발생
     await axios
-      .get('/letters/users/9f8633a7-4f7f-4540-b197-d6aae6982f53/events/birth/check-birth-date')
+      .get('/letters/users/64a00ada-ffa3-4607-b282-dee397e93d57/events/birth/check-birth-date')
       .then((res) => {
-        setbirthDay(res.data[0].count);
+        setbirthDay(res.data.days);
+        console.log(res.data.days);
       })
       .catch((error) => {
         console.log(error);
       });
     })();
 
+    // 생일에 받은 편지 수
     (async () => {
-        // 생일에 받은 편지 수
       await axios
-        .get('/letters/users/9f8633a7-4f7f-4540-b197-d6aae6982f53/birth/counts')
+        .get('/letters/users/64a00ada-ffa3-4607-b282-dee397e93d57/birth/counts')
         .then((res) => {
           setbirthMailCount(res.data[0].count);
+          console.log(res.data);
         })
         .catch((error) => {
           console.log(error);
@@ -40,8 +40,8 @@ function BirthDaysPage() {
   return (
     <div className="flex justify-center h-screen" style={{ backgroundColor: ColorSystem.MainColor.Primary }}>
       <div className="flex justify-center flex-col items-center">
-        <p className="text-white text-4xl mb-3">{birthdDay}days left</p>
-        <p className="text-slate-300">{birthMailCount}개의 편지가 당신을 기다리고 있습니다.</p>
+        <p className="text-white text-4xl mb-3">{birthdDay} days left</p>
+        <p className="text-slate-300">{birthMailCount} 개의 편지가 당신을 기다리고 있습니다.</p>
         <img src="images/back3.png" alt="a" className="w-60 md:w-80 lg:96" />
       </div>
 
