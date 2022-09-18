@@ -3,6 +3,8 @@ import ColorSystem from 'utils/ColorSystem';
 import React, { useState } from 'react';
 import 'utils/pageStyle.css';
 import ResultModal from 'components/ResultModal';
+import { Link, useNavigate } from 'react-router-dom';
+
 
 function MainPage() {
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -30,7 +32,9 @@ function MainPage() {
       </button>
 
       <div className="absolute top-5 left-10">
-        <span className="flex justify-center text-white font-bold text-xl">ellie010707 님</span>
+        <Link to="/mypage">
+        <span className="flex justify-center text-white font-bold text-2xl">ellie010707 님</span>
+        </Link>
       </div>
       {/* 편지 */}
       <div className="flex flex-col absolute top-5 left-5 md:m-10 w-20 md:w-28 lg:w-1/12 ">
