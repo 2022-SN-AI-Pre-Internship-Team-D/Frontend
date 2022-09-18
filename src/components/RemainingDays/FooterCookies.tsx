@@ -11,25 +11,7 @@ function FooterCookies() {
     return result;
   };
 
-  return (
-    <div className="fixed flex justify-center bottom-0">{rendering()}</div>
-    // {Object.values(updownList)?.map((item: string) => (
-    //   <EachCookie setting={item} key={item} />
-    // ))}
-    // <div className="fixed flex justify-center bottom-0">
-    //   <EachCookie setting="up" />
-    //   <EachCookie />
-    //   <EachCookie setting="up" />
-    //   <EachCookie />
-    //   <EachCookie setting="up" />
-    //   <EachCookie />
-    //   <EachCookie setting="up" />
-    //   <EachCookie />
-    //   <EachCookie setting="up" />
-    //   <EachCookie />
-    //   <EachCookie setting="up" />
-    // </div>
-  );
+  return <div className="fixed flex justify-center bottom-0">{rendering()}</div>;
 }
 
 export default FooterCookies;

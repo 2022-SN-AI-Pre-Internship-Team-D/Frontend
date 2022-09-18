@@ -3,10 +3,29 @@ import ColorSystem from 'utils/ColorSystem';
 import React, { useState } from 'react';
 import 'utils/pageStyle.css';
 import ResultModal from 'components/ResultModal';
+import { useNavigate } from 'react-router';
+import axios from 'axios';
 
 function MainPage() {
-  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-    console.log(event.target);
+  const navigate = useNavigate();
+  const [eventID, setEventID] = useState('');
+
+  const handleClick = async (event: React.MouseEvent<HTMLElement>) => {
+    const { id } = event.currentTarget;
+    await axios
+      .get(`/letters/events/${id}/check-date`)
+      // .get(`/letters/events/fdbfce22-ac18-4bc7-99cb-2bc44b2dd64d/check-date`)
+      .then((res) => {
+        console.log(res.data.status);
+        if (res.data.status === 'false') {
+          navigate('/remainingdayspage', { state: [res.data.days, id] }); // 남은일수와 , 이벤트 id
+        } else {
+          navigate('/maillistpage', { state: [id] });
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   // ⭕️
@@ -23,10 +42,13 @@ function MainPage() {
       style={{ backgroundColor: ColorSystem.MainColor.Primary }}
     >
       {/* 2023 */}
-      <button onClick={handleClick} className="scaleup flex justify-center h-fit w-60 md:w-80 lg:w-2/6" type="button">
-        <a href="/maillistpage">
-          <img src="images/newyearimg.png" alt="a" className="" />
-        </a>
+      <button
+        onClick={handleClick}
+        id="e6c8b478-192c-4fdb-8798-4eab6e8c4c93"
+        className="scaleup flex justify-center h-fit w-60 md:w-80 lg:w-2/6"
+        type="button"
+      >
+        <img src="images/newyearimg.png" alt="a" className="" />
       </button>
 
       <div className="absolute top-5 left-10">
@@ -35,17 +57,21 @@ function MainPage() {
       {/* 편지 */}
       <div className="flex flex-col absolute top-5 left-5 md:m-10 w-20 md:w-28 lg:w-1/12 ">
         <button type="button" className="scaleup">
-          <a href="/mailwritepage">
+          <a href="/birthmaillistpage">
             <img src="images/letterimg.png" alt="a" />
           </a>
         </button>
       </div>
       {/* 추석 */}
-      <button onClick={handleClick} className="scaleup absolute bottom-0 left-0 w-60 md:w-80 lg:w-2/6" type="button">
+      <button
+        onClick={() => alert('업데이트 예정입니다.')}
+        className="scaleup absolute bottom-0 left-0 w-60 md:w-80 lg:w-2/6"
+        type="button"
+      >
         <img src="images/thankimg.png" alt="a" />
       </button>
-      {/* 나무 */}
-      <button onClick={handleClick} className="" type="button">
+      {/* 크리스마스 */}
+      <button onClick={handleClick} id="a7ab5940-8f7f-4f7d-b29d-c1f5b7ef2d28" type="button">
         <img
           src="images/treeimg.png"
           alt="a"
@@ -54,13 +80,11 @@ function MainPage() {
       </button>
       {/* 호박 선물 */}
       <div className="flex flex-row absolute bottom-0 right-0 w-60 md:w-80 lg:w-2/5 ">
-        <button onClick={handleModal} className="scaleup" type="button">
+        <button onClick={handleClick} className="scaleup" type="button" id="497208b4-2d0e-4558-ab48-c7f0987b40b2">
           <img src="images/halloweenimg.png" alt="a" className="origin-center hover:origin-top" />
         </button>
-        <button onClick={handleClick} className="scaleup" type="button">
-          <a href="/remainingdayspage">
-            <img src="images/valentineimg.png" alt="a" />
-          </a>
+        <button onClick={() => alert('업데이트 예정입니다.')} className="scaleup" type="button">
+          <img src="images/valentineimg.png" alt="a" />
         </button>
       </div>
       {/* ⭕️ */}

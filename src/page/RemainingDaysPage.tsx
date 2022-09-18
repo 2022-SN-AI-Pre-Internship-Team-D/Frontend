@@ -1,46 +1,35 @@
 import 'tailwindcss/tailwind.css';
 import ColorSystem from 'utils/ColorSystem';
 import FooterCookies from 'components/RemainingDays/FooterCookies';
+import { useLocation } from 'react-router';
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 function RemainingDaysPage() {
-  const [dDay, setDDayCount] = useState('0');
-  const [mailCount, setMailCount] = useState('0');
+  const { state } = useLocation();
+  const [mailNum, setMailNum] = useState('');
 
-
-  useEffect(() => {
-    (async () => {
-        // 기본이벤트 남은 디데이
-      await axios
-        .get('/letters/events/357b7c5e-eaea-417e-8fa0-d4b2610fca07/check-date')
-        .then((res) => {
-          setDDayCount(res.data.days);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    })();
-
-    (async () => {
-      // 기본이벤트에 받은 편지 개수
+  (async () => {
     await axios
-      .get('/letters/users/9f8633a7-4f7f-4540-b197-d6aae6982f53/events/357b7c5e-eaea-417e-8fa0-d4b2610fca07/counts')
+      .get(`/letters/users/ce23c44db01743d0bde411e8f3b4fbac/events/${state[1]}/counts`)
       .then((res) => {
-        setMailCount(res.data[0].count);
+        if (res.data.length) {
+          setMailNum(res.data[0].count);
+          console.log(res);
+        } else {
+          setMailNum('0');
+        }
       })
       .catch((error) => {
         console.log(error);
       });
-    })();
-
-  }, []);
+  })();
 
   return (
     <div className="flex justify-center h-screen" style={{ backgroundColor: ColorSystem.MainColor.Primary }}>
       <div className="flex justify-center flex-col items-center">
-        <p className="text-white text-4xl mb-3">{dDay} days left</p>
-        <p className="text-slate-300">{mailCount} 개의 편지가 당신을 기다리고 있습니다.</p>
+        <p className="text-white text-4xl mb-3">{state[0]} days left</p>
+        <p className="text-slate-300">{mailNum}개의 편지가 당신을 기다리고 있습니다.</p>
         <img src="images/back3.png" alt="a" className="w-60 md:w-80 lg:96" />
       </div>
 
@@ -55,7 +44,5 @@ function RemainingDaysPage() {
 }
 
 export default RemainingDaysPage;
-function then(arg0: (res: any) => void) {
-  throw new Error('Function not implemented.');
-}
+
 

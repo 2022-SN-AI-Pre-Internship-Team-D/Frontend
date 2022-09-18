@@ -3,8 +3,9 @@ import EachMail from 'components/MailList/EachMail';
 import 'tailwindcss/tailwind.css';
 import ColorSystem from 'utils/ColorSystem';
 import { useState, useEffect } from 'react';
+import MoreButton from 'components/MailList/MoreButton';
 
-function MailListPage() {
+function BirthMailListPage() {
   const [mailList, setMailList] = useState([]); // <any[]>
   const [page, setPage] = useState(1);
   const [mailCount, setMailCount] = useState('0');
@@ -60,15 +61,10 @@ function MailListPage() {
         <EachMail content={item.text} key={item.id} />
       ))}
       <div className="flex flex-row mb-8">
-        <button type="button" className="m-2 bg-white rounded-full p-1" onClick={changeBeforePage}>
-          이전
-        </button>
-
-        <button type="button" className="m-2 bg-white rounded-full p-1" onClick={changeFrontPage}>
-          다음
-        </button>
+        <MoreButton handlePage={changeBeforePage} title="<" />
+        <MoreButton handlePage={changeFrontPage} title=">" />
       </div>
     </div>
   );
 }
-export default MailListPage;
+export default BirthMailListPage;

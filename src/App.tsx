@@ -5,7 +5,7 @@ import LoginPage from 'page/LoginPage';
 import MailListPage from 'page/MailListPage';
 import MailWritePage from 'page/MailWritePage';
 import SignupPage from 'page/SignupPage';
-import MyPage from  'page/Mypage';
+import MyPage from 'page/Mypage';
 import BirthMailListPage from 'page/BirthMailListPage';
 import BirthDaysPage from 'page/BirthDaysPage';
 import MainPage from './page/MainPage';
