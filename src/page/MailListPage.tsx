@@ -4,8 +4,10 @@ import 'tailwindcss/tailwind.css';
 import ColorSystem from 'utils/ColorSystem';
 import { useState, useEffect } from 'react';
 import MoreButton from 'components/MailList/MoreButton';
+import { useLocation } from 'react-router';
 
 function MailListPage() {
+  const { state } = useLocation();
   const [mailList, setMailList] = useState([]); // <any[]>
   const [page, setPage] = useState(1);
   const [mailCount, setMailCount] = useState('0');
@@ -25,9 +27,7 @@ function MailListPage() {
   useEffect(() => {
     (async () => {
       await axios
-        .get(
-          `letters/users/ce23c44db01743d0bde411e8f3b4fbac/events/e6c8b478-192c-4fdb-8798-4eab6e8c4c93/all/pages/${page}`,
-        )
+        .get(`letters/users/ce23c44db01743d0bde411e8f3b4fbac/events/${state[0]}/all/pages/${page}`)
         .then((res) => {
           setMailList(res.data);
           if (res.status === 204) {
@@ -42,7 +42,7 @@ function MailListPage() {
 
     (async () => {
       await axios
-        .get(`letters/users/ce23c44db01743d0bde411e8f3b4fbac/events/e6c8b478-192c-4fdb-8798-4eab6e8c4c93/counts`)
+        .get(`letters/users/ce23c44db01743d0bde411e8f3b4fbac/events/${state[0]}/counts`)
         .then((res) => {
           setMailCount(res.data[0].count);
         })
