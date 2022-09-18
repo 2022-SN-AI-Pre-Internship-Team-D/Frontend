@@ -15,7 +15,6 @@ function BirthDaysPage() {
       .get('/letters/users/64a00ada-ffa3-4607-b282-dee397e93d57/events/birth/check-birth-date')
       .then((res) => {
         setbirthDay(res.data.days);
-        console.log(res.data.days);
       })
       .catch((error) => {
         console.log(error);
@@ -28,7 +27,6 @@ function BirthDaysPage() {
         .get('/letters/users/64a00ada-ffa3-4607-b282-dee397e93d57/birth/counts')
         .then((res) => {
           setbirthMailCount(res.data[0].count);
-          console.log(res.data);
         })
         .catch((error) => {
           console.log(error);
