@@ -9,7 +9,7 @@ interface SignUpInfo {
   password: FormDataEntryValue | null;
   password2: FormDataEntryValue | null;
   birth: FormDataEntryValue | null;
-  // image: FormDataEntryValue | null;
+  image: FormDataEntryValue | null;
 }
 
 function SignupPage() {
@@ -24,9 +24,9 @@ function SignupPage() {
       password: data.get('password'),
       password2: data.get('password2'),
       birth: data.get('birth'),
-      // image: data.get('image'),
+      image: data.get('image'),
     };
-
+    console.log(data.get('image'));
     (async () => {
       await axios
         .post(`/users/sign-up/`, signUpUserInfo)
@@ -68,7 +68,6 @@ function SignupPage() {
       <form onSubmit={handleSignUp}>
         <div className="mt-2">
           <div className="flex flex-row justify-center">
-            {/* <form onSubmit={handleImageUpload}> */}
               <div className="flex justify-center items-center mr-10 ml-10 pb-28">
                 <label
                   htmlFor="dropzone-file"
