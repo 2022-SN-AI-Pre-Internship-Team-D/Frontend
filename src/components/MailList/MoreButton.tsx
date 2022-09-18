@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 interface Props {
-  handlePage: any;
+  handlePage: React.MouseEventHandler<HTMLButtonElement>;
   title: string;
 }
 function MoreButton({ handlePage, title }: Props) {
