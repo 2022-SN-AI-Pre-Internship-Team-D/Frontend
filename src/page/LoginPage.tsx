@@ -4,20 +4,11 @@ import Enter from 'images/Enter.png';
 import React from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import jwtDecode from 'jwt-decode';
+import { checkAccessToken } from 'utils/tokenManager';
 
 interface LoginInfo {
   email: FormDataEntryValue | null;
   password: FormDataEntryValue | null;
-}
-
-interface jwtType {
-  token_type: string;
-  exp: number;
-  iat: number;
-  jti: string;
-  user_id: number;
-  user_uuid: string;
 }
 
 function LoginPage() {
@@ -37,9 +28,8 @@ function LoginPage() {
         .then((res) => {
           console.log(res.data.access);
           console.log(res.data.refresh);
-          const decoded = jwtDecode<jwtType>(res.data.access);
-          console.log(decoded.user_uuid);
           console.log('로그인 성공');
+          checkAccessToken(res.data.access);
           // navigate('/mainpage');
         })
         .catch((error) => {
