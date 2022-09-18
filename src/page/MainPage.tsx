@@ -3,7 +3,7 @@ import ColorSystem from 'utils/ColorSystem';
 import React, { useState } from 'react';
 import 'utils/pageStyle.css';
 import ResultModal from 'components/ResultModal';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 
 
 function MainPage() {
