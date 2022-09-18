@@ -32,6 +32,7 @@ const checkAccessToken = async (Token: string) => {
       if (error.response.status) {
         console.log('만료된거');
         localStorage.removeItem('access_token');
+        // updateAccessToken(getToken().refresh!);
       } else {
         console.log(error);
       }
@@ -45,7 +46,22 @@ const decodeAccessToken = (accessToken: string) => {
   // 여기서 uuid 전역관리 고고
 };
 
-// 로컬 스토리지에 있는 토큰을 확인
+// 👉 리프레쉬로 엑세스 갱신
+const updateAccessToken = async (refreshToken: string) => {
+  await axios
+    .post(`/users/token/refresh/`, {
+      refresh: refreshToken,
+    })
+    .then((res) => {
+      setToken(res.data.access, res.data.refresh);
+      console.log('업데이트되었씁니다.');
+    })
+    .catch((res) => {
+      console.log('업데이트', res);
+    });
+};
+
+// 👉 로컬 스토리지에 있는 토큰을 확인
 const getToken = () => {
   const access = localStorage.getItem('access_token');
   const refresh = localStorage.getItem('refresh_token');
@@ -53,14 +69,16 @@ const getToken = () => {
   return { access, refresh };
 };
 
+// 👉 로컬 스토리지에 있는 토큰을 확인
 const setToken = (accessToken: string, refreshToken: string) => {
   localStorage.setItem('access_token', accessToken);
   localStorage.setItem('refresh_token', refreshToken);
 };
-// // 로컬 스토리지에 있는 토큰을 clear
+
+// 👉 로컬 스토리지에 있는 토큰을 clear 로그아웃할떄 ?
 // const deleteToken = (clearToken: string) => {
 //   localStorage.removeItem(clearToken);
 //   window.location.replace("/mainpage");
 // };
 
-export { checkAccessToken, decodeAccessToken, getToken, setToken };
+export { checkAccessToken, decodeAccessToken, getToken, setToken, updateAccessToken };

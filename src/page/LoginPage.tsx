@@ -4,7 +4,7 @@ import Enter from 'images/Enter.png';
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { getToken, setToken, decodeAccessToken, checkAccessToken } from 'utils/tokenManager';
+import { getToken, setToken, decodeAccessToken } from 'utils/tokenManager';
 
 interface LoginInfo {
   email: FormDataEntryValue | null;
