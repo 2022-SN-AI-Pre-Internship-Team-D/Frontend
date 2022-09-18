@@ -48,9 +48,7 @@ function MainPage() {
         className="scaleup flex justify-center h-fit w-60 md:w-80 lg:w-2/6"
         type="button"
       >
-        {/* <a href="/maillistpage"> */}
         <img src="images/newyearimg.png" alt="a" className="" />
-        {/* </a> */}
       </button>
 
       <div className="absolute top-5 left-10">
@@ -86,9 +84,7 @@ function MainPage() {
           <img src="images/halloweenimg.png" alt="a" className="origin-center hover:origin-top" />
         </button>
         <button onClick={() => alert('업데이트 예정입니다.')} className="scaleup" type="button">
-          <a href="/remainingdayspage">
-            <img src="images/valentineimg.png" alt="a" />
-          </a>
+          <img src="images/valentineimg.png" alt="a" />
         </button>
       </div>
       {/* ⭕️ */}
