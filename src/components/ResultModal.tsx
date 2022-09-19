@@ -1,6 +1,7 @@
 import { Fragment, useRef, useState, useEffect } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import ColorSystem from 'utils/ColorSystem';
+import { useNavigate } from "react-router-dom";
 
 interface Props {
   openinit: any;
@@ -17,6 +18,10 @@ export default function ResultModal({ openinit, closeModal }: Props) {
   //   console.log('what is open? ', open);
 
   const cancelButtonRef = useRef(null);
+  const navigate = useNavigate();
+  const goToMain = () => {
+    navigate("/mainpage");
+  }
 
   return (
     <div>
@@ -71,7 +76,7 @@ export default function ResultModal({ openinit, closeModal }: Props) {
                   <button
                     type="button"
                     className="absolute top-0 right-0 rounded-full m-2 bg-slate-700 px-3 py-1 font-medium text-white "
-                    onClick={closeModal}
+                    onClick={goToMain}
                   >
                     X
                   </button>
