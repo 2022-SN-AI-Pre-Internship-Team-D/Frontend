@@ -31,7 +31,7 @@ const checkAccessToken = async (Token: string) => {
     .catch((error) => {
       if (error.response.status) {
         console.log('만료된거');
-        localStorage.removeItem('access_token');
+        updateAccessToken(getToken().refresh!);
         // updateAccessToken(getToken().refresh!);
       } else {
         console.log(error);
