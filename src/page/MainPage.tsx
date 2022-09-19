@@ -5,11 +5,18 @@ import 'utils/pageStyle.css';
 import ResultModal from 'components/ResultModal';
 import { useNavigate } from 'react-router';
 import axios from 'axios';
+import { useSelector } from 'react-redux';
 
 function MainPage() {
   const navigate = useNavigate();
   const [eventID, setEventID] = useState('');
 
+  // asdfsfafsfasfsaf
+  const count = useSelector((state: any) => {
+    return state.userID.value;
+  });
+  console.log(' : 디코딩된 유유아이디', count);
+  // asdfsfafsfasfsaf
   const handleClick = async (event: React.MouseEvent<HTMLElement>) => {
     const { id } = event.currentTarget;
     await axios

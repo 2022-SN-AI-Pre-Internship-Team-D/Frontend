@@ -1,6 +1,8 @@
 import jwtDecode from 'jwt-decode';
 import axios from 'axios';
-import { useState } from 'react';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { setUUID } from 'redux/userID';
 
 interface jwtType {
   token_type: string;
@@ -44,6 +46,7 @@ const decodeAccessToken = (accessToken: string) => {
   const decoded = jwtDecode<jwtType>(accessToken);
   console.log(decoded.user_uuid, '체크ㄴ');
   // 여기서 uuid 전역관리 고고
+  return decoded.user_uuid;
 };
 
 // 👉 리프레쉬로 엑세스 갱신

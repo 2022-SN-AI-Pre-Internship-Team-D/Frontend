@@ -18,6 +18,7 @@ function App() {
       <Routes>
         <Route path="/" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
+        <Route path="/write/:username" element={<App />} />
 
         <Route element={<AuthRouter />}>
           <Route path="/mainpage" element={<MainPage />} />
