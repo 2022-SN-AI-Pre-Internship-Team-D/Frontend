@@ -33,8 +33,8 @@ function LoginPage() {
           // console.log('로그인 성공');
           setToken(res.data.access, res.data.refresh); // 토큰 localstorage에 저장
           // console.log(getToken(), ' localstorage 들어갔는지 확인');
-          const test = decodeAccessToken(getToken().access || ''); // 🤚 이거 다음에 확인
-          dispatch(setUUID(test));
+          const uuid = decodeAccessToken(getToken().access || ''); // 🤚 이거 다음에 확인
+          dispatch(setUUID(uuid));
           navigate('/mainpage');
         })
         .catch((error) => {
