@@ -1,7 +1,5 @@
 import jwtDecode from 'jwt-decode';
 import axios from 'axios';
-import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 import { setUUID } from 'redux/userID';
 
 interface jwtType {
