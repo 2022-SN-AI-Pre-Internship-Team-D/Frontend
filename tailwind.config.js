@@ -8,6 +8,7 @@ module.exports = {
     extend: {
       fontFamily: {
         'press-start': ['Itim', 'cursive;'],
+        'dear' : ["SeaweedScript"],
       },
       colors: {
         grey: '#D9D9D9',
