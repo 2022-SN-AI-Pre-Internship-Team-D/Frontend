@@ -2,6 +2,8 @@ import 'tailwindcss/tailwind.css';
 import ColorSystem from 'utils/ColorSystem';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { useRef, useState } from 'react';
+import profile from 'images/profile.png';
 
 interface SignUpInfo {
   username: FormDataEntryValue | null;
@@ -26,7 +28,6 @@ function SignupPage() {
       birth: data.get('birth'),
       image: data.get('image'),
     };
-    console.log(data.get('image'));
     (async () => {
       await axios
         .post(`/users/sign-up/`, signUpUserInfo, {headers: { "Content-Type": "multipart/form-data"}})
@@ -57,6 +58,19 @@ function SignupPage() {
     })();
   };
 
+  const [imageUrl, setImageUrl] = useState(profile) 
+  const imgRef: any = useRef();
+
+  const handleChangeFile = (e: any) => {
+    const reader: any = new FileReader();
+    const file = imgRef.current.files[0];
+
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+      setImageUrl(reader.result);
+      console.log("이미지주소", reader.result);
+  }
+  }
 
   return (
     <div className="h-screen" style={{ backgroundColor: ColorSystem.MainColor.Primary }}>
@@ -69,21 +83,16 @@ function SignupPage() {
         <div className="mt-2">
           <div className="flex flex-row justify-center">
               <div className="flex justify-center items-center mr-10 ml-10 pb-28">
-                <label
-                  htmlFor="dropzone-file"
-                  className="cursor-pointer flex flex-col justify-center items-center w-80 h-80 
-                          rounded-full border-4 border-[#677DC6] bg-white hover:bg-[#677DC6]"
-                >
-                  <div>
-                    <span className="flex justify-center text-5xl text-[#677DC6]">+</span>
-                  </div>
-                  <input id="dropzone-file" type="file" name="image" className="hidden"/>
-                  {/* className="hidden" */}
+                <div className='preview'>
+                <label htmlFor="profile">
+                   { imageUrl && <img src={imageUrl} alt="profile" 
+                   className="cursor-pointer flex flex-col justify-center items-center w-80 h-80 
+                    rounded-full border-4 border-[#677DC6] bg-white" /> }                 
+                    <input onChange={handleChangeFile} id="profile" className="hidden" ref={imgRef} type="file" name="image" accept="image/*" />
                 </label>
+                </div>
               </div>
-            {/* </form> */}
 
-            {/* <form onSubmit={handleSignUp}> */}
               <div className="ml-10 flex flex-col justify-end">
                 <div>
                   <label className="m-1.5 text-white" htmlFor="nickname">
