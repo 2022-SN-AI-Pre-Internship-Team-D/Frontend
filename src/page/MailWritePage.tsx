@@ -2,22 +2,37 @@ import 'tailwindcss/tailwind.css';
 import React, { useState } from 'react';
 import ColorSystem from 'utils/ColorSystem';
 import postcard from 'images/postcard.png';
+import { useNavigate } from 'react-router';
+import axios from 'axios';
 
 interface WriteInfo {
   text: FormDataEntryValue | null;
   file: FormDataEntryValue | null;
-  // media: FormDataEntryValue | null;
+  media: FormDataEntryValue | null;
 }
 
 function MailWritePage() {
+  const navigate = useNavigate();
+
   const handleWrite = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     const data = new FormData(e.currentTarget);
     const MailInfo: WriteInfo = {
       text: data.get('file'),
       file: data.get('text'),
-      //  media: data.get(''),
+      media: data.get('file'),
     };
     console.log(MailInfo);
+    (async () => {
+      await axios
+        .post(`users/<user_uuid>/birth/write`, MailInfo)
+        .then((res) => {
+          return console.log('파일전송 완료');
+        })
+        .catch((error) => {
+          console.log('파일전송 실패');
+        });
+    })();
   };
 
   const onChangeImage = async (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -51,7 +66,6 @@ function MailWritePage() {
         <img src={postcard} alt="postcard" className="w-24" />
         <div>
           <button type="button" onClick={handleClick} className="m-10 mt-5 w-96 h-48 rounded-xl bg-subBackground">
-            +
             <input
               name="file"
               ref={hiddenFileInput}
@@ -77,7 +91,6 @@ function MailWritePage() {
           />
         </div>
         <button type="submit" className=" bg-white px-10 py-2 mt-5 rounded-full border-4 border-subBackground">
-          {' '}
           전송
         </button>
       </form>
