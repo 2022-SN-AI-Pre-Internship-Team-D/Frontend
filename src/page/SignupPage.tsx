@@ -2,6 +2,7 @@ import 'tailwindcss/tailwind.css';
 import ColorSystem from 'utils/ColorSystem';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { useEffect, useState } from 'react';
 
 interface SignUpInfo {
   username: FormDataEntryValue | null;
@@ -26,7 +27,6 @@ function SignupPage() {
       birth: data.get('birth'),
       image: data.get('image'),
     };
-    console.log(data.get('image'));
     (async () => {
       await axios
         .post(`/users/sign-up/`, signUpUserInfo, {headers: { "Content-Type": "multipart/form-data"}})
@@ -57,6 +57,31 @@ function SignupPage() {
     })();
   };
 
+  const [fileImage, setFileImage] = useState("");   
+
+  const encodeFileToBase64 = (fileBlob: any) => { 
+    const reader = new FileReader();
+    reader.readAsDataURL(fileBlob);
+    return new Promise<void>((resolve) => {
+      reader.onload = () => {
+      setFileImage(reader.result);
+      resolve();
+      };
+
+    });
+  };
+  // 파일 저장
+  const saveFileImage = (e: any) => {
+    encodeFileToBase64(e.target.files[0]);
+    // console.log(e.target.files);
+  };
+  
+  // 파일 삭제
+  const deleteFileImage = () => {
+    URL.revokeObjectURL(fileImage);
+    setFileImage("");
+  };
+
 
   return (
     <div className="h-screen" style={{ backgroundColor: ColorSystem.MainColor.Primary }}>
@@ -76,14 +101,16 @@ function SignupPage() {
                 >
                   <div>
                     <span className="flex justify-center text-5xl text-[#677DC6]">+</span>
-                  </div>
-                  <input id="dropzone-file" type="file" name="image" className="hidden"/>
+                    <input onClick={saveFileImage} id="dropzone-file" type="file" name="image" />
+                    {fileImage && (
+                      <img alt="profile" src={fileImage} />
+                    )}
                   {/* className="hidden" */}
+                  </div>
+                    
                 </label>
               </div>
-            {/* </form> */}
 
-            {/* <form onSubmit={handleSignUp}> */}
               <div className="ml-10 flex flex-col justify-end">
                 <div>
                   <label className="m-1.5 text-white" htmlFor="nickname">
