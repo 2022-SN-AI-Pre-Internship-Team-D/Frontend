@@ -1,6 +1,6 @@
 import 'tailwindcss/tailwind.css';
 import ColorSystem from 'utils/ColorSystem';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import 'utils/pageStyle.css';
 import ResultModal from 'components/ResultModal';
 import { useNavigate } from 'react-router';
@@ -10,7 +10,8 @@ import { getUUID } from 'utils/getUUID';
 
 function MainPage() {
   const navigate = useNavigate();
-  const [eventID, setEventID] = useState('');
+  const [dDay, setDDay] = useState('0');
+  // const [eventID, setEventID] = useState('');
 
   // asdfsfafsfasfsaf
 
@@ -34,6 +35,32 @@ function MainPage() {
         console.log(error);
       });
   };
+  
+  useEffect(() => {
+    // 생일
+    (async () => {
+      await axios
+        .get(`/letters/users/${getUUID().uuid}/events/birth/check-birth-date`)
+        .then((res) => {
+          setDDay(res.data.status);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    })();
+
+  }, []);
+
+  const dDayReturn = () => {
+    if (dDay === 'true') {
+      console.log("편지 열람 가능");
+      navigate('/birthmaillistpage');
+    }
+    else {
+      console.log("편지 열람 불가")
+      navigate('/birthremainingdayspage');
+    }
+  }
 
   // ⭕️
   const handleModal = () => {
@@ -51,7 +78,7 @@ function MainPage() {
       {/* 2023 */}
       <button
         onClick={handleClick}
-        id="e6c8b478-192c-4fdb-8798-4eab6e8c4c93"
+        id="aebeb369-b8ef-46df-b056-0c7b560bf3c3"
         className="scaleup flex justify-center h-fit w-60 md:w-80 lg:w-2/6"
         type="button"
       >
@@ -63,10 +90,8 @@ function MainPage() {
       </div>
       {/* 편지 */}
       <div className="flex flex-col absolute top-5 left-5 md:m-10 w-20 md:w-28 lg:w-1/12 ">
-        <button type="button" className="scaleup">
-          <a href="/birthmaillistpage">
+        <button onClick={dDayReturn} type="button" className="scaleup">
             <img src="images/letterimg.png" alt="a" />
-          </a>
         </button>
       </div>
       {/* 추석 */}
@@ -78,7 +103,7 @@ function MainPage() {
         <img src="images/thankimg.png" alt="a" />
       </button>
       {/* 크리스마스 */}
-      <button onClick={handleClick} id="a7ab5940-8f7f-4f7d-b29d-c1f5b7ef2d28" type="button">
+      <button onClick={handleClick} id="081914f8-f8b5-4985-939b-2cacd054bd80" type="button">
         <img
           src="images/treeimg.png"
           alt="a"
@@ -87,7 +112,7 @@ function MainPage() {
       </button>
       {/* 호박 선물 */}
       <div className="flex flex-row absolute bottom-0 right-0 w-60 md:w-80 lg:w-2/5 ">
-        <button onClick={handleClick} className="scaleup" type="button" id="497208b4-2d0e-4558-ab48-c7f0987b40b2">
+        <button onClick={handleClick} className="scaleup" type="button" id="b6772dbd-6e71-49b3-8401-b477693f7903">
           <img src="images/halloweenimg.png" alt="a" className="origin-center hover:origin-top" />
         </button>
         <button onClick={() => alert('업데이트 예정입니다.')} className="scaleup" type="button">
