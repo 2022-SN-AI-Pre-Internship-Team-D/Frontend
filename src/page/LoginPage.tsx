@@ -1,9 +1,12 @@
 import 'tailwindcss/tailwind.css';
 import pencilImg from 'images/pencilImage.svg';
 import Enter from 'images/Enter.png';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { getToken, setToken, decodeAccessToken } from 'utils/tokenManager';
+import { useSelector, useDispatch } from 'react-redux';
+import { setUUID } from 'redux/userID';
 
 interface LoginInfo {
   email: FormDataEntryValue | null;
@@ -12,6 +15,8 @@ interface LoginInfo {
 
 function LoginPage() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const data = new FormData(e.currentTarget);
@@ -25,9 +30,11 @@ function LoginPage() {
       await axios
         .post(`/users/sign-in/`, userInfo)
         .then((res) => {
-          console.log(res.data.access);
-          console.log(res.data.refresh);
-          console.log('로그인 성공');
+          // console.log('로그인 성공');
+          setToken(res.data.access, res.data.refresh); // 토큰 localstorage에 저장
+          // console.log(getToken(), ' localstorage 들어갔는지 확인');
+          const uuid = decodeAccessToken(getToken().access || ''); // 🤚 이거 다음에 확인
+          dispatch(setUUID(uuid));
           navigate('/mainpage');
         })
         .catch((error) => {
@@ -36,9 +43,12 @@ function LoginPage() {
     })();
   };
 
-    const goToSign = () => {
-      navigate("/signup");
-    };
+  const goToSign = () => {
+    navigate('/signup');
+  };
+
+  // const tk: string | null = localStorage.getItem('access_token');
+  // checkAccessToken(tk!);
 
   return (
     <div className="h-screen bg-[#0E1733] flex justify-center flex-col items-center">

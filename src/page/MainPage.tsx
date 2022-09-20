@@ -5,11 +5,18 @@ import 'utils/pageStyle.css';
 import ResultModal from 'components/ResultModal';
 import { useNavigate } from 'react-router';
 import axios from 'axios';
+// import { useSelector } from 'react-redux';
+import { getUUID } from 'utils/getUUID';
 
 function MainPage() {
   const navigate = useNavigate();
   const [eventID, setEventID] = useState('');
 
+  // asdfsfafsfasfsaf
+
+  console.log(': 모듈을 이용한 유유아디', getUUID().uuid);
+
+  // asdfsfafsfasfsaf
   const handleClick = async (event: React.MouseEvent<HTMLElement>) => {
     const { id } = event.currentTarget;
     await axios

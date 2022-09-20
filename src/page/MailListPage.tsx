@@ -5,6 +5,7 @@ import ColorSystem from 'utils/ColorSystem';
 import { useState, useEffect } from 'react';
 import MoreButton from 'components/MailList/MoreButton';
 import { useLocation } from 'react-router';
+import { getUUID } from 'utils/getUUID';
 
 function MailListPage() {
   const { state } = useLocation();
@@ -27,7 +28,7 @@ function MailListPage() {
   useEffect(() => {
     (async () => {
       await axios
-        .get(`letters/users/ce23c44db01743d0bde411e8f3b4fbac/events/${state[0]}/all/pages/${page}`)
+        .get(`letters/users/${getUUID().uuid}/events/${state[0]}/all/pages/${page}`)
         .then((res) => {
           setMailList(res.data);
           if (res.status === 204) {
@@ -42,7 +43,7 @@ function MailListPage() {
 
     (async () => {
       await axios
-        .get(`letters/users/ce23c44db01743d0bde411e8f3b4fbac/events/${state[0]}/counts`)
+        .get(`letters/users/${getUUID().uuid}/events/${state[0]}/counts`)
         .then((res) => {
           setMailCount(res.data[0].count);
         })
