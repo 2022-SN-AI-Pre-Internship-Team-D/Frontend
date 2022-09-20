@@ -4,6 +4,7 @@ import FooterCookies from 'components/RemainingDays/FooterCookies';
 import { useLocation } from 'react-router';
 import axios from 'axios';
 import { useState } from 'react';
+import { getUUID } from 'utils/getUUID';
 
 function RemainingDaysPage() {
   const { state } = useLocation();
@@ -11,7 +12,7 @@ function RemainingDaysPage() {
 
   (async () => {
     await axios
-      .get(`/letters/users/ce23c44db01743d0bde411e8f3b4fbac/events/${state[1]}/counts`)
+      .get(`/letters/users/${getUUID().uuid}/events/${state[1]}/counts`)
       .then((res) => {
         if (res.data.length) {
           setMailNum(res.data[0].count);
@@ -44,5 +45,3 @@ function RemainingDaysPage() {
 }
 
 export default RemainingDaysPage;
-
-

@@ -4,6 +4,7 @@ import 'tailwindcss/tailwind.css';
 import ColorSystem from 'utils/ColorSystem';
 import { useState, useEffect } from 'react';
 import MoreButton from 'components/MailList/MoreButton';
+import { getUUID } from 'utils/getUUID';
 
 function BirthMailListPage() {
   const [mailList, setMailList] = useState([]); // <any[]>
@@ -25,7 +26,7 @@ function BirthMailListPage() {
   useEffect(() => {
     (async () => {
       await axios
-        .get(`letters/users/ce23c44db01743d0bde411e8f3b4fbac/birth/all/pages/${page}`)
+        .get(`letters/users/${getUUID().uuid}/birth/all/pages/${page}`)
         .then((res) => {
           setMailList(res.data);
           if (res.status === 204) {
@@ -40,7 +41,7 @@ function BirthMailListPage() {
 
     (async () => {
       await axios
-        .get(`letters/users/ce23c44db01743d0bde411e8f3b4fbac/birth/counts`)
+        .get(`letters/users/${getUUID().uuid}/birth/counts`)
         .then((res) => {
           setMailCount(res.data[0].count);
         })

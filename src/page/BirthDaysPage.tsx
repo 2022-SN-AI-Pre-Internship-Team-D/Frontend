@@ -3,6 +3,7 @@ import ColorSystem from 'utils/ColorSystem';
 import FooterCookies from 'components/RemainingDays/FooterCookies';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { getUUID } from 'utils/getUUID';
 
 function BirthDaysPage() {
   const [birthdDay, setbirthDay] = useState('0');
@@ -11,20 +12,20 @@ function BirthDaysPage() {
   useEffect(() => {
     // 생일까지 남은 디데이
     (async () => {
-    await axios
-      .get('/letters/users/64a00ada-ffa3-4607-b282-dee397e93d57/events/birth/check-birth-date')
-      .then((res) => {
-        setbirthDay(res.data.days);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+      await axios
+        .get(`/letters/users/${getUUID().uuid}/events/birth/check-birth-date`)
+        .then((res) => {
+          setbirthDay(res.data.days);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     })();
 
     // 생일에 받은 편지 수
     (async () => {
       await axios
-        .get('/letters/users/64a00ada-ffa3-4607-b282-dee397e93d57/birth/counts')
+        .get(`/letters/users/${getUUID().uuid}/birth/counts`)
         .then((res) => {
           setbirthMailCount(res.data[0].count);
         })
@@ -32,7 +33,6 @@ function BirthDaysPage() {
           console.log(error);
         });
     })();
-
   }, []);
 
   return (
@@ -57,4 +57,3 @@ export default BirthDaysPage;
 function then(arg0: (res: any) => void) {
   throw new Error('Function not implemented.');
 }
-
