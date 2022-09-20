@@ -57,31 +57,20 @@ function SignupPage() {
     })();
   };
 
-  const [fileImage, setFileImage] = useState("");   
+  // const [imgBase64, setImgBase64] = useState("");
+  const [imgFile, setImgFile] = useState("https://t1.daumcdn.net/cfile/tistory/21340A3650ED95850C");   
 
-  const encodeFileToBase64 = (fileBlob: any) => { 
+  const handleChangeFile = (e: any) => {
     const reader = new FileReader();
-    reader.readAsDataURL(fileBlob);
-    return new Promise<void>((resolve) => {
-      reader.onload = () => {
-      setFileImage(reader.result);
-      resolve();
-      };
-
-    });
-  };
-  // 파일 저장
-  const saveFileImage = (e: any) => {
-    encodeFileToBase64(e.target.files[0]);
-    // console.log(e.target.files);
-  };
-  
-  // 파일 삭제
-  const deleteFileImage = () => {
-    URL.revokeObjectURL(fileImage);
-    setFileImage("");
-  };
-
+    if (e.target.files[0]) {
+      reader.readAsDataURL(e.target.files[0]);
+      console.log(reader.readAsDataURL(e.target.files[0]));
+    }
+    reader.onloadend = () => {
+      const resultImage:any = reader.result;
+      setImgFile(resultImage);
+    }
+  }
 
   return (
     <div className="h-screen" style={{ backgroundColor: ColorSystem.MainColor.Primary }}>
@@ -94,21 +83,19 @@ function SignupPage() {
         <div className="mt-2">
           <div className="flex flex-row justify-center">
               <div className="flex justify-center items-center mr-10 ml-10 pb-28">
-                <label
+                {/* <label
                   htmlFor="dropzone-file"
                   className="cursor-pointer flex flex-col justify-center items-center w-80 h-80 
                           rounded-full border-4 border-[#677DC6] bg-white hover:bg-[#677DC6]"
-                >
+                  onChange={handleChangeFile}
+                > */}
                   <div>
-                    <span className="flex justify-center text-5xl text-[#677DC6]">+</span>
-                    <input onClick={saveFileImage} id="dropzone-file" type="file" name="image" />
-                    {fileImage && (
-                      <img alt="profile" src={fileImage} />
-                    )}
+                    {/* <span className="flex justify-center text-5xl text-[#677DC6]">+</span> */}
+                    <input onChange={handleChangeFile} id="imgFile" type="file" name="imgFile" />
                   {/* className="hidden" */}
                   </div>
                     
-                </label>
+                {/* </label> */}
               </div>
 
               <div className="ml-10 flex flex-col justify-end">
