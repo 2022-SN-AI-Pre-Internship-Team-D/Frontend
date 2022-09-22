@@ -2,16 +2,17 @@ import 'tailwindcss/tailwind.css';
 import ColorSystem from 'utils/ColorSystem';
 import React, { useState, useEffect } from 'react';
 import 'utils/pageStyle.css';
-import ResultModal from 'components/ResultModal';
 import { useNavigate } from 'react-router';
 import axios from 'axios';
 import { getUUID } from 'utils/getUUID';
-import { Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 function MainPage() {
   const navigate = useNavigate();
   const [eventList, setEventList] = useState([]);
   const arrEvent: any = [];
+  const hostID: any = useParams();
+  console.log(hostID.uuid);
 
   useEffect(() => {
     axios.get(`/letters/events/all`).then((res) => {
@@ -44,8 +45,6 @@ function MainPage() {
         console.log(error);
       });
   };
-  console.log(eventList);
-  console.log(eventList[1]);
 
   const [dDay, setDDay] = useState('0');
   const { uuid } = getUUID();
@@ -69,24 +68,17 @@ function MainPage() {
     })();
   };
 
-  const [modalOC, setModalOC] = useState(false);
-  // ⭕️
-
-  const [username, setUserName] = useState('Name');
-
-  useEffect(() => {
-    (async () => {
-      await axios
-        .get(`/users/${uuid}/get-profile/`)
-        .then((res) => {
-          setUserName(res.data.username);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    })();
-  }, []);
-
+  if (hostID.uuid === 'asd') {
+    // 여기 에이피아이 검사해야함
+    return (
+      <div
+        className="flex justify-center font-press-start  h-screen"
+        style={{ backgroundColor: ColorSystem.MainColor.Primary }}
+      >
+        <span className="text-white flex items-center text-3xl">잘못된 링크입니다.</span>
+      </div>
+    );
+  }
   return (
     <div
       className="flex justify-center font-press-start  h-screen"
@@ -102,11 +94,6 @@ function MainPage() {
         <img src="images/newyearimg.png" alt="a" className="" />
       </button>
 
-      <div className="absolute top-5 left-10">
-        <Link to="/mypage">
-          <span className="flex justify-center text-white font-bold text-xl">{username} 님</span>
-        </Link>
-      </div>
       {/* 편지 */}
       <div className="flex flex-col absolute top-5 left-5 md:m-10 w-20 md:w-28 lg:w-1/12 ">
         <button onClick={handleBirthClick} type="button" className="scaleup">
@@ -138,9 +125,6 @@ function MainPage() {
           <img src="images/valentineimg.png" alt="a" />
         </button>
       </div>
-      {/* ⭕️ */}
-      <ResultModal openinit={modalOC} closeModal={() => setModalOC(false)} />
-      {/* ⭕️ */}
     </div>
   );
 }
