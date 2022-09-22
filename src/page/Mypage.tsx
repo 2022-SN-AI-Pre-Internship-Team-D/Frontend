@@ -5,6 +5,7 @@ import axios from 'axios';
 import profile from 'images/profile.png';
 import { getUUID } from 'utils/getUUID';
 import { useNavigate } from 'react-router';
+import imageCompression from 'browser-image-compression';
 
 
 function MyPage() {
@@ -81,6 +82,19 @@ function MyPage() {
     })();
   }, []);
 
+  // const handleFileOnChange = async() => {
+  //   const options = { maxSizeMB: 1, maxWidthOrHeight: 50 };
+  //   try {
+  //     const compressedFile = await imageCompression(image, options);
+  //     const resultFile = new File([compressedFile], compressedFile.name, {
+  //       type: compressedFile.type,
+  //     });
+  //     return resultFile;
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+  
   const navigate = useNavigate();
   const goToMain = () => {
     navigate("/mainpage");
@@ -91,8 +105,8 @@ function MyPage() {
     <div className=" pt-20 bg-[#0E1733] flex justify-center h-screen items-center">
       <div className=" text-white border-solid border-2 rounded-lg w-4/6 h-4/5 flex flex-col items-center justify-center">
         <img
-          style={{ position: 'absolute', top: '10px' }}
-          className="scale-75 object-fit:cover text-white border-2 rounded-full"
+          style={{ position: 'absolute', top: '45px' }}
+          className="h-36 w-36 object-fit:cover text-white border-2 rounded-full"
           src={image}
           alt="유저사진"
         />
