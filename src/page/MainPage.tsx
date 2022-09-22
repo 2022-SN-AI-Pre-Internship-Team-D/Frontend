@@ -7,19 +7,21 @@ import { useNavigate } from 'react-router';
 import axios from 'axios';
 // import { useSelector } from 'react-redux';
 import { getUUID } from 'utils/getUUID';
+import MovePath from 'components/MovePath';
 
 function MainPage() {
   const navigate = useNavigate();
-  const [dDay, setDDay] = useState('0');
+  // const [dDay, setDDay] = useState('0');
   // const [eventID, setEventID] = useState('');
 
   // asdfsfafsfasfsaf
 
   console.log(': 모듈을 이용한 유유아디', getUUID().uuid);
-
+  const uuid: any = getUUID().uuid  
   // asdfsfafsfasfsaf
   const handleClick = async (event: React.MouseEvent<HTMLElement>) => {
     const { id } = event.currentTarget;
+    console.log(event.currentTarget);
     await axios
       .get(`/letters/events/${id}/check-date`)
       // .get(`/letters/events/fdbfce22-ac18-4bc7-99cb-2bc44b2dd64d/check-date`)
@@ -35,37 +37,47 @@ function MainPage() {
         console.log(error);
       });
   };
-  
-  useEffect(() => {
-    // 생일
-    (async () => {
-      await axios
-        .get(`/letters/users/${getUUID().uuid}/events/birth/check-birth-date`)
-        .then((res) => {
-          setDDay(res.data.status);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    })();
 
-  }, []);
-
-  const dDayReturn = () => {
-    if (dDay === 'true') {
-      console.log("편지 열람 가능");
-      navigate('/birthmaillistpage');
-    }
-    else {
-      console.log("편지 열람 불가")
-      navigate('/birthremainingdayspage');
-    }
-  }
-
-  // ⭕️
-  const handleModal = () => {
-    setModalOC(true);
+  const handleBirthClick = async (event: React.MouseEvent<HTMLElement>) => {
+    console.log(event.currentTarget);
+    // await axios
+    //   .get(`/letters/events/${id}/check-date`)
+    //   // .get(`/letters/events/fdbfce22-ac18-4bc7-99cb-2bc44b2dd64d/check-date`)
+    //   .then((res) => {
+    //     console.log(res.data.status);
+    //     if (res.data.status === 'false') {
+    //       navigate('/remainingdayspage', { state: [res.data.days, id] }); // 남은일수와 , 이벤트 id
+    //     } else {
+    //       navigate('/maillistpage', { state: [id] });
+    //     }
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
   };
+
+
+  const [dDay, setDDay] = useState('0');
+  useEffect(() => {
+      // 생일
+      (async () => {
+        await axios
+          .get(`/letters/users/${ uuid }/events/birth/check-birth-date`)
+          .then((res) => {
+            console.log(res.data);
+            setDDay(res.data.status);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      })();
+  
+    }, []);
+  
+  // ⭕️
+  // const handleModal = () => {
+  //   setModalOC(true);
+  // };
 
   const [modalOC, setModalOC] = useState(false);
   // ⭕️
@@ -90,7 +102,9 @@ function MainPage() {
       </div>
       {/* 편지 */}
       <div className="flex flex-col absolute top-5 left-5 md:m-10 w-20 md:w-28 lg:w-1/12 ">
-        <button onClick={dDayReturn} type="button" className="scaleup">
+        <button 
+        onClick={handleBirthClick} 
+        type="button" className="scaleup">
             <img src="images/letterimg.png" alt="a" />
         </button>
       </div>
