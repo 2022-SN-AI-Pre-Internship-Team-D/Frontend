@@ -6,7 +6,6 @@ import ResultModal from 'components/ResultModal';
 import { useNavigate } from 'react-router';
 import axios from 'axios';
 import { getUUID } from 'utils/getUUID';
-import MovePath from 'components/MovePath';
 import { Link } from 'react-router-dom';
 
 function MainPage() {
@@ -61,7 +60,7 @@ function MainPage() {
       
   const [modalOC, setModalOC] = useState(false);
   // ⭕️
-  const {uuid} = getUUID()
+  
   const [username, setUserName] = useState("Name")
   
   useEffect(() => {
