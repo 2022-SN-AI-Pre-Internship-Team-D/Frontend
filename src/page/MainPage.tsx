@@ -8,6 +8,7 @@ import axios from 'axios';
 // import { useSelector } from 'react-redux';
 import { getUUID } from 'utils/getUUID';
 import MovePath from 'components/MovePath';
+import { Link } from 'react-router-dom';
 
 function MainPage() {
   const navigate = useNavigate();
@@ -77,7 +78,9 @@ function MainPage() {
       </button>
 
       <div className="absolute top-5 left-10">
-        <span className="flex justify-center text-white font-bold text-xl">ellie010707 님</span>
+        <Link to="/mypage">
+          <span className="flex justify-center text-white font-bold text-xl">ellie010707 님</span>
+        </Link>
       </div>
       {/* 편지 */}
       <div className="flex flex-col absolute top-5 left-5 md:m-10 w-20 md:w-28 lg:w-1/12 ">
