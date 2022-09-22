@@ -4,7 +4,7 @@ import 'tailwindcss/tailwind.css';
 import ColorSystem from 'utils/ColorSystem';
 import { useState, useEffect } from 'react';
 import MoreButton from 'components/MailList/MoreButton';
-import { useLocation } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 import { getUUID } from 'utils/getUUID';
 
 function MailListPage() {
@@ -12,6 +12,8 @@ function MailListPage() {
   const [mailList, setMailList] = useState([]); // <any[]>
   const [page, setPage] = useState(1);
   const [mailCount, setMailCount] = useState('0');
+  const navigate = useNavigate();
+  const {uuid} = getUUID()
 
   const changeBeforePage = () => {
     if (page > 1) {
@@ -28,7 +30,7 @@ function MailListPage() {
   useEffect(() => {
     (async () => {
       await axios
-        .get(`letters/users/${getUUID().uuid}/events/${state[0]}/all/pages/${page}`)
+        .get(`letters/users/${uuid}/events/${state[0]}/all/pages/${page}`)
         .then((res) => {
           setMailList(res.data);
           if (res.status === 204) {
@@ -43,7 +45,7 @@ function MailListPage() {
 
     (async () => {
       await axios
-        .get(`letters/users/${getUUID().uuid}/events/${state[0]}/counts`)
+        .get(`letters/users/${uuid}/events/${state[0]}/counts`)
         .then((res) => {
           setMailCount(res.data[0].count);
         })
@@ -53,6 +55,17 @@ function MailListPage() {
     })();
   }, [page]);
 
+  if ( mailCount === "0") {
+    return (
+    <div
+    className="flex justify-center items-center h-screen"
+    style={{ backgroundColor: ColorSystem.MainColor.Primary }}
+    >
+      <span className="text-white m-14 text-2xl">받은 편지가 없습니다.</span>
+    </div>
+    )
+  }  
+  
   return (
     <div
       className="flex justify-center items-center flex-col"
@@ -70,4 +83,5 @@ function MailListPage() {
     </div>
   );
 }
+
 export default MailListPage;

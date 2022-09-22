@@ -10,7 +10,7 @@ function BirthMailListPage() {
   const [mailList, setMailList] = useState([]); // <any[]>
   const [page, setPage] = useState(1);
   const [mailCount, setMailCount] = useState('0');
-  const {uuid} = getUUID()
+  const {uuid} = getUUID();
 
   const changeBeforePage = () => {
     if (page > 1) {
@@ -51,6 +51,17 @@ function BirthMailListPage() {
         });
     })();
   }, [page]);
+
+  if ( mailCount === "0") {
+    return (
+    <div
+    className="flex justify-center items-center h-screen"
+    style={{ backgroundColor: ColorSystem.MainColor.Primary }}
+    >
+      <span className="text-white m-14 text-2xl">받은 편지가 없습니다.</span>
+    </div>
+    )
+  }  
 
   return (
     <div

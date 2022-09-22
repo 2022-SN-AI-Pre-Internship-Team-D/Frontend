@@ -7,8 +7,8 @@ import { getUUID } from 'utils/getUUID';
 import { useNavigate } from 'react-router';
 
 function MyPage() {
-  const {uuid} = getUUID()
-  const [username, setUserName] = useState("Name")
+  const {uuid} = getUUID();
+  const [username, setUserName] = useState("Name");
   const [birth, setBirth] = useState('');
   const [image, setImage] = useState(profile);
 

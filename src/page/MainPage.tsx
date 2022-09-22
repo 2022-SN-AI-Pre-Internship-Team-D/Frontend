@@ -65,14 +65,16 @@ function MainPage() {
       await axios
         .get(`/letters/users/${uuid}/events/birth/check-birth-date`)
         .then((res) => {
-          setDDay(res.data.status);
-          if (dDay === 'true') {
-            console.log("편지 확인 가능");
-            navigate('/birthmaillistpage');
+          setDDay (res.data.status);
+          console.log(res.data.status);
+          console.log(dDay);
+          if (dDay === "false") {
+            console.log("편지 확인 불가");
+            navigate("/birthremainingdayspage");
           }
           else {
-            console.log("편지 확인 불가")
-            navigate('/birthremainingdayspage');
+            console.log("편지 확인 가능")
+            navigate("/birthmaillistpage");
           }
         })
         .catch((error) => {
@@ -84,7 +86,6 @@ function MainPage() {
   const [modalOC, setModalOC] = useState(false);
   // ⭕️
   
-
   return (
     <div
       className="flex justify-center font-press-start  h-screen"

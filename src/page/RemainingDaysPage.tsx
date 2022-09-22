@@ -9,10 +9,11 @@ import { getUUID } from 'utils/getUUID';
 function RemainingDaysPage() {
   const { state } = useLocation();
   const [mailNum, setMailNum] = useState('');
+  const {uuid} = getUUID();
 
   (async () => {
     await axios
-      .get(`/letters/users/${getUUID().uuid}/events/${state[1]}/counts`)
+      .get(`/letters/users/${uuid}/events/${state[1]}/counts`)
       .then((res) => {
         if (res.data.length) {
           setMailNum(res.data[0].count);
