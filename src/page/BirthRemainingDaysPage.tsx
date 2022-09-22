@@ -8,12 +8,13 @@ import { getUUID } from 'utils/getUUID';
 function BirthDaysPage() {
   const [birthdDay, setbirthDay] = useState('0');
   const [birthMailCount, setbirthMailCount] = useState('0');
+  const {uuid} = getUUID()
 
   useEffect(() => {
     // 생일까지 남은 디데이
     (async () => {
       await axios
-        .get(`/letters/users/${getUUID().uuid}/events/birth/check-birth-date`)
+        .get(`/letters/users/${uuid}/events/birth/check-birth-date`)
         .then((res) => {
           setbirthDay(res.data.days);
         })
@@ -25,7 +26,7 @@ function BirthDaysPage() {
     // 생일에 받은 편지 수
     (async () => {
       await axios
-        .get(`/letters/users/${getUUID().uuid}/birth/counts`)
+        .get(`/letters/users/${uuid}/birth/counts`)
         .then((res) => {
           setbirthMailCount(res.data[0].count);
         })

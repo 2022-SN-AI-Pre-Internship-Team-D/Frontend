@@ -11,13 +11,11 @@ import MovePath from 'components/MovePath';
 
 function MainPage() {
   const navigate = useNavigate();
-  // const [dDay, setDDay] = useState('0');
   // const [eventID, setEventID] = useState('');
 
   // asdfsfafsfasfsaf
 
   console.log(': 모듈을 이용한 유유아디', getUUID().uuid);
-  const uuid: any = getUUID().uuid  
   // asdfsfafsfasfsaf
   const handleClick = async (event: React.MouseEvent<HTMLElement>) => {
     const { id } = event.currentTarget;
@@ -38,49 +36,30 @@ function MainPage() {
       });
   };
 
-  const handleBirthClick = async (event: React.MouseEvent<HTMLElement>) => {
-    console.log(event.currentTarget);
-    // await axios
-    //   .get(`/letters/events/${id}/check-date`)
-    //   // .get(`/letters/events/fdbfce22-ac18-4bc7-99cb-2bc44b2dd64d/check-date`)
-    //   .then((res) => {
-    //     console.log(res.data.status);
-    //     if (res.data.status === 'false') {
-    //       navigate('/remainingdayspage', { state: [res.data.days, id] }); // 남은일수와 , 이벤트 id
-    //     } else {
-    //       navigate('/maillistpage', { state: [id] });
-    //     }
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
-  };
-
-
   const [dDay, setDDay] = useState('0');
-  useEffect(() => {
-      // 생일
-      (async () => {
-        await axios
-          .get(`/letters/users/${ uuid }/events/birth/check-birth-date`)
-          .then((res) => {
-            console.log(res.data);
-            setDDay(res.data.status);
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-      })();
-  
-    }, []);
-  
-  // ⭕️
-  // const handleModal = () => {
-  //   setModalOC(true);
-  // };
-
+  const {uuid} = getUUID()
+  const handleBirthClick = () => {
+    (async () => {
+      await axios
+        .get(`/letters/users/${uuid}/events/birth/check-birth-date`)
+        .then((res) => {
+          setDDay(res.data.status);
+          if (dDay === 'true') {
+            console.log("편지 확인 가능");
+            navigate('/birthmaillistpage');
+          }
+          else {
+            console.log("편지 확인 불가")
+            navigate('/birthremainingdayspage');
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    })();
+    }
+      
   const [modalOC, setModalOC] = useState(false);
-  // ⭕️
 
   return (
     <div
@@ -126,7 +105,7 @@ function MainPage() {
       </button>
       {/* 호박 선물 */}
       <div className="flex flex-row absolute bottom-0 right-0 w-60 md:w-80 lg:w-2/5 ">
-        <button onClick={handleClick} className="scaleup" type="button" id="b6772dbd-6e71-49b3-8401-b477693f7903">
+        <button onClick={handleClick} className="scaleup" type="button" id="7c97bce0-27d5-413e-b30c-a37ee9216f87">
           <img src="images/halloweenimg.png" alt="a" className="origin-center hover:origin-top" />
         </button>
         <button onClick={() => alert('업데이트 예정입니다.')} className="scaleup" type="button">
