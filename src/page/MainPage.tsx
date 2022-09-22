@@ -1,24 +1,25 @@
 import 'tailwindcss/tailwind.css';
 import ColorSystem from 'utils/ColorSystem';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import 'utils/pageStyle.css';
 import ResultModal from 'components/ResultModal';
 import { useNavigate } from 'react-router';
 import axios from 'axios';
 // import { useSelector } from 'react-redux';
 import { getUUID } from 'utils/getUUID';
+import MovePath from 'components/MovePath';
 
 function MainPage() {
   const navigate = useNavigate();
-  const [eventID, setEventID] = useState('');
+  // const [eventID, setEventID] = useState('');
 
   // asdfsfafsfasfsaf
 
   console.log(': 모듈을 이용한 유유아디', getUUID().uuid);
-
   // asdfsfafsfasfsaf
   const handleClick = async (event: React.MouseEvent<HTMLElement>) => {
     const { id } = event.currentTarget;
+    console.log(event.currentTarget);
     await axios
       .get(`/letters/events/${id}/check-date`)
       // .get(`/letters/events/fdbfce22-ac18-4bc7-99cb-2bc44b2dd64d/check-date`)
@@ -35,13 +36,30 @@ function MainPage() {
       });
   };
 
-  // ⭕️
-  const handleModal = () => {
-    setModalOC(true);
-  };
-
+  const [dDay, setDDay] = useState('0');
+  const {uuid} = getUUID()
+  const handleBirthClick = () => {
+    (async () => {
+      await axios
+        .get(`/letters/users/${uuid}/events/birth/check-birth-date`)
+        .then((res) => {
+          setDDay(res.data.status);
+          if (dDay === 'true') {
+            console.log("편지 확인 가능");
+            navigate('/birthmaillistpage');
+          }
+          else {
+            console.log("편지 확인 불가")
+            navigate('/birthremainingdayspage');
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    })();
+    }
+      
   const [modalOC, setModalOC] = useState(false);
-  // ⭕️
 
   return (
     <div
@@ -51,7 +69,7 @@ function MainPage() {
       {/* 2023 */}
       <button
         onClick={handleClick}
-        id="e6c8b478-192c-4fdb-8798-4eab6e8c4c93"
+        id="aebeb369-b8ef-46df-b056-0c7b560bf3c3"
         className="scaleup flex justify-center h-fit w-60 md:w-80 lg:w-2/6"
         type="button"
       >
@@ -63,10 +81,10 @@ function MainPage() {
       </div>
       {/* 편지 */}
       <div className="flex flex-col absolute top-5 left-5 md:m-10 w-20 md:w-28 lg:w-1/12 ">
-        <button type="button" className="scaleup">
-          <a href="/birthmaillistpage">
+        <button 
+        onClick={handleBirthClick} 
+        type="button" className="scaleup">
             <img src="images/letterimg.png" alt="a" />
-          </a>
         </button>
       </div>
       {/* 추석 */}
@@ -78,7 +96,7 @@ function MainPage() {
         <img src="images/thankimg.png" alt="a" />
       </button>
       {/* 크리스마스 */}
-      <button onClick={handleClick} id="a7ab5940-8f7f-4f7d-b29d-c1f5b7ef2d28" type="button">
+      <button onClick={handleClick} id="081914f8-f8b5-4985-939b-2cacd054bd80" type="button">
         <img
           src="images/treeimg.png"
           alt="a"
@@ -87,7 +105,7 @@ function MainPage() {
       </button>
       {/* 호박 선물 */}
       <div className="flex flex-row absolute bottom-0 right-0 w-60 md:w-80 lg:w-2/5 ">
-        <button onClick={handleClick} className="scaleup" type="button" id="497208b4-2d0e-4558-ab48-c7f0987b40b2">
+        <button onClick={handleClick} className="scaleup" type="button" id="7c97bce0-27d5-413e-b30c-a37ee9216f87">
           <img src="images/halloweenimg.png" alt="a" className="origin-center hover:origin-top" />
         </button>
         <button onClick={() => alert('업데이트 예정입니다.')} className="scaleup" type="button">
