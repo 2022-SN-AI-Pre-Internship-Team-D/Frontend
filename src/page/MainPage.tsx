@@ -6,7 +6,7 @@ import ResultModal from 'components/ResultModal';
 import { useNavigate } from 'react-router';
 import axios from 'axios';
 import { getUUID } from 'utils/getUUID';
-import MovePath from 'components/MovePath';
+import { Link } from 'react-router-dom';
 
 function MainPage() {
   const navigate = useNavigate();
@@ -71,6 +71,23 @@ function MainPage() {
     }
       
   const [modalOC, setModalOC] = useState(false);
+  // ⭕️
+  
+  const [username, setUserName] = useState("Name")
+  
+  useEffect(() => {
+    (async () => {
+      await axios
+      .get(`/users/${uuid}/get-profile/`)
+      .then((res) => {
+        setUserName(res.data.username);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    })();
+  }, []);
+
 
   return (
     <div
@@ -88,7 +105,9 @@ function MainPage() {
       </button>
 
       <div className="absolute top-5 left-10">
-        <span className="flex justify-center text-white font-bold text-xl">ellie010707 님</span>
+        <Link to="/mypage">
+          <span className="flex justify-center text-white font-bold text-xl">{username} 님</span>
+        </Link>
       </div>
       {/* 편지 */}
       <div className="flex flex-col absolute top-5 left-5 md:m-10 w-20 md:w-28 lg:w-1/12 ">
