@@ -1,6 +1,3 @@
-import 'tailwindcss/tailwind.css';
-import React, { useState } from 'react';
-import ColorSystem from 'utils/ColorSystem';
 import postcard from 'images/postcard.png';
 import mic from 'images/mic.png';
 // import check from 'images/circlecheck.png';
@@ -9,6 +6,10 @@ import ResultModal from 'components/ResultModal';
 import axios from 'axios';
 import { getUUID } from 'utils/getUUID';
 import { useLocation } from 'react-router';
+import React from 'react';
+import ColorSystem from 'utils/ColorSystem';
+import plusImg from 'images/plusImage.svg';
+import { useRef, useState } from 'react';
 
 interface WriteInfo {
   text: FormDataEntryValue | null;
@@ -41,26 +42,26 @@ function MailWritePage() {
           console.log('파일전송 실패');
         });
     })();
-    (async () => {
-      await axios
-        .get(`letters/users${getUUID().uuid}/birth/write`)
-        .then((res) => {
-          console.log('파일전송 완료');
-          console.log(res.data);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    })();
+    // (async () => {
+    //   await axios
+    //     .get(`letters/users${getUUID().uuid}/birth/write`)
+    //     .then((res) => {
+    //       console.log('파일전송 완료');
+    //       console.log(res.data);
+    //     })
+    //     .catch((error) => {
+    //       console.log(error);
+    //     });
+    // })();
   };
 
-  const onChangeImage = async (event: React.ChangeEvent<HTMLInputElement>) => {
-    try {
-      console.log(event.target.files);
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  // const onChangeImage = async (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   try {
+  //     console.log(event.target.files);
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
 
   const hiddenFileInput = React.useRef<any | null>(null);
 
@@ -80,6 +81,20 @@ function MailWritePage() {
   const [modalOC, setModalOC] = useState(false);
   // ⭕️
 
+  const [imageUrl, setImageUrl] = useState(plusImg);
+  const imgRef: any = useRef();
+
+  const handleChangeFile = (e: any) => {
+    const reader: any = new FileReader();
+    const file = imgRef.current.files[0];
+
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+      setImageUrl(reader.result);
+      console.log('이미지주소', reader.result);
+    };
+  };
+
   return (
     <div
       className="flex justify-center items-center h-screen py-20 flex-col"
@@ -91,9 +106,9 @@ function MailWritePage() {
         style={{ height: '50rem', width: '38rem' }}
       >
         <img src={postcard} alt="postcard" className="w-24" />
-        <div>
-          <p className="italic font-serif text-xl">dear toto</p>
-          <div className="flex flex-row mt-3">
+        <div className="my-0 mx-auto">
+          <p className=" italic font-serif text-xl">dear toto</p>
+          <div className=" flex flex-row mt-3">
             {/* 음성녹음 */}
             <button type="button">
               <img src={mic} alt="mic" className="" />
@@ -106,11 +121,36 @@ function MailWritePage() {
               녹음 결과 확인
             </button>
           </div>
-          <div>
+
+          {/* 원래 있던내용  */}
+          {/* <div>
             <button type="button" onClick={handleClick} className="m-10 mt-5 w-96 h-48 rounded-xl bg-subBackground">
-              +<input ref={hiddenFileInput} type="file" hidden onChange={(e) => onChangeImage(e)} className="" />
+              +
+              <input ref={hiddenFileInput} type="file" hidden onChange={(e) => onChangeImage(e)} className="" />
             </button>
+          </div> */}
+
+          <div className="items-center mail_preview">
+            <label htmlFor="plusImg">
+              {imageUrl && (
+                <img
+                  src={imageUrl}
+                  alt="plusImg"
+                  className="hover:opacity-75 my-0 mx-auto mb-5 items-center m-10 mt-5 w-96 h-48 rounded-xl bg-subBackground"
+                />
+              )}
+              <input
+                onChange={handleChangeFile}
+                id="plusImg"
+                className="hidden"
+                ref={imgRef}
+                type="file"
+                name="image"
+                accept="image/*"
+              />
+            </label>
           </div>
+
           <div
             className=" text-center bg-[url('images/letterbg.png')] rounded-lg h-fit "
             style={{ width: '580px', height: '20rem' }}

@@ -83,8 +83,8 @@ function SignupPage() {
         <div className="mt-2">
           <div className="flex flex-row justify-center">
               <div className="flex justify-center items-center mr-10 ml-10 pb-28">
-                <div className='preview'>
-                <label htmlFor="profile">
+                <div className='preview'> 
+                <label htmlFor="profile"> 
                    { imageUrl && <img src={imageUrl} alt="profile" 
                    className="cursor-pointer flex flex-col justify-center items-center w-80 h-80 
                     rounded-full border-4 border-[#677DC6] bg-white" /> }                 
