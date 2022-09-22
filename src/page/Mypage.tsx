@@ -1,60 +1,91 @@
 import 'tailwindcss/tailwind.css';
-import userprofile from 'images/userprofile.png';
+import back from 'images/back.png';
 import { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import profile from 'images/profile.png';
 import { getUUID } from 'utils/getUUID';
-import { getToken, setToken, decodeAccessToken } from 'utils/tokenManager';
-import { setUUID } from 'redux/userID';
-import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router';
+
 
 function MyPage() {
-  // getUUID.uuid 이렇게 하니까 오류
-  const [mailCount, setMailCount] = useState('0');
-
-  useEffect(() => {
-    (async () => {
-      await axios
-        .get(`letters/users/e2eeebd7-9870-485b-a3af-668404854653/events/7c97bce0-27d5-413e-b30c-a37ee9216f87/counts`)
-        .then((res) => {
-          setMailCount(res.data[0].count);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    })();
-  }, []);
-
+  const {uuid} = getUUID()
+  const [username, setUserName] = useState("Name")
   const [birth, setBirth] = useState('');
   const [image, setImage] = useState(profile);
 
+  const [birthMail, setBirthMail] = useState('0')
+  const [newYearMail, setNewYearMail] = useState('0');
+  const [halloweenMail, sethalloweenMail] = useState('0');
+  const [christmasMail, setChristmasMail] = useState('0');
+
   useEffect(() => {
     (async () => {
       await axios
-        .get('/users/b011a978-5f13-4112-bad5-73ffb687f62d/get-profile/')
+      .get(`/users/${uuid}/get-profile/`)
+      .then((res) => {
+        setUserName(res.data.username);
+        setBirth(res.data.birth);
+        setImage(res.data.image);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    })();
+
+    // 생일
+    (async () => {
+      await axios
+        .get(`letters/users/${uuid}/birth/counts`)
         .then((res) => {
-          setBirth(res.data.birth);
-          setImage(res.data.image);
+          setBirthMail(res.data[0].count);
         })
         .catch((error) => {
           console.log(error);
         });
     })();
-    
-  }, []);
-  
-  // 이미지 url 변환
-  const [imageUrl, setImageUrl] = useState(profile) 
-  const imgRef: any = useRef();
-  const reader: any = new FileReader();
-  const file = imgRef.image;
-  // reader.readAsDataURL(file);
-  // reader.onloadend = () => {
-  //   setImageUrl(reader.result);
-  //   console.log("이미지주소", reader.result);
-  // }
 
-  
+    // 새해
+    (async () => {
+      await axios
+        .get(`letters/users/${uuid}/events/483eb9c4-70b2-41bb-a783-8c00d28dbe47/counts`)
+        .then((res) => {
+          setNewYearMail(res.data[0].count);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    })();
+
+    // 할로윈
+    (async () => {
+      await axios
+        .get(`letters/users/${uuid}/events/7c97bce0-27d5-413e-b30c-a37ee9216f87/counts`)
+        .then((res) => {
+          sethalloweenMail(res.data[0].count);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    })();
+
+    // 크리스마스
+    (async () => {
+      await axios
+        .get(`letters/users/${uuid}/events/6eabfb36-4e35-4a11-a043-33b7c8887a98/counts`)
+        .then((res) => {
+          setChristmasMail(res.data[0].count);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    })();
+  }, []);
+
+  const navigate = useNavigate();
+  const goToMain = () => {
+    navigate("/mainpage");
+  }
+    
 
   return (
     <div className=" pt-20 bg-[#0E1733] flex justify-center h-screen items-center">
@@ -66,26 +97,36 @@ function MyPage() {
           alt="유저사진"
         />
 
-        <div className="mb-10 pt-14 text-2xl font-mypage-font flex justify-center">EllieKim010707</div>
+        <div className="mb-12 pt-3 text-2xl font-mypage-font flex justify-center">
+          {username}
+        </div>
 
         <div className="flex flex-col justify-center items-center">
-          <h2 className="font-press-start mb-5 text-3xl">Your Anniversary</h2>
+          <h2 className="font-press-start mb-5 text-3xl">Your Birthday</h2>
           <ul className="list-disc">
             <li>Birthday [{birth}]</li>
-            <li>Birthday [2001 - 03 - 02]</li>
           </ul>
         </div>
 
         <div className="flex flex-col justify-center items-center">
           <h2 className="font-press-start mt-20 mb-5 text-3xl">Letters</h2>
           <ul className="list-disc flex flex-col justify-center items-center">
-            <li>Birthday [{mailCount}]</li>
-            <li className="mb-10">Christmas [{mailCount}]</li>
+            <li>Birthday [{birthMail}]</li>
+            <li>New Year [{newYearMail}]</li>
+            <li>Halloween [{halloweenMail}]</li>
+            <li>Christmas [{christmasMail}]</li>
           </ul>
         </div>
-
-        <button type="button" className="font-press-start mt-10">
+        {/* <button type="button" className="font-press-start mt-10">
           Account Settings
+        </button> */}
+        <button className="flex justify-center" type='button' onClick={goToMain}>
+         <img
+          style={{ position: 'absolute', bottom: '112px' }}
+          className=""
+          src={back}
+          alt="뒤로가기"
+        />
         </button>
       </div>
     </div>

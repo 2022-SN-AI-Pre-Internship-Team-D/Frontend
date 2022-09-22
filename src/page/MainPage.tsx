@@ -5,7 +5,6 @@ import 'utils/pageStyle.css';
 import ResultModal from 'components/ResultModal';
 import { useNavigate } from 'react-router';
 import axios from 'axios';
-// import { useSelector } from 'react-redux';
 import { getUUID } from 'utils/getUUID';
 import MovePath from 'components/MovePath';
 import { Link } from 'react-router-dom';
@@ -61,6 +60,23 @@ function MainPage() {
     }
       
   const [modalOC, setModalOC] = useState(false);
+  // ⭕️
+  const {uuid} = getUUID()
+  const [username, setUserName] = useState("Name")
+  
+  useEffect(() => {
+    (async () => {
+      await axios
+      .get(`/users/${uuid}/get-profile/`)
+      .then((res) => {
+        setUserName(res.data.username);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    })();
+  }, []);
+
 
   return (
     <div
@@ -79,7 +95,7 @@ function MainPage() {
 
       <div className="absolute top-5 left-10">
         <Link to="/mypage">
-          <span className="flex justify-center text-white font-bold text-xl">ellie010707 님</span>
+          <span className="flex justify-center text-white font-bold text-xl">{username} 님</span>
         </Link>
       </div>
       {/* 편지 */}
