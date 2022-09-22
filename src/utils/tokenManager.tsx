@@ -54,7 +54,7 @@ const updateAccessToken = async (refreshToken: string) => {
       refresh: refreshToken,
     })
     .then((res) => {
-      setToken(res.data.access, res.data.refresh);
+      setToken(res.data.access, getToken().refresh!);
       console.log('업데이트되었씁니다.');
     })
     .catch((res) => {
