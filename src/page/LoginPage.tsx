@@ -1,7 +1,7 @@
 import 'tailwindcss/tailwind.css';
 import pencilImg from 'images/pencilImage.svg';
 import Enter from 'images/Enter.png';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { getToken, setToken, decodeAccessToken } from 'utils/tokenManager';
@@ -16,6 +16,46 @@ interface LoginInfo {
 function LoginPage() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+
+  const [emailMessage, setEmailMessage] = useState<string>('');
+  const [passwordMessage, setPasswordMessage] = useState<string>('');
+
+  const [isEmail, setIsEmail] = useState<boolean>(false);
+  const [isPassword, setIsPassword] = useState<boolean>(false);
+
+  // 이메일
+  const onChangeEmail = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    const emailRegex =
+      /([\w-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+    const emailCurrent = e.target.value;
+    setEmail(emailCurrent);
+
+    if (!emailRegex.test(emailCurrent)) {
+      setEmailMessage('이메일 형식이 아닙니다.');
+      setIsEmail(false);
+    } else {
+      setEmailMessage('');
+      setIsEmail(true);
+    }
+  }, []);
+
+  // 비밀번호
+  // const onChangePassword = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+  //   const passwordRegex = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/;
+  //   const passwordCurrent = e.target.value;
+  //   setPassword(passwordCurrent);
+
+  //   if (!passwordRegex.test(passwordCurrent)) {
+  //     setPasswordMessage('숫자+영문자+특수문자 조합으로 8자리 이상 입력해주세요!');
+  //     setIsPassword(false);
+  //   } else {
+  //     setPasswordMessage('안전한 비밀번호에요 : )');
+  //     setIsPassword(true);
+  //   }
+  // }, []);
 
   const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -68,7 +108,9 @@ function LoginPage() {
               className=" placeholder-[#9CA6C5]  border-4 border-[#677DC6] text-sm font-light drop-shadow-lg mb-3 px-3 py-2.5 rounded-2xl"
               name="email"
               placeholder="email address"
+              onChange={onChangeEmail}
             />
+            {email.length > 0 && <span className={`message ${isEmail ? 'success' : 'error'}`}>{emailMessage}</span>}
           </label>
           <label className="text-background flex flex-col mt-5 pb-1" htmlFor="password">
             <p className="mb-2">비밀번호</p>
