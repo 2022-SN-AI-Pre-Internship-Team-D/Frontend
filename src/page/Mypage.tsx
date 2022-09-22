@@ -5,8 +5,6 @@ import axios from 'axios';
 import profile from 'images/profile.png';
 import { getUUID } from 'utils/getUUID';
 import { useNavigate } from 'react-router';
-import imageCompression from 'browser-image-compression';
-
 
 function MyPage() {
   const {uuid} = getUUID()
