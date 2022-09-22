@@ -11,6 +11,7 @@ import { Link } from 'react-router-dom';
 function MainPage() {
   const navigate = useNavigate();
   const [eventList, setEventList] = useState([]);
+  const [username, setUserName] = useState("Name")
   const arrEvent: any = [];
 
   useEffect(() => {
@@ -20,11 +21,21 @@ function MainPage() {
       }
       setEventList(arrEvent);
     });
+    (async () => {
+      await axios
+      .get(`/users/${uuid}/get-profile/`)
+      .then((res) => {
+        setUserName(res.data.username);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    })();
   }, []);
 
   // asdfsfafsfasfsaf
-
   console.log(': 모듈을 이용한 유유아디', getUUID().uuid);
+
   // asdfsfafsfasfsaf
   const handleClick = async (event: React.MouseEvent<HTMLElement>) => {
     const { id } = event.currentTarget;
@@ -73,21 +84,6 @@ function MainPage() {
   const [modalOC, setModalOC] = useState(false);
   // ⭕️
   
-  const [username, setUserName] = useState("Name")
-  
-  useEffect(() => {
-    (async () => {
-      await axios
-      .get(`/users/${uuid}/get-profile/`)
-      .then((res) => {
-        setUserName(res.data.username);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-    })();
-  }, []);
-
 
   return (
     <div
