@@ -79,19 +79,6 @@ function MyPage() {
         });
     })();
   }, []);
-
-  // const handleFileOnChange = async() => {
-  //   const options = { maxSizeMB: 1, maxWidthOrHeight: 50 };
-  //   try {
-  //     const compressedFile = await imageCompression(image, options);
-  //     const resultFile = new File([compressedFile], compressedFile.name, {
-  //       type: compressedFile.type,
-  //     });
-  //     return resultFile;
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
   
   const navigate = useNavigate();
   const goToMain = () => {

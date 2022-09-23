@@ -15,7 +15,6 @@ function MainPage() {
   const [isCopy, onCopy] = useCopyClipBoard();
   const navigate = useNavigate();
   const [eventList, setEventList] = useState([]);
-  const [dDay, setDDay] = useState('0');
   const [username, setUserName] = useState('Name');
 
   useEffect(() => {
