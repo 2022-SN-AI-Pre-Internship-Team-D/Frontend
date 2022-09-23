@@ -4,7 +4,6 @@ import React, { useState, useEffect } from 'react';
 import 'utils/pageStyle.css';
 import { useNavigate } from 'react-router';
 import axios from 'axios';
-import { getUUID } from 'utils/getUUID';
 import { useParams } from 'react-router-dom';
 
 function MainPage() {
@@ -23,49 +22,13 @@ function MainPage() {
     });
   }, []);
 
-  // asdfsfafsfasfsaf
-
-  console.log(': 모듈을 이용한 유유아디', getUUID().uuid);
-  // asdfsfafsfasfsaf
   const handleClick = async (event: React.MouseEvent<HTMLElement>) => {
-    const { id } = event.currentTarget;
-    console.log(event.currentTarget.id);
-    await axios
-      .get(`/letters/events/${id}/check-date`)
-      // .get(`/letters/events/fdbfce22-ac18-4bc7-99cb-2bc44b2dd64d/check-date`)
-      .then((res) => {
-        console.log(res.data.status);
-        if (res.data.status === 'false') {
-          navigate('/remainingdayspage', { state: [res.data.days, id] }); // 남은일수와 , 이벤트 id
-        } else {
-          navigate('/maillistpage', { state: [id] });
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    const { id } = event.currentTarget; // 이벤트 아이디
+    navigate('/mailwritepage', { state: [hostID.uuid, id] });
   };
 
-  const [dDay, setDDay] = useState('0');
-  const { uuid } = getUUID();
   const handleBirthClick = () => {
-    (async () => {
-      await axios
-        .get(`/letters/users/${uuid}/events/birth/check-birth-date`)
-        .then((res) => {
-          setDDay(res.data.status);
-          if (dDay === 'true') {
-            console.log('편지 확인 가능');
-            navigate('/birthmaillistpage');
-          } else {
-            console.log('편지 확인 불가');
-            navigate('/birthremainingdayspage');
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    })();
+    navigate('/mailwritepage', { state: [hostID.uuid, 'birth'] });
   };
 
   if (hostID.uuid === 'asd') {
@@ -103,7 +66,7 @@ function MainPage() {
       {/* 추석 */}
       <button
         onClick={() => alert('업데이트 예정입니다.')}
-        className="scaleup absolute bottom-0 left-0 w-60 md:w-80 lg:w-2/6"
+        className="scaleup absolute bottom-0 left-0 w-60 md:w-80 lg:w-1/4"
         type="button"
       >
         <img src="images/thankimg.png" alt="a" />

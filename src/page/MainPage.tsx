@@ -2,11 +2,12 @@ import 'tailwindcss/tailwind.css';
 import ColorSystem from 'utils/ColorSystem';
 import React, { useState, useEffect } from 'react';
 import 'utils/pageStyle.css';
-import ResultModal from 'components/ResultModal';
 import { useNavigate } from 'react-router';
 import axios from 'axios';
 import { getUUID } from 'utils/getUUID';
 import { Link } from 'react-router-dom';
+import Share from 'images/urlshare.png';
+import useCopyClipBoard from 'utils/useCopyClipBoard';
 
 function MainPage() {
   const navigate = useNavigate();
@@ -22,9 +23,16 @@ function MainPage() {
     });
   }, []);
 
+  const [isCopy, onCopy] = useCopyClipBoard();
+
+  const handleCopyClipBoard = (text: string) => {
+    onCopy(text);
+  };
+
   // asdfsfafsfasfsaf
 
   console.log(': 모듈을 이용한 유유아디', getUUID().uuid);
+  const userurl = getUUID().uuid;
   // asdfsfafsfasfsaf
   const handleClick = async (event: React.MouseEvent<HTMLElement>) => {
     const { id } = event.currentTarget;
@@ -69,9 +77,6 @@ function MainPage() {
     })();
   };
 
-  const [modalOC, setModalOC] = useState(false);
-  // ⭕️
-
   const [username, setUserName] = useState('Name');
 
   useEffect(() => {
@@ -97,7 +102,7 @@ function MainPage() {
         onClick={handleClick}
         id={eventList[2]}
         type="button"
-        className="scaleup flex justify-center h-fit w-60 md:w-80 lg:w-2/6"
+        className="scaleup flex justify-center h-fit w-60 md:w-80 lg:w-1/4"
       >
         <img src="images/newyearimg.png" alt="a" className="" />
       </button>
@@ -138,9 +143,19 @@ function MainPage() {
           <img src="images/valentineimg.png" alt="a" />
         </button>
       </div>
-      {/* ⭕️ */}
-      <ResultModal openinit={modalOC} closeModal={() => setModalOC(false)} />
-      {/* ⭕️ */}
+      {/* 링크 공유 */}
+      <div className="flex absolute top-4 right-4 w-10 ">
+        <button
+          onClick={() => {
+            handleCopyClipBoard(`http://localhost:3000/mainpage2${userurl}`);
+            alert('복사오나료');
+          }}
+          type="button"
+          className="scaleup"
+        >
+          <img src={Share} alt="a" className="" />
+        </button>
+      </div>
     </div>
   );
 }
