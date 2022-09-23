@@ -148,7 +148,7 @@ function MainPage() {
         <button
           onClick={() => {
             handleCopyClipBoard(`http://localhost:3000/mainpage2${userurl}`);
-            alert('복사오나료');
+            alert('링크가 복사되었습니다!');
           }}
           type="button"
           className="scaleup"
