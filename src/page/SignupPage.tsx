@@ -96,34 +96,39 @@ function SignupPage() {
       birth: data.get('birth'),
       image: data.get('image'),
     };
-    (async () => {
-      await axios
-        .post(`/users/sign-up/`, signUpUserInfo, { headers: { 'Content-Type': 'multipart/form-data' } })
-        .then((res) => {
-          console.log('회원가입 성공');
-          console.log(res.data);
-          // {username: 'test213', email: 'test12@naver.com', birth: '2022-08-30'}
-          navigate('/');
-        })
-        .catch((error) => {
-          console.log(signUpUserInfo);
-          if (error.response.data.username !== undefined) {
-            if (error.response.data.email !== undefined) {
-              alert('닉네임, 이메일이 중복되었습니다.');
-            } else {
-              alert('닉네임이 중복되었습니다.');
+
+    if (signUpUserInfo.birth === '' && signUpUserInfo.password2 === '') {
+      alert('모두 입력해주세요');
+    } else {
+      (async () => {
+        await axios
+          .post(`/users/sign-up/`, signUpUserInfo, { headers: { 'Content-Type': 'multipart/form-data' } })
+          .then((res) => {
+            console.log('회원가입 성공');
+            console.log(res.data);
+            // {username: 'test213', email: 'test12@naver.com', birth: '2022-08-30'}
+            navigate('/');
+          })
+          .catch((error) => {
+            console.log(signUpUserInfo);
+            if (error.response.data.username !== undefined) {
+              if (error.response.data.email !== undefined) {
+                alert('닉네임, 이메일이 중복되었습니다.');
+              } else {
+                alert('닉네임이 중복되었습니다.');
+              }
             }
-          }
-          if (error.response.data.password !== undefined) {
-            alert('비밀번호가 다릅니다.');
-          }
-          if (error.response.data.username === undefined) {
-            if (error.response.data.email !== undefined) {
-              alert('아이디가 중복되었습니다.');
+            if (error.response.data.password !== undefined) {
+              alert('비밀번호가 다릅니다.');
             }
-          }
-        });
-    })();
+            if (error.response.data.username === undefined) {
+              if (error.response.data.email !== undefined) {
+                alert('아이디가 중복되었습니다.');
+              }
+            }
+          });
+      })();
+    }
   };
 
   const [imageUrl, setImageUrl] = useState(profile);
