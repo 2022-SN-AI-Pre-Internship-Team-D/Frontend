@@ -70,25 +70,12 @@ function MainPage() {
           } else {
             console.log('편지 확인 불가');
             navigate('/birthremainingdayspage');
-=======
-          setDDay (res.data.status);
-          console.log(res.data.status);
-          console.log(dDay);
-          if (dDay === "false") {
-            console.log("편지 확인 불가");
-            navigate("/birthremainingdayspage");
-          }
-          else {
-            console.log("편지 확인 가능")
-            navigate("/birthmaillistpage");
->>>>>>> nonemailpage
           }
         })
         .catch((error) => {
           console.log(error);
         });
     })();
-<<<<<<< HEAD
   };
 
   return (
