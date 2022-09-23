@@ -10,9 +10,13 @@ import Share from 'images/urlshare.png';
 import useCopyClipBoard from 'utils/useCopyClipBoard';
 
 function MainPage() {
+  const { uuid } = getUUID();
+  const arrEvent: any = [];
+  const [isCopy, onCopy] = useCopyClipBoard();
   const navigate = useNavigate();
   const [eventList, setEventList] = useState([]);
-  const arrEvent: any = [];
+  const [dDay, setDDay] = useState('0');
+  const [username, setUserName] = useState('Name');
 
   useEffect(() => {
     axios.get(`/letters/events/all`).then((res) => {
@@ -21,25 +25,27 @@ function MainPage() {
       }
       setEventList(arrEvent);
     });
+    (async () => {
+      await axios
+        .get(`/users/${uuid}/get-profile/`)
+        .then((res) => {
+          setUserName(res.data.username);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    })();
   }, []);
-
-  const [isCopy, onCopy] = useCopyClipBoard();
 
   const handleCopyClipBoard = (text: string) => {
     onCopy(text);
   };
 
-  // asdfsfafsfasfsaf
-
-  console.log(': 모듈을 이용한 유유아디', getUUID().uuid);
-  const userurl = getUUID().uuid;
-  // asdfsfafsfasfsaf
   const handleClick = async (event: React.MouseEvent<HTMLElement>) => {
     const { id } = event.currentTarget;
     console.log(event.currentTarget.id);
     await axios
       .get(`/letters/events/${id}/check-date`)
-      // .get(`/letters/events/fdbfce22-ac18-4bc7-99cb-2bc44b2dd64d/check-date`)
       .then((res) => {
         console.log(res.data.status);
         if (res.data.status === 'false') {
@@ -52,18 +58,13 @@ function MainPage() {
         console.log(error);
       });
   };
-  console.log(eventList);
-  console.log(eventList[1]);
 
-  const [dDay, setDDay] = useState('0');
-  const { uuid } = getUUID();
   const handleBirthClick = () => {
     (async () => {
       await axios
         .get(`/letters/users/${uuid}/events/birth/check-birth-date`)
         .then((res) => {
-          setDDay(res.data.status);
-          if (dDay === 'true') {
+          if (res.data.status === 'true') {
             console.log('편지 확인 가능');
             navigate('/birthmaillistpage');
           } else {
@@ -76,21 +77,6 @@ function MainPage() {
         });
     })();
   };
-
-  const [username, setUserName] = useState('Name');
-
-  useEffect(() => {
-    (async () => {
-      await axios
-        .get(`/users/${uuid}/get-profile/`)
-        .then((res) => {
-          setUserName(res.data.username);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    })();
-  }, []);
 
   return (
     <div
@@ -147,7 +133,7 @@ function MainPage() {
       <div className="flex absolute top-4 right-4 w-10 ">
         <button
           onClick={() => {
-            handleCopyClipBoard(`http://localhost:3000/mainpage2${userurl}`);
+            handleCopyClipBoard(`http://localhost:3000/mainpage2${uuid}`);
             alert('링크가 복사되었습니다!');
           }}
           type="button"

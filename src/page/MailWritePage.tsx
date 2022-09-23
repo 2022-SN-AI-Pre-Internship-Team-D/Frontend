@@ -1,5 +1,5 @@
 import 'tailwindcss/tailwind.css';
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import ColorSystem from 'utils/ColorSystem';
 import postcard from 'images/postcard.png';
 import mic from 'images/mic.png';

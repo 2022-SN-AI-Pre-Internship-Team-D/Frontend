@@ -12,6 +12,7 @@ function MailListPage() {
   const [mailList, setMailList] = useState([]); // <any[]>
   const [page, setPage] = useState(1);
   const [mailCount, setMailCount] = useState('0');
+  const { uuid } = getUUID();
 
   const changeBeforePage = () => {
     if (page > 1) {
@@ -28,7 +29,7 @@ function MailListPage() {
   useEffect(() => {
     (async () => {
       await axios
-        .get(`letters/users/${getUUID().uuid}/events/${state[0]}/all/pages/${page}`)
+        .get(`letters/users/${uuid}/events/${state[0]}/all/pages/${page}`)
         .then((res) => {
           setMailList(res.data);
           if (res.status === 204) {
@@ -43,7 +44,7 @@ function MailListPage() {
 
     (async () => {
       await axios
-        .get(`letters/users/${getUUID().uuid}/events/${state[0]}/counts`)
+        .get(`letters/users/${uuid}/events/${state[0]}/counts`)
         .then((res) => {
           setMailCount(res.data[0].count);
         })
