@@ -93,9 +93,6 @@ function MailWritePage() {
             <img src={mic} alt="mic" className="" />
           </button>
           {/* 녹음 확인 */}
-          {/* <button className="mt-1.5" type="button">
-            <img src={check} alt='check' className="" />
-          </button> */}
           <button type="button" className="rounded-xl bg-subBackground" style={{ height: '3rem', width: '13rem' }}>
             녹음 결과 확인
           </button>
