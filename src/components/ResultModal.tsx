@@ -1,13 +1,14 @@
 import { Fragment, useRef, useState, useEffect } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import ColorSystem from 'utils/ColorSystem';
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 interface Props {
   openinit: any;
   closeModal: any;
+  id: string;
 }
-export default function ResultModal({ openinit, closeModal }: Props) {
+export default function ResultModal({ openinit, closeModal, id }: Props) {
   const [open, setOpen] = useState(openinit);
 
   //   useEffect(() => {
@@ -20,8 +21,8 @@ export default function ResultModal({ openinit, closeModal }: Props) {
   const cancelButtonRef = useRef(null);
   const navigate = useNavigate();
   const goToMain = () => {
-    navigate("/mainpage");
-  }
+    navigate(`/mainpage2${id}`);
+  };
 
   return (
     <div>
