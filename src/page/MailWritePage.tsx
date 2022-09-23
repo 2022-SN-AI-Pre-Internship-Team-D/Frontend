@@ -1,11 +1,12 @@
 import 'tailwindcss/tailwind.css';
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import ColorSystem from 'utils/ColorSystem';
 import postcard from 'images/postcard.png';
 import mic from 'images/mic.png';
 import ResultModal from 'components/ResultModal';
 import { useLocation } from 'react-router';
 import axios from 'axios';
+import plus from 'images/plus.png';
 
 interface mailForm {
   text: FormDataEntryValue;
@@ -63,9 +64,24 @@ function MailWritePage() {
   // when the Button component is clicked
   const handleClick = (event: any) => {
     hiddenFileInput.current.click();
+    console.log(hiddenFileInput.current.click);
   };
   // Call a function (passed as a prop from the parent component)
   // to handle the user-selected file
+
+  const [imageUrl, setImageUrl] = useState("");
+  const imgRef: any = useRef();
+
+  const handleChangeFile = (e: any) => {
+    const reader: any = new FileReader();
+    const file = imgRef.current.files[0];
+
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+      setImageUrl(reader.result);
+      console.log('이미지주소', reader.result);
+    };
+  };  
 
   // ⭕️
   const handleModal = () => {
@@ -74,7 +90,7 @@ function MailWritePage() {
 
   const [modalOC, setModalOC] = useState(false);
   // ⭕️
-
+  // console.log(imgFile);
   return (
     <div
       className="flex justify-center items-center h-screen py-20 flex-col"
@@ -97,10 +113,29 @@ function MailWritePage() {
             녹음 결과 확인
           </button>
         </div>
-        <div>
-          <button type="button" onClick={handleClick} className="m-10 mt-5 w-96 h-48 rounded-xl bg-subBackground">
+        <div className="preview">
+          {/* <button type="button" onClick={handleClick} className="m-10 mt-5 w-96 h-48 rounded-xl bg-subBackground">
             +<input ref={hiddenFileInput} type="file" hidden onChange={onChangeImage} className="" />
-          </button>
+            <img src={file} alt="file" />
+          </button> */}
+        <label htmlFor="imgfile">
+          {imageUrl && (
+            <img
+              src={plus}
+              alt="profile"
+              className=" m-10 mt-5 w-96 h-48 rounded-xl bg-subBackground object-cover cursor-pointer"
+            />
+          )}
+          <input
+            onChange={onChangeImage}
+            id="imgfile"
+            // className="hidden"
+            ref={hiddenFileInput}
+            type="file"
+            // name="image"
+            // accept="image/*"
+          />
+        </label>
         </div>
         <div
           className=" text-center bg-[url('images/letterbg.png')] rounded-lg h-fit "
