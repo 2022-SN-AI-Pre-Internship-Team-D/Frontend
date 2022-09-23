@@ -16,14 +16,13 @@ interface mailForm {
 function MailWritePage() {
   const [imgFile, setImgFile] = useState<File>();
   const { state } = useLocation();
+  const [content, setContent] = useState('');
 
-  console.log(state);
   const mailData: mailForm = {
-    text: 'adfs',
+    text: content,
     file: imgFile,
     media: imgFile,
   };
-  console.log(mailData);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -117,6 +116,9 @@ function MailWritePage() {
             maxLength={300}
             className="p-4 h-56 rounded-lg bg-transparent text-xl leading-9 focus:outline-none "
             style={{ width: '530px', resize: 'none' }}
+            onChange={(e) => {
+              setContent(e.currentTarget.value);
+            }}
           />
         </div>
         <button type="submit" className=" bg-white px-10 py-2 mt-5 rounded-full border-4 border-subBackground">
