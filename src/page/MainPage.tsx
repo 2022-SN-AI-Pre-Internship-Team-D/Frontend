@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/mouse-events-have-key-events */
 import 'tailwindcss/tailwind.css';
 import ColorSystem from 'utils/ColorSystem';
 import React, { useState, useEffect } from 'react';
@@ -35,6 +36,16 @@ function MainPage() {
         });
     })();
   }, []);
+
+  const [isHovering, setIsHovering] = useState(false);
+
+  const handleMouseOver = () => {
+    setIsHovering(true);
+  };
+
+  const handleMouseOut = () => {
+    setIsHovering(false);
+  };
 
   const handleCopyClipBoard = (text: string) => {
     onCopy(text);
@@ -129,16 +140,17 @@ function MainPage() {
         </button>
       </div>
       {/* 링크 공유 */}
-      <div className="flex absolute top-4 right-4 w-10 ">
+      <div onMouseOver={handleMouseOver} onMouseOut={handleMouseOut} className="flex absolute top-4 right-4 w-10 ">
         <button
           onClick={() => {
             handleCopyClipBoard(`http://localhost:3000/mainpage2${uuid}`);
-            alert('링크가 복사되었습니다!');
+            // alert('링크가 복사되었습니다!');
           }}
           type="button"
           className="scaleup"
         >
           <img src={Share} alt="a" className="" />
+          {isHovering && <h2 className="text-white">click to copy link!</h2>}
         </button>
       </div>
     </div>

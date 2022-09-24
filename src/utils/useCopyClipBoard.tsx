@@ -7,8 +7,9 @@ function useCopyClipBoard(): [boolean, onCopyFn] {
 
   const onCopy: onCopyFn = async (text: string) => {
     try {
-      setTimeout(async () => console.log(await window.navigator.clipboard.writeText(text)), 3000);
+      await window.navigator.clipboard.writeText(text);
       setIsCopy(true);
+      console.log('gooood');
 
       return true;
     } catch (error) {
