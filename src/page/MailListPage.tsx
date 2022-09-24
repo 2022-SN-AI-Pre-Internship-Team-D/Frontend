@@ -32,6 +32,7 @@ function MailListPage() {
         .get(`letters/users/${uuid}/events/${state[0]}/all/pages/${page}`)
         .then((res) => {
           setMailList(res.data);
+          console.log(res.data);
           if (res.status === 204) {
             alert('더이상 편지가 존재하지 않습니다.');
             setPage(page - 1);
@@ -73,7 +74,7 @@ function MailListPage() {
       <span className="text-white m-14 text-2xl">총 {mailCount}개의 편지를 받았습니다.</span>
 
       {Object.values(mailList)?.map((item: any) => (
-        <EachMail content={item.text} key={item.id} />
+        <EachMail content={item.text} imgfile={item.file} key={item.id} />
       ))}
       <div className="flex flex-row mb-8">
         <MoreButton handlePage={changeBeforePage} title="<" />
