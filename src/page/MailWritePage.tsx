@@ -1,5 +1,5 @@
 import 'tailwindcss/tailwind.css';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import ColorSystem from 'utils/ColorSystem';
 import postcard from 'images/postcard.png';
 import mic from 'images/mic.png';
@@ -18,12 +18,23 @@ function MailWritePage() {
   const [imgFile, setImgFile] = useState<File>();
   const { state } = useLocation();
   const [content, setContent] = useState('');
+  const [preview, setPreview] = useState<string>(plus);
 
   const mailData: mailForm = {
     text: content,
     file: imgFile,
     media: imgFile,
   };
+
+  useEffect(() => {
+    if (imgFile){
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPreview(reader.result as string);
+      };
+      reader.readAsDataURL(imgFile);
+    }
+  },[imgFile])
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -54,34 +65,21 @@ function MailWritePage() {
         });
     }
   };
-  const onChangeImage = async (event: React.ChangeEvent<HTMLInputElement>) => {
+ 
+  const onChangeImage = async (event: any) => {
     setImgFile(event.target.files![0]);
-  };
+  }
 
-  const hiddenFileInput = React.useRef<any | null>(null);
+  const hiddenFileInput = useRef<any | null>();
 
   // Programatically click the hidden file input element
   // when the Button component is clicked
   const handleClick = (event: any) => {
     hiddenFileInput.current.click();
-    console.log(hiddenFileInput.current.click);
   };
   // Call a function (passed as a prop from the parent component)
   // to handle the user-selected file
 
-  const [imageUrl, setImageUrl] = useState("");
-  const imgRef: any = useRef();
-
-  const handleChangeFile = (e: any) => {
-    const reader: any = new FileReader();
-    const file = imgRef.current.files[0];
-
-    reader.readAsDataURL(file);
-    reader.onloadend = () => {
-      setImageUrl(reader.result);
-      console.log('이미지주소', reader.result);
-    };
-  };  
 
   // ⭕️
   const handleModal = () => {
@@ -114,28 +112,21 @@ function MailWritePage() {
           </button>
         </div>
         <div className="preview">
-          {/* <button type="button" onClick={handleClick} className="m-10 mt-5 w-96 h-48 rounded-xl bg-subBackground">
-            +<input ref={hiddenFileInput} type="file" hidden onChange={onChangeImage} className="" />
-            <img src={file} alt="file" />
-          </button> */}
-        <label htmlFor="imgfile">
-          {imageUrl && (
-            <img
-              src={plus}
-              alt="profile"
-              className=" m-10 mt-5 w-96 h-48 rounded-xl bg-subBackground object-cover cursor-pointer"
-            />
-          )}
-          <input
-            onChange={onChangeImage}
+            <label htmlFor="imgfile">
+            {preview  && (
+            <img 
+            src={preview} 
+            alt="file" 
+            className="object-cover cursor-pointer m-10 mt-5 w-96 h-48 rounded-xl bg-subBackground"/>)}
+            <input 
             id="imgfile"
-            // className="hidden"
-            ref={hiddenFileInput}
-            type="file"
-            // name="image"
-            // accept="image/*"
-          />
-        </label>
+            ref={hiddenFileInput} 
+            type="file"          
+            onChange={onChangeImage} 
+            onClick={handleClick}
+            accept="image/*"
+            className="hidden" />
+            </label>
         </div>
         <div
           className=" text-center bg-[url('images/letterbg.png')] rounded-lg h-fit "
