@@ -1,11 +1,12 @@
 import 'tailwindcss/tailwind.css';
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import ColorSystem from 'utils/ColorSystem';
 import postcard from 'images/postcard.png';
 import mic from 'images/mic.png';
 import ResultModal from 'components/ResultModal';
 import { useLocation } from 'react-router';
 import axios from 'axios';
+import plus from 'images/plus.png';
 
 interface mailForm {
   text: FormDataEntryValue;
@@ -17,12 +18,23 @@ function MailWritePage() {
   const [imgFile, setImgFile] = useState<File>();
   const { state } = useLocation();
   const [content, setContent] = useState('');
+  const [preview, setPreview] = useState<string>(plus);
 
   const mailData: mailForm = {
     text: content,
     file: imgFile,
     media: imgFile,
   };
+
+  useEffect(() => {
+    if (imgFile){
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPreview(reader.result as string);
+      };
+      reader.readAsDataURL(imgFile);
+    }
+  },[imgFile])
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -53,11 +65,12 @@ function MailWritePage() {
         });
     }
   };
-  const onChangeImage = async (event: React.ChangeEvent<HTMLInputElement>) => {
+ 
+  const onChangeImage = async (event: any) => {
     setImgFile(event.target.files![0]);
-  };
+  }
 
-  const hiddenFileInput = React.useRef<any | null>(null);
+  const hiddenFileInput = useRef<any | null>();
 
   // Programatically click the hidden file input element
   // when the Button component is clicked
@@ -66,6 +79,7 @@ function MailWritePage() {
   };
   // Call a function (passed as a prop from the parent component)
   // to handle the user-selected file
+
 
   // ⭕️
   const handleModal = () => {
@@ -82,7 +96,7 @@ function MailWritePage() {
     >
       <form
         className="rounded-xl flex flex-col items-center bg-white p-4 md:w-1/6"
-        style={{ height: '50rem', width: '38rem' }}
+        style={{ height: '55rem', width: '38rem' }}
         onSubmit={(e) => handleSubmit(e)}
       >
         <img src={postcard} alt="postcard" className="w-24" />
@@ -97,10 +111,22 @@ function MailWritePage() {
             녹음 결과 확인
           </button>
         </div>
-        <div>
-          <button type="button" onClick={handleClick} className="m-10 mt-5 w-96 h-48 rounded-xl bg-subBackground">
-            +<input ref={hiddenFileInput} type="file" hidden onChange={onChangeImage} className="" />
-          </button>
+        <div className="preview">
+            <label htmlFor="imgfile">
+            {preview  && (
+            <img 
+            src={preview} 
+            alt="file" 
+            className="object-cover cursor-pointer m-10 mt-5 w-96 h-48 rounded-xl bg-subBackground"/>)}
+            <input 
+            id="imgfile"
+            ref={hiddenFileInput} 
+            type="file"          
+            onChange={onChangeImage} 
+            onClick={handleClick}
+            accept="image/*"
+            className="hidden" />
+            </label>
         </div>
         <div
           className=" text-center bg-[url('images/letterbg.png')] rounded-lg h-fit "
