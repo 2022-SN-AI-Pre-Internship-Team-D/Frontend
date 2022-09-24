@@ -68,7 +68,7 @@ function LoginPage() {
 
     (async () => {
       await axios
-        .post(`/users/sign-in/`, userInfo)
+        .post(`/users/sign-in`, userInfo)
         .then((res) => {
           // console.log('로그인 성공');
           setToken(res.data.access, res.data.refresh); // 토큰 localstorage에 저장
