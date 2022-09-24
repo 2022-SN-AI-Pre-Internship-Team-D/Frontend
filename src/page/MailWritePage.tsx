@@ -88,7 +88,7 @@ function MailWritePage() {
 
   const [modalOC, setModalOC] = useState(false);
   // ⭕️
-  // console.log(imgFile);
+
   return (
     <div
       className="flex justify-center items-center h-screen py-20 flex-col"
@@ -96,7 +96,7 @@ function MailWritePage() {
     >
       <form
         className="rounded-xl flex flex-col items-center bg-white p-4 md:w-1/6"
-        style={{ height: '50rem', width: '38rem' }}
+        style={{ height: '55rem', width: '38rem' }}
         onSubmit={(e) => handleSubmit(e)}
       >
         <img src={postcard} alt="postcard" className="w-24" />
