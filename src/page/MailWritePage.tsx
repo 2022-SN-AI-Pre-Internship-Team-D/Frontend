@@ -46,6 +46,7 @@ function MailWritePage() {
   const { state } = useLocation();
   const [content, setContent] = useState('');
   const [preview, setPreview] = useState<string>(plus);
+  const [userName, setUserName] = useState('');
 
   const mailData: mailForm = {
     text: content,
@@ -61,6 +62,16 @@ function MailWritePage() {
       };
       reader.readAsDataURL(imgFile);
     }
+    (async () => {
+      await axios
+        .get(`/users/${state[0]}/info`)
+        .then((res) => {
+          setUserName(res.data.username);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    })();
   }, [imgFile]);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -126,16 +137,16 @@ function MailWritePage() {
 
   return (
     <div
-      className="flex justify-center items-center h-screen py-20 flex-col"
+      className="flex justify-center items-center py-20 h-screen"
       style={{ backgroundColor: ColorSystem.MainColor.Primary }}
     >
       <form
         className="rounded-xl flex flex-col items-center bg-white p-4 md:w-1/6"
-        style={{ height: '55rem', width: '38rem' }}
+        style={{ height: '48rem', width: '38rem' }}
         onSubmit={(e) => handleSubmit(e)}
       >
-        <img src={postcard} alt="postcard" className="w-24" />
-        <p className="italic font-serif text-xl">dear toto</p>
+        <img src={postcard} alt="postcard" className="w-14" />
+        <p className="italic font-serif text-xl">dear {userName}</p>
         <div className="flex flex-row mt-3">
           {/* 음성녹음 */}
 
@@ -213,14 +224,13 @@ function MailWritePage() {
             rows={6}
             maxLength={300}
             className="p-4 h-56 rounded-lg bg-transparent text-xl leading-9 focus:outline-none "
-            style={{ width: '530px', resize: 'none' }}
+            style={{ width: '530px', height: '250px', resize: 'none' }}
             onChange={(e) => {
               setContent(e.currentTarget.value);
             }}
           />
         </div>
         <button type="submit" className=" bg-white px-10 py-2 mt-5 rounded-full border-4 border-subBackground">
-          {' '}
           전송
         </button>
       </form>
