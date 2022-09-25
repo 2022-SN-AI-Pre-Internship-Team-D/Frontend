@@ -87,9 +87,13 @@ function MyPage() {
 
   return (
     <div className=" pt-20 bg-[#0E1733] flex justify-center h-screen items-center">
-      <div className=" text-white border-solid border-2 rounded-lg w-4/6 h-4/5 flex flex-col items-center justify-center">
+      <div 
+      className=" text-white border-solid border-2 w-4/6 h-4/5 rounded-lg flex flex-col 
+      items-center justify-center"
+      // style={{ height: '43rem', width: '38rem' }}
+      >
         <img
-          style={{ position: 'absolute', top: '45px' }}
+          style={{ position: 'absolute', top: '70px' }}
           className="h-36 w-36 object-fit:cover text-white border-2 rounded-full"
           src={image}
           alt="유저사진"
