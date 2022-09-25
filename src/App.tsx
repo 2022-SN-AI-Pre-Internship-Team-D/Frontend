@@ -9,7 +9,6 @@ import SignupPage from 'page/SignupPage';
 import MyPage from 'page/Mypage';
 import BirthMailListPage from 'page/BirthMailListPage';
 import BirthRemainingDaysPage from 'page/BirthRemainingDaysPage';
-import VoiceRecord from 'components/Audio/VoiceRecord';
 import MainPage from './page/MainPage';
 import MainPage2 from './page/MainPage2';
 import RemainingDaysPage from './page/RemainingDaysPage';
@@ -22,7 +21,6 @@ function App() {
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/mainpage2:uuid" element={<MainPage2 />} />
         <Route path="/mailwritepage" element={<MailWritePage />} />
-        <Route path="/test" element={<VoiceRecord />} />
 
         <Route element={<AuthRouter />}>
           <Route path="/mainpage" element={<MainPage />} />
