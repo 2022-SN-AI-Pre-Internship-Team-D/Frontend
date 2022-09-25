@@ -17,6 +17,8 @@ function MyPage() {
   const [halloweenMail, sethalloweenMail] = useState('0');
   const [christmasMail, setChristmasMail] = useState('0');
 
+  const arrEvent: any = [];
+
   useEffect(() => {
     (async () => {
       await axios
@@ -43,10 +45,16 @@ function MyPage() {
         });
     })();
 
+    axios.get('/letters/events/all').then((res) => {
+      for (let i = 0; i < 3; i += 1) {
+        arrEvent[i] = res.data[i].uuid;
+        console.log(arrEvent[i]);
+      }
+
     // 새해
     (async () => {
       await axios
-        .get(`letters/users/${uuid}/events/483eb9c4-70b2-41bb-a783-8c00d28dbe47/counts`)
+        .get(`letters/users/${uuid}/events/${arrEvent[2]}/counts`)
         .then((res) => {
           setNewYearMail(res.data[0].count);
         })
@@ -58,7 +66,7 @@ function MyPage() {
     // 할로윈
     (async () => {
       await axios
-        .get(`letters/users/${uuid}/events/7c97bce0-27d5-413e-b30c-a37ee9216f87/counts`)
+        .get(`letters/users/${uuid}/events/${arrEvent[1]}/counts`)
         .then((res) => {
           sethalloweenMail(res.data[0].count);
         })
@@ -70,7 +78,7 @@ function MyPage() {
     // 크리스마스
     (async () => {
       await axios
-        .get(`letters/users/${uuid}/events/6eabfb36-4e35-4a11-a043-33b7c8887a98/counts`)
+        .get(`letters/users/${uuid}/events/${arrEvent[0]}/counts`)
         .then((res) => {
           setChristmasMail(res.data[0].count);
         })
@@ -78,6 +86,8 @@ function MyPage() {
           console.log(error);
         });
     })();
+    }
+    );
   }, []);
 
   const navigate = useNavigate();
