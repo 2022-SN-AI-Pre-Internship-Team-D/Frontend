@@ -7,12 +7,12 @@ import { getUUID } from 'utils/getUUID';
 import { useNavigate } from 'react-router';
 
 function MyPage() {
-  const {uuid} = getUUID();
-  const [username, setUserName] = useState("Name");
+  const { uuid } = getUUID();
+  const [username, setUserName] = useState('Name');
   const [birth, setBirth] = useState('');
   const [image, setImage] = useState(profile);
 
-  const [birthMail, setBirthMail] = useState('0')
+  const [birthMail, setBirthMail] = useState('0');
   const [newYearMail, setNewYearMail] = useState('0');
   const [halloweenMail, sethalloweenMail] = useState('0');
   const [christmasMail, setChristmasMail] = useState('0');
@@ -20,15 +20,15 @@ function MyPage() {
   useEffect(() => {
     (async () => {
       await axios
-      .get(`/users/${uuid}/get-profile/`)
-      .then((res) => {
-        setUserName(res.data.username);
-        setBirth(res.data.birth);
-        setImage(res.data.image);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+        .get(`/users/${uuid}/info`)
+        .then((res) => {
+          setUserName(res.data.username);
+          setBirth(res.data.birth);
+          setImage(res.data.image);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     })();
 
     // 생일
@@ -79,12 +79,11 @@ function MyPage() {
         });
     })();
   }, []);
-  
+
   const navigate = useNavigate();
   const goToMain = () => {
-    navigate("/mainpage");
-  }
-    
+    navigate('/mainpage');
+  };
 
   return (
     <div className=" pt-20 bg-[#0E1733] flex justify-center h-screen items-center">
@@ -96,9 +95,7 @@ function MyPage() {
           alt="유저사진"
         />
 
-        <div className="mb-12 pt-3 text-2xl font-mypage-font flex justify-center">
-          {username}
-        </div>
+        <div className="mb-12 pt-3 text-2xl font-mypage-font flex justify-center">{username}</div>
 
         <div className="flex flex-col justify-center items-center">
           <h2 className="font-press-start mb-5 text-3xl">Your Birthday</h2>
@@ -119,13 +116,8 @@ function MyPage() {
         {/* <button type="button" className="font-press-start mt-10">
           Account Settings
         </button> */}
-        <button className="flex justify-center" type='button' onClick={goToMain}>
-         <img
-          style={{ position: 'absolute', bottom: '112px' }}
-          className=""
-          src={back}
-          alt="뒤로가기"
-        />
+        <button className="flex justify-center" type="button" onClick={goToMain}>
+          <img style={{ position: 'absolute', bottom: '112px' }} className="" src={back} alt="뒤로가기" />
         </button>
       </div>
     </div>
