@@ -42,21 +42,6 @@ function LoginPage() {
     }
   }, []);
 
-  // 비밀번호
-  // const onChangePassword = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-  //   const passwordRegex = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/;
-  //   const passwordCurrent = e.target.value;
-  //   setPassword(passwordCurrent);
-
-  //   if (!passwordRegex.test(passwordCurrent)) {
-  //     setPasswordMessage('숫자+영문자+특수문자 조합으로 8자리 이상 입력해주세요!');
-  //     setIsPassword(false);
-  //   } else {
-  //     setPasswordMessage('안전한 비밀번호에요 : )');
-  //     setIsPassword(true);
-  //   }
-  // }, []);
-
   const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const data = new FormData(e.currentTarget);
@@ -68,11 +53,9 @@ function LoginPage() {
 
     (async () => {
       await axios
-        .post(`/users/sign-in/`, userInfo)
+        .post(`/users/sign-in`, userInfo)
         .then((res) => {
-          // console.log('로그인 성공');
           setToken(res.data.access, res.data.refresh); // 토큰 localstorage에 저장
-          // console.log(getToken(), ' localstorage 들어갔는지 확인');
           const uuid = decodeAccessToken(getToken().access || ''); // 🤚 이거 다음에 확인
           dispatch(setUUID(uuid));
           navigate('/mainpage');
@@ -86,9 +69,6 @@ function LoginPage() {
   const goToSign = () => {
     navigate('/signup');
   };
-
-  // const tk: string | null = localStorage.getItem('access_token');
-  // checkAccessToken(tk!);
 
   return (
     <div className="h-screen bg-[#0E1733] flex justify-center flex-col items-center">

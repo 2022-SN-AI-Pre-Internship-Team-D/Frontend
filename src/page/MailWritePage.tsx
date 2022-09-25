@@ -3,19 +3,47 @@ import React, { useEffect, useRef, useState } from 'react';
 import ColorSystem from 'utils/ColorSystem';
 import postcard from 'images/postcard.png';
 import mic from 'images/mic.png';
+import pause from 'images/pauseAudio.png';
+import stops from 'images/stopAudio.png';
+import play from 'images/playAudio.png';
+import downloads from 'images/downloadAudio.png';
 import ResultModal from 'components/ResultModal';
 import { useLocation } from 'react-router';
 import axios from 'axios';
 import plus from 'images/plus.png';
+import { useRecorder } from 'use-recorder';
 
 interface mailForm {
   text: FormDataEntryValue;
   file: FormDataEntryValue | undefined;
   media: FormDataEntryValue | undefined;
 }
-
+// var file = new File([myBlob], "name");
 function MailWritePage() {
+  const RecorderStarus = {
+    PAUSED: 'paused',
+    RECORDING: 'recording',
+    PLAYING: 'playing',
+    SILENT: 'silent',
+  };
+
+  const [status, setStatus] = useState(RecorderStarus.PAUSED);
+  const { start, stop, player, audio } = useRecorder();
+
+  const actions = {
+    [RecorderStarus.RECORDING]: start,
+    [RecorderStarus.PAUSED]: stop,
+    [RecorderStarus.PLAYING]: () => player!.play(),
+    [RecorderStarus.SILENT]: () => player!.pause(),
+  };
+
+  const handleAction = (action: any) => {
+    setStatus(action);
+    actions[action]();
+  };
+
   const [imgFile, setImgFile] = useState<File>();
+  const [voiceFile, setVoiceFile] = useState<File>();
   const { state } = useLocation();
   const [content, setContent] = useState('');
   const [preview, setPreview] = useState<string>(plus);
@@ -23,34 +51,40 @@ function MailWritePage() {
   const mailData: mailForm = {
     text: content,
     file: imgFile,
-    media: imgFile,
+    media: voiceFile,
   };
 
   useEffect(() => {
-    if (imgFile){
+    if (imgFile) {
       const reader = new FileReader();
       reader.onloadend = () => {
         setPreview(reader.result as string);
       };
       reader.readAsDataURL(imgFile);
     }
-  },[imgFile])
+  }, [imgFile]);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (state[1] === 'birth') {
-      axios
-        .post(`/letters/users/${state[0]}/birth/write`, mailData, {
-          headers: { 'Content-Type': 'multipart/form-data' },
-        })
-        .then((res) => {
-          console.log(res);
-          handleModal();
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      if (mailData.file === undefined || mailData.media === undefined) {
+        alert('모든 항목 작성');
+      } else {
+        axios
+          .post(`/letters/users/${state[0]}/birth/write`, mailData, {
+            headers: { 'Content-Type': 'multipart/form-data' },
+          })
+          .then((res) => {
+            console.log(res);
+            handleModal();
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
+    } else if (mailData.file === undefined || mailData.media === undefined) {
+      alert('모든 항목 작성');
     } else {
       axios
         .post(`/letters/users/${state[0]}/events/${state[1]}/write`, mailData, {
@@ -58,17 +92,20 @@ function MailWritePage() {
         })
         .then((res) => {
           console.log(res);
+          console.log(mailData);
+
           handleModal();
         })
         .catch((error) => {
           console.log(error);
+          console.log(mailData);
         });
     }
   };
- 
+
   const onChangeImage = async (event: any) => {
     setImgFile(event.target.files![0]);
-  }
+  };
 
   const hiddenFileInput = useRef<any | null>();
 
@@ -79,7 +116,6 @@ function MailWritePage() {
   };
   // Call a function (passed as a prop from the parent component)
   // to handle the user-selected file
-
 
   // ⭕️
   const handleModal = () => {
@@ -103,30 +139,72 @@ function MailWritePage() {
         <p className="italic font-serif text-xl">dear toto</p>
         <div className="flex flex-row mt-3">
           {/* 음성녹음 */}
-          <button type="button">
-            <img src={mic} alt="mic" className="" />
-          </button>
-          {/* 녹음 확인 */}
-          <button type="button" className="rounded-xl bg-subBackground" style={{ height: '3rem', width: '13rem' }}>
-            녹음 결과 확인
-          </button>
+
+          <div className="flex flex-row">
+            {(status === RecorderStarus.PAUSED || status === RecorderStarus.SILENT) && (
+              <button type="button" onClick={() => handleAction(RecorderStarus.RECORDING)}>
+                <img src={mic} alt="mic" className="" />
+              </button>
+            )}
+            {status === RecorderStarus.RECORDING && (
+              <button type="button" onClick={() => handleAction(RecorderStarus.PAUSED)}>
+                <img src={stops} alt="mic" className="w-10" />
+              </button>
+            )}
+            {(status === RecorderStarus.PAUSED || status === RecorderStarus.SILENT) && !!player && (
+              <button
+                type="button"
+                onClick={() => handleAction(RecorderStarus.PLAYING)}
+                className="rounded-xl bg-subBackground"
+                style={{ height: '3rem', width: '13rem' }}
+              >
+                녹음결과 확인
+              </button>
+            )}
+            {status === RecorderStarus.PLAYING && (
+              <button type="button" onClick={() => handleAction(RecorderStarus.SILENT)}>
+                <img src={pause} alt="mic" className="w-10" />
+              </button>
+            )}
+          </div>
+          {!!player && (
+            <button
+              type="button"
+              onClick={() => {
+                if (audio instanceof Object) {
+                  // console.log(mailData.media.blob);
+                  const test = Object.values(audio);
+                  console.log(test[2]);
+                  setVoiceFile(test[2]);
+                }
+              }}
+            >
+              <a href={player.src} download={`recording-${Date.now()}`}>
+                <img src={downloads} alt="mic" className="w-10" />
+              </a>
+            </button>
+          )}
         </div>
+
         <div className="preview">
-            <label htmlFor="imgfile">
-            {preview  && (
-            <img 
-            src={preview} 
-            alt="file" 
-            className="object-cover cursor-pointer m-10 mt-5 w-96 h-48 rounded-xl bg-subBackground"/>)}
-            <input 
-            id="imgfile"
-            ref={hiddenFileInput} 
-            type="file"          
-            onChange={onChangeImage} 
-            onClick={handleClick}
-            accept="image/*"
-            className="hidden" />
-            </label>
+          <label htmlFor="imgfile">
+            {preview && (
+              <img
+                src={preview}
+                alt="file"
+                className="object-cover cursor-pointer m-10 mt-5 w-96 h-48 rounded-xl bg-subBackground"
+              />
+            )}
+            <input
+              id="imgfile"
+              ref={hiddenFileInput}
+              type="file"
+              onChange={onChangeImage}
+              onClick={handleClick}
+              accept="image/*"
+              className="hidden"
+            />
+          </label>
         </div>
         <div
           className=" text-center bg-[url('images/letterbg.png')] rounded-lg h-fit "

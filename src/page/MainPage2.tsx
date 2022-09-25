@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 
-function MainPage() {
+function MainPage2() {
   const navigate = useNavigate();
   const [eventList, setEventList] = useState([]);
   const arrEvent: any = [];
@@ -20,6 +20,18 @@ function MainPage() {
       }
       setEventList(arrEvent);
     });
+    (async () => {
+      await axios
+        .get(`/users/${hostID.uuid}/exist`)
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((error) => {
+          console.log(error);
+          alert('존재하지 않는 링크 입니다.');
+          navigate('/');
+        });
+    })();
   }, []);
 
   const handleClick = async (event: React.MouseEvent<HTMLElement>) => {
@@ -92,4 +104,4 @@ function MainPage() {
   );
 }
 
-export default MainPage;
+export default MainPage2;

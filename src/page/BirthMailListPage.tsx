@@ -52,16 +52,16 @@ function BirthMailListPage() {
     })();
   }, [page]);
 
-  if ( mailCount === "0") {
+  if (mailCount === '0') {
     return (
-    <div
-    className="flex justify-center items-center h-screen"
-    style={{ backgroundColor: ColorSystem.MainColor.Primary }}
-    >
-      <span className="text-white m-14 text-2xl">받은 편지가 없습니다.</span>
-    </div>
-    )
-  }  
+      <div
+        className="flex justify-center items-center h-screen"
+        style={{ backgroundColor: ColorSystem.MainColor.Primary }}
+      >
+        <span className="text-white m-14 text-2xl">받은 편지가 없습니다.</span>
+      </div>
+    );
+  }
 
   return (
     <div

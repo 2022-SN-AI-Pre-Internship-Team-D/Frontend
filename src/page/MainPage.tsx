@@ -27,7 +27,7 @@ function MainPage() {
     });
     (async () => {
       await axios
-        .get(`/users/${uuid}/get-profile/`)
+        .get(`/users/${uuid}/info`)
         .then((res) => {
           setUserName(res.data.username);
         })
