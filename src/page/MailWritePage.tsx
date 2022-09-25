@@ -5,7 +5,6 @@ import postcard from 'images/postcard.png';
 import mic from 'images/mic.png';
 import pause from 'images/pauseAudio.png';
 import stops from 'images/stopAudio.png';
-import play from 'images/playAudio.png';
 import downloads from 'images/downloadAudio.png';
 import ResultModal from 'components/ResultModal';
 import { useLocation } from 'react-router';
@@ -212,6 +211,7 @@ function MailWritePage() {
         >
           <textarea
             placeholder="To.."
+            disabled
             cols={45}
             rows={6}
             maxLength={300}

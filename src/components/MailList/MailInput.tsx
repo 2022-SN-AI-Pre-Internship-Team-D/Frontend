@@ -9,10 +9,10 @@ function MailInput({ content = '' }) {
     <div className=" text-center bg-[url('images/letterbg.png')] rounded-lg h-fit " style={{ width: '580px' }}>
       <textarea
         placeholder=""
-        disabled
         cols={45}
         rows={9}
         maxLength={300}
+        style={{ resize: 'none' }}
         value={content}
         className="p-4 rounded-lg bg-transparent text-xl leading-9 focus:outline-none "
         onChange={(e) => console.log(e.target.value)}

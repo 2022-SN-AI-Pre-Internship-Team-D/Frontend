@@ -9,7 +9,7 @@ import SignupPage from 'page/SignupPage';
 import MyPage from 'page/Mypage';
 import BirthMailListPage from 'page/BirthMailListPage';
 import BirthRemainingDaysPage from 'page/BirthRemainingDaysPage';
-import VoiceRecord from 'components/VoiceRecord';
+import VoiceRecord from 'components/Audio/VoiceRecord';
 import MainPage from './page/MainPage';
 import MainPage2 from './page/MainPage2';
 import RemainingDaysPage from './page/RemainingDaysPage';
