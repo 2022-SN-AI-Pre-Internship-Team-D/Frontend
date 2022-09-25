@@ -50,9 +50,7 @@ export default function VoiceRecord() {
           </div>
           {!!player && (
             <button onClick={() => console.log(player)}>
-              <a href={player.src} download={`recording-${Date.now()}`}>
-                <span>download</span>
-              </a>
+              <span>download</span>
             </button>
           )}
         </div>

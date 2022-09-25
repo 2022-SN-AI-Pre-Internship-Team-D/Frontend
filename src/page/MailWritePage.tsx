@@ -178,9 +178,7 @@ function MailWritePage() {
                 }
               }}
             >
-              <a href={player.src} download={`recording-${Date.now()}`}>
-                <img src={downloads} alt="mic" className="w-10" />
-              </a>
+              <img src={downloads} alt="mic" className="w-10" />
             </button>
           )}
         </div>
