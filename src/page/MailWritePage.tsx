@@ -211,7 +211,6 @@ function MailWritePage() {
         >
           <textarea
             placeholder="To.."
-            disabled
             cols={45}
             rows={6}
             maxLength={300}

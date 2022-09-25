@@ -9,6 +9,7 @@ function MailInput({ content = '' }) {
     <div className=" text-center bg-[url('images/letterbg.png')] rounded-lg h-fit " style={{ width: '580px' }}>
       <textarea
         placeholder=""
+        disabled
         cols={45}
         rows={9}
         maxLength={300}
