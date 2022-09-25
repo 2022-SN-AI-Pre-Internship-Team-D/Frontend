@@ -13,6 +13,7 @@ function MailInput({ content = '' }) {
         cols={45}
         rows={9}
         maxLength={300}
+        style={{ resize: 'none' }}
         value={content}
         className="p-4 rounded-lg bg-transparent text-xl leading-9 focus:outline-none "
         onChange={(e) => console.log(e.target.value)}
