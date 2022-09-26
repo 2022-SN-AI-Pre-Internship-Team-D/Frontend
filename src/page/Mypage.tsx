@@ -1,8 +1,9 @@
 import 'tailwindcss/tailwind.css';
-import back from 'images/back.png';
 import { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
+import back from 'images/back.png';
 import profile from 'images/profile.png';
+import star from 'images/star.svg';
 import { getUUID } from 'utils/getUUID';
 import { useNavigate } from 'react-router';
 
@@ -96,12 +97,9 @@ function MyPage() {
   };
 
   return (
-    <div className=" pt-20 bg-[#0E1733] flex justify-center h-screen items-center">
-      <div 
-      className=" text-white border-solid border-2 w-4/6 h-4/5 rounded-lg flex flex-col 
-      items-center justify-center"
-      // style={{ height: '43rem', width: '38rem' }}
-      >
+    <div className="absolute overflow-hidden pt-20 bg-[#0E1733] flex justify-center w-screen h-screen items-center">
+      <img src={star} alt="star" className="absolute bg-repeat " />
+      <div className="  text-white border-solid border-2 rounded-lg w-4/6 h-4/5 flex flex-col items-center justify-center">
         <img
           style={{ position: 'absolute', top: '70px' }}
           className="h-36 w-36 object-fit:cover text-white border-2 rounded-full"
@@ -119,7 +117,9 @@ function MyPage() {
         </div>
 
         <div className="flex flex-col justify-center items-center">
-          <h2 className="font-press-start mt-20 mb-5 text-3xl">Letters</h2>
+          <h2 className="font-press-start mt-/static/media/star.5483d88297ea1f7ce35e750c519d7b58.svg20 mb-5 text-3xl">
+            Letters
+          </h2>
           <ul className="list-disc flex flex-col justify-center items-center">
             <li>Birthday [{birthMail}]</li>
             <li>New Year [{newYearMail}]</li>

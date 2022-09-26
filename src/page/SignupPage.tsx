@@ -15,6 +15,7 @@ interface SignUpInfo {
 }
 
 function SignupPage() {
+  
   // 이름, 이메일, 비밀번호, 비밀번호 확인
   const [name, setName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
