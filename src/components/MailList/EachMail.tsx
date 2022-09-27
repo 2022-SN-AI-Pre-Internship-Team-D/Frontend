@@ -6,14 +6,14 @@ import postcard from 'images/postcard.png';
 import shareimg from 'images/shareimg.png';
 import AudioPlayer from 'components/Audio/audioPlayer';
 
-function EachMail({ content = '', imgfile = '', audiofile = '' }) {
+function EachMail({ content = '', imgfile = '', audiofile = '', divid = '' }) {
   const opts = {
     allowTaint : false,
     useCORS: true
   };
   const onCapture = () => {
     console.log('onCapture');
-    html2canvas(document.getElementById('div') as HTMLElement, opts)
+    html2canvas(document.getElementById(divid) as HTMLElement, opts)
       .then(canvas=> {
         onSavaAs(canvas.toDataURL('image/png'), 'image-download.png')
       });
@@ -35,7 +35,7 @@ function EachMail({ content = '', imgfile = '', audiofile = '' }) {
   // const imageWithTimestamp = imgfile.includes('?') ? `${imgfile}&v=${timestamp}` : `${imgfile}?v=${timestamp}`;
 
   return (
-    <div id='div'>
+    <div id={divid}>
       <div
         className="relative m-20 rounded-xl items-center flex flex-col-reverse bg-white p-4 "
         style={{ height: '43rem', width: '38rem' }}
