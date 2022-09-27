@@ -11,13 +11,6 @@ interface Props {
 export default function ResultModal({ openinit, closeModal, id }: Props) {
   const [open, setOpen] = useState(openinit);
 
-  //   useEffect(() => {
-  //     setOpen(openinit);
-  //     console.log(open);
-  //   }, []);
-  //   console.log(open);
-  //   console.log('what is open? ', open);
-
   const cancelButtonRef = useRef(null);
   const navigate = useNavigate();
   const goToMain = () => {
@@ -26,14 +19,6 @@ export default function ResultModal({ openinit, closeModal, id }: Props) {
 
   return (
     <div>
-      {/* <button
-        className="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-        type="button"
-        data-modal-toggle="popup-modal"
-        onClick={(e) => setOpen(true)}
-      >
-        Toggle modal
-      </button> */}
       <Transition.Root show={openinit} as={Fragment}>
         <Dialog as="div" className="relative z-10" initialFocus={cancelButtonRef} onClose={closeModal}>
           <Transition.Child

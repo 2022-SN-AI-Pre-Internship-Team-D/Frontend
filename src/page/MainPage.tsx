@@ -9,7 +9,12 @@ import { getUUID } from 'utils/getUUID';
 import { Link } from 'react-router-dom';
 import Share from 'images/urlshare.png';
 import useCopyClipBoard from 'utils/useCopyClipBoard';
+import RemainModal from 'components/RemainModal';
 
+interface ModalInfo {
+  Dday: string;
+  eventID: string;
+}
 function MainPage() {
   const { uuid } = getUUID();
   const arrEvent: any = [];
@@ -17,6 +22,13 @@ function MainPage() {
   const navigate = useNavigate();
   const [eventList, setEventList] = useState([]);
   const [username, setUserName] = useState('Name');
+
+  const handleModal = () => {
+    setModalOC(true);
+  };
+
+  const [modalOC, setModalOC] = useState(false);
+  const [test, setTest] = useState<ModalInfo>();
 
   useEffect(() => {
     axios.get(`/letters/events/all`).then((res) => {
@@ -59,7 +71,12 @@ function MainPage() {
       .then((res) => {
         console.log(res.data.status);
         if (res.data.status === 'false') {
-          navigate('/remainingdayspage', { state: [res.data.days, id] }); // 남은일수와 , 이벤트 id
+          setTest({
+            Dday: res.data.days,
+            eventID: id,
+          });
+          // navigate('/remainingdayspage', { state: [res.data.days, id] }); // 남은일수와 , 이벤트 id
+          handleModal();
         } else {
           navigate('/maillistpage', { state: [id] });
         }
@@ -79,7 +96,11 @@ function MainPage() {
             navigate('/birthmaillistpage');
           } else {
             console.log('편지 확인 불가');
-            navigate('/birthremainingdayspage');
+            setTest({
+              Dday: res.data.days,
+              eventID: '',
+            });
+            handleModal();
           }
         })
         .catch((error) => {
@@ -98,18 +119,18 @@ function MainPage() {
         onClick={handleClick}
         id={eventList[2]}
         type="button"
-        className="scaleup flex justify-center h-fit w-60 md:w-80 lg:w-1/4"
+        className="flex justify-center scaleup absolute md:top-0 top-1/4 md:m-10 w-80 md:w-2/4  "
       >
         <img src="images/newyearimg.png" alt="a" className="" />
       </button>
 
-      <div className="absolute top-5 left-10">
+      <div className="absolute top-5 left-2/5 md:left-20">
         <Link to="/mypage">
           <span className="flex justify-center text-white font-bold text-xl">{username} 님</span>
         </Link>
       </div>
       {/* 편지 */}
-      <div className="flex flex-col absolute top-5 left-5 md:m-10 w-20 md:w-28 lg:w-1/12 ">
+      <div className="flex flex-col absolute top-0  left-5 md:m-10 w-20 md:w-28 lg:w-1/12 ">
         <button onClick={handleBirthClick} type="button" className="scaleup">
           <img src="images/letterimg.png" alt="a" />
         </button>
@@ -117,7 +138,7 @@ function MainPage() {
       {/* 추석 */}
       <button
         onClick={() => alert('업데이트 예정입니다.')}
-        className="scaleup absolute bottom-0 left-0 w-60 md:w-80 lg:w-2/6"
+        className="scaleup absolute bottom-0 left-0 w-40 md:w-80 lg:w-2/6"
         type="button"
       >
         <img src="images/thankimg.png" alt="a" />
@@ -153,6 +174,7 @@ function MainPage() {
           {isHovering && <h2 className="text-white">click to copy link!</h2>}
         </button>
       </div>
+      <RemainModal openinit={modalOC} closeModal={() => setModalOC(false)} test={test} />
     </div>
   );
 }
