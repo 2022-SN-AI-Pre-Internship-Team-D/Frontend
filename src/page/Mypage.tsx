@@ -52,43 +52,42 @@ function MyPage() {
         console.log(arrEvent[i]);
       }
 
-    // 새해
-    (async () => {
-      await axios
-        .get(`letters/users/${uuid}/events/${arrEvent[2]}/counts`)
-        .then((res) => {
-          setNewYearMail(res.data[0].count);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    })();
+      // 새해
+      (async () => {
+        await axios
+          .get(`letters/users/${uuid}/events/${arrEvent[2]}/counts`)
+          .then((res) => {
+            setNewYearMail(res.data[0].count);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      })();
 
-    // 할로윈
-    (async () => {
-      await axios
-        .get(`letters/users/${uuid}/events/${arrEvent[1]}/counts`)
-        .then((res) => {
-          sethalloweenMail(res.data[0].count);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    })();
+      // 할로윈
+      (async () => {
+        await axios
+          .get(`letters/users/${uuid}/events/${arrEvent[1]}/counts`)
+          .then((res) => {
+            sethalloweenMail(res.data[0].count);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      })();
 
-    // 크리스마스
-    (async () => {
-      await axios
-        .get(`letters/users/${uuid}/events/${arrEvent[0]}/counts`)
-        .then((res) => {
-          setChristmasMail(res.data[0].count);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    })();
-    }
-    );
+      // 크리스마스
+      (async () => {
+        await axios
+          .get(`letters/users/${uuid}/events/${arrEvent[0]}/counts`)
+          .then((res) => {
+            setChristmasMail(res.data[0].count);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      })();
+    });
   }, []);
 
   const navigate = useNavigate();

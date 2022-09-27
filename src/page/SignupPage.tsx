@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useRef, useState, useCallback } from 'react';
 import profile from 'images/profile.png';
+import star from 'images/star.svg';
 
 interface SignUpInfo {
   username: FormDataEntryValue | null;
@@ -15,7 +16,6 @@ interface SignUpInfo {
 }
 
 function SignupPage() {
-  
   // 이름, 이메일, 비밀번호, 비밀번호 확인
   const [name, setName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
@@ -155,13 +155,17 @@ function SignupPage() {
   };
 
   return (
-    <div className="h-screen flex justify-center" style={{ backgroundColor: ColorSystem.MainColor.Primary }}>
+    <div
+      className="absolute overflow-hidden w-screen h-screen flex justify-center"
+      style={{ backgroundColor: ColorSystem.MainColor.Primary }}
+    >
+      <img src={star} alt="star" className="absolute bg-repeat " />
       <div className="flex flex-col justify-center h-screen item-center">
-      <div 
-      className=" text-white border-solid border-2 rounded-lg flex flex-col 
+        <div
+          className=" text-white border-solid border-2 rounded-lg flex flex-col 
       items-center justify-center"
-      style={{ height: '50rem', width: '70rem' }}
-      >
+          style={{ height: '50rem', width: '70rem' }}
+        >
           <div className="flex justify-center mt-3 mb-14 text-white text-4xl">
             <span>회원가입</span>
           </div>
