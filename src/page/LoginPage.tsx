@@ -1,5 +1,6 @@
 import 'tailwindcss/tailwind.css';
 import pencilImg from 'images/pencilImage.svg';
+import star from 'images/star.svg';
 import Enter from 'images/Enter.png';
 import React, { useEffect, useState, useCallback } from 'react';
 import axios from 'axios';
@@ -71,7 +72,8 @@ function LoginPage() {
   };
 
   return (
-    <div className="h-screen bg-[#0E1733] flex justify-center flex-col items-center">
+    <div className="absolute overflow-hidden w-screen h-screen bg-[#0E1733] flex justify-center flex-col items-center">
+      <img src={star} alt="star" className="absolute bg-repeat" />
       <div style={{ marginLeft: '60px' }} className="flex">
         <h4 className=" text-[#9CA6C5] text-5xl font-press-start text-center pt-20 pb-35">LOGIN</h4>
         <img style={{ position: 'relative', right: '20px', top: '45px' }} src={pencilImg} alt="pencil" />
