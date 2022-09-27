@@ -106,20 +106,20 @@ function MyPage() {
           alt="유저사진"
         />
 
-        <div className="mb-12 pt-3 text-2xl font-mypage-font flex justify-center">{username}</div>
+        <div className="mb-8 pb-3 text-4xl font-mypage-font flex justify-center">{username}</div>
 
-        <div className="flex flex-col justify-center items-center">
-          <h2 className="font-press-start mb-5 text-3xl">Your Birthday</h2>
+        <div className="flex flex-col justify-center items-center m-5">
+          <h2 className="font-press-start m-3 text-3xl">Your Birthday</h2>
           <ul className="list-disc">
             <li>Birthday [{birth}]</li>
           </ul>
         </div>
 
-        <div className="flex flex-col justify-center items-center">
+        <div className="flex flex-col justify-center items-center m-8">
           <h2 className="font-press-start mt-/static/media/star.5483d88297ea1f7ce35e750c519d7b58.svg20 mb-5 text-3xl">
             Letters
           </h2>
-          <ul className="list-disc flex flex-col justify-center items-center">
+          <ul className="list-disc flex flex-col justify-center items-center m-1">
             <li>Birthday [{birthMail}]</li>
             <li>New Year [{newYearMail}]</li>
             <li>Halloween [{halloweenMail}]</li>
