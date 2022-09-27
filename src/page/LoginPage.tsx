@@ -80,7 +80,7 @@ function LoginPage() {
       </div>
 
       <form
-        className="md:w-2/4 md:h-2/4 w-80 h-80 items-center flex-col flex justify-center center bg-grey rounded-lg"
+        className="md:w-2/4 w-3/4 h-2/4 items-center flex-col flex justify-center center bg-grey rounded-lg"
         onSubmit={handleLogin}
       >
         <div className=" justify-center flex flex-col md:w-96 w-44">
@@ -105,21 +105,21 @@ function LoginPage() {
           </label>
         </div>
 
-        <div className="flex-row flex relative mt-8  content-center">
-          <img style={{ position: 'absolute', top: '-2px', left: '14px', zIndex: '1' }} src={Enter} alt="pencil" />
+        <div className="sm:flex-row flex-col flex relative mt-8  content-center ">
           <button
             type="submit"
-            className=" rounded-xl border-none bg-[#677DC6] w-36 mr-4 drop-shadow-lg px-14 pr-4 py-2.5  text-white font-semibold  bg-button-500"
+            className="flex-row flex justify-center items-center mb-4 rounded-xl border-none bg-[#677DC6] h-fit  drop-shadow-lg px-4  text-white font-semibold  bg-button-500"
           >
+            <img className="w-7" src={Enter} alt="pencil" />
             Login
           </button>
-          <img style={{ position: 'absolute', top: '-2px', right: '93px', zIndex: '1' }} src={Enter} alt="pencil" />
+
           <button
             type="button"
-            className="rounded-xl border-none bg-[#677DC6]  w-36 ml-4 drop-shadow-lg px-14 pr-4 py-2.5 text-white font-semibold  bg-button-500"
+            className="flex-row flex justify-center items-center sm:ml-4 rounded-xl border-none bg-[#677DC6] h-fit  drop-shadow-lg px-4  text-white font-semibold  bg-button-500"
             onClick={goToSign}
           >
-            Sign Up
+            <img className="w-7" src={Enter} alt="pencil" /> Sign Up
           </button>
         </div>
       </form>
