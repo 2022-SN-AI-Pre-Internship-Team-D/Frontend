@@ -9,7 +9,12 @@ import { getUUID } from 'utils/getUUID';
 import { Link } from 'react-router-dom';
 import Share from 'images/urlshare.png';
 import useCopyClipBoard from 'utils/useCopyClipBoard';
+import RemainModal from 'components/RemainModal';
 
+interface ModalInfo {
+  Dday: string;
+  eventID: string;
+}
 function MainPage() {
   const { uuid } = getUUID();
   const arrEvent: any = [];
@@ -17,6 +22,13 @@ function MainPage() {
   const navigate = useNavigate();
   const [eventList, setEventList] = useState([]);
   const [username, setUserName] = useState('Name');
+
+  const handleModal = () => {
+    setModalOC(true);
+  };
+
+  const [modalOC, setModalOC] = useState(false);
+  const [test, setTest] = useState<ModalInfo>();
 
   useEffect(() => {
     axios.get(`/letters/events/all`).then((res) => {
@@ -59,7 +71,12 @@ function MainPage() {
       .then((res) => {
         console.log(res.data.status);
         if (res.data.status === 'false') {
-          navigate('/remainingdayspage', { state: [res.data.days, id] }); // 남은일수와 , 이벤트 id
+          setTest({
+            Dday: res.data.days,
+            eventID: id,
+          });
+          // navigate('/remainingdayspage', { state: [res.data.days, id] }); // 남은일수와 , 이벤트 id
+          handleModal();
         } else {
           navigate('/maillistpage', { state: [id] });
         }
@@ -76,7 +93,8 @@ function MainPage() {
         .then((res) => {
           if (res.data.status === 'true') {
             console.log('편지 확인 가능');
-            navigate('/birthmaillistpage');
+            // navigate('/birthmaillistpage');
+            handleModal();
           } else {
             console.log('편지 확인 불가');
             navigate('/birthremainingdayspage');
@@ -153,6 +171,7 @@ function MainPage() {
           {isHovering && <h2 className="text-white">click to copy link!</h2>}
         </button>
       </div>
+      <RemainModal openinit={modalOC} closeModal={() => setModalOC(false)} test={test} />
     </div>
   );
 }
