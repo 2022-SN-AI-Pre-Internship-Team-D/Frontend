@@ -101,7 +101,7 @@ function MyPage() {
       <div className="  text-white border-solid border-2 rounded-lg w-4/6 h-4/5 flex flex-col items-center justify-center">
         <img
           style={{ position: 'absolute', top: '70px' }}
-          className="h-36 w-36 object-cover text-white border-2 rounded-full"
+          className="h-36 w-36 object-cover text-white border rounded-full"
           src={image}
           alt="유저사진"
         />
