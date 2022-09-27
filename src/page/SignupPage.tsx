@@ -172,15 +172,15 @@ function SignupPage() {
 
           <form onSubmit={handleSignUp}>
             <div className="mt-2">
-              <div className="flex flex-row justify-center">
-                <div className="flex justify-center items-center mr-10 ml-10 pb-28">
+              <div className="flex md:flex-row flex-col justify-center">
+                <div className="flex justify-center items-center mr-10 ml-10 md:pb-28 pb-5">
                   <div className="preview">
                     <label htmlFor="profile">
                       {imageUrl && (
                         <img
                           src={imageUrl}
                           alt="profile"
-                          className="object-cover cursor-pointer flex flex-col justify-center items-center w-80 h-80 
+                          className="object-cover cursor-pointer flex flex-col justify-center items-center md:w-80 w-30
                       rounded-full border-4 border-[#677DC6] bg-white"
                         />
                       )}
@@ -197,13 +197,13 @@ function SignupPage() {
                   </div>
                 </div>
 
-                <div className="ml-10 flex flex-col justify-end">
+                <div className="ml-10 flex flex-col justify-end  ">
                   <div className="">
                     <label className="m-1.5 text-white flex flex-row" htmlFor="nickname">
-                      <span className="ml-12 my-4 text-lg">닉네임</span>
+                      <span className="ml-7 my-4 text-lg">닉네임</span>
                       <div className="flex flex-col">
                         <input
-                          className="border-4 border-[#677DC6] w-96 mx-5 my-2 px-2.5 py-2.5 rounded-2xl text-background"
+                          className="border-4 border-[#677DC6] md:w-96 w-64 mx-5 my-2 px-2.5 py-2.5 rounded-2xl text-background"
                           name="username"
                           onChange={onChangeName}
                         />
@@ -215,10 +215,10 @@ function SignupPage() {
                   </div>
                   <div>
                     <label className="m-1.5 text-white flex flex-row" htmlFor="email">
-                      <span className="ml-12 my-4 text-lg">이메일</span>
+                      <span className="ml-7 my-4 text-lg">이메일</span>
                       <div className="flex flex-col">
                         <input
-                          className="border-4 border-[#677DC6] w-96 mx-5 my-2 px-2.5 py-2.5 rounded-2xl text-background"
+                          className="border-4 border-[#677DC6] md:w-96 w-64 mx-5 my-2 px-2.5 py-2.5 rounded-2xl text-background"
                           name="email"
                           onChange={onChangeEmail}
                         />
@@ -230,9 +230,9 @@ function SignupPage() {
                   </div>
                   <div>
                     <label className="m-1.5 text-white" htmlFor="password">
-                      <span className="ml-9 my-4 text-lg">비밀번호</span>
+                      <span className="ml-3 my-4 text-lg">비밀번호</span>
                       <input
-                        className="border-4 border-[#677DC6] w-96 mx-5 my-2 px-2.5 py-2.5 rounded-2xl text-background"
+                        className="border-4 border-[#677DC6] md:w-96 w-64 mx-5 my-2 px-2.5 py-2.5 rounded-2xl text-background"
                         type="password"
                         name="password"
                         onChange={onChangePassword}
@@ -241,10 +241,10 @@ function SignupPage() {
                   </div>
                   <div>
                     <label className="m-1.5 text-white flex flex-row" htmlFor="passwordcheck">
-                      <span className="my-4 text-lg">비밀번호 확인</span>
+                      <span className="ml-3 my-4 text-lg">비번확인</span>
                       <div className="flex flex-col">
                         <input
-                          className="border-4 border-[#677DC6] w-96 mx-5 my-2 px-2.5 py-2.5 rounded-2xl text-background"
+                          className="border-4 border-[#677DC6] md:w-96 w-64 mx-5 my-2 px-2.5 py-2.5 rounded-2xl text-background"
                           type="password"
                           name="password2"
                           onChange={onChangePasswordConfirm}
@@ -259,9 +259,9 @@ function SignupPage() {
                   </div>
                   <div>
                     <label className="m-1.5 text-white" htmlFor="birthday">
-                      <span className="ml-16 my-4 text-lg">생일</span>
+                      <span className="ml-10 my-4 text-lg">생일</span>
                       <input
-                        className="border-4 border-[#677DC6] w-96 mx-5 my-2 px-2.5 py-2.5 rounded-2xl text-background"
+                        className="border-4 border-[#677DC6] md:w-96 w-64 mx-5 my-2 px-2.5 py-2.5 rounded-2xl text-background"
                         type="date"
                         name="birth"
                       />
