@@ -75,15 +75,15 @@ function LoginPage() {
     <div className="absolute overflow-hidden w-screen h-screen bg-[#0E1733] flex justify-center flex-col items-center">
       <img src={star} alt="star" className="absolute bg-repeat" />
       <div style={{ marginLeft: '60px' }} className="flex">
-        <h4 className=" text-[#9CA6C5] text-5xl font-press-start text-center pt-20 pb-35">LOGIN</h4>
-        <img style={{ position: 'relative', right: '20px', top: '45px' }} src={pencilImg} alt="pencil" />
+        <h4 className=" text-[#9CA6C5] text-5xl font-press-start text-center ">LOGIN</h4>
+        <img style={{ position: 'relative', right: '20px', bottom: '10px' }} src={pencilImg} alt="pencil" />
       </div>
 
       <form
-        className="w-2/4 h-2/4 m-50 items-center flex-col flex justify-center center p-20 bg-grey rounded-lg"
+        className="md:w-2/4 md:h-2/4 w-80 h-80 items-center flex-col flex justify-center center bg-grey rounded-lg"
         onSubmit={handleLogin}
       >
-        <div className=" justify-center flex flex-col w-80">
+        <div className=" justify-center flex flex-col md:w-96 w-44">
           <label className=" text-background flex flex-col" htmlFor="email">
             <p className="mb-2">이메일</p>
             <input
