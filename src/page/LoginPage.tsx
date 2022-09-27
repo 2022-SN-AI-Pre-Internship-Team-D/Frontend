@@ -80,7 +80,7 @@ function LoginPage() {
       </div>
 
       <form
-        className="md:w-2/4 w-3/4 h-96 items-center flex-col flex justify-center center bg-grey rounded-lg"
+        className="z-10 md:w-2/4 w-3/4 h-96 items-center flex-col flex justify-center center bg-grey rounded-lg"
         onSubmit={handleLogin}
       >
         <div className=" justify-center flex flex-col md:w-96 w-56">
