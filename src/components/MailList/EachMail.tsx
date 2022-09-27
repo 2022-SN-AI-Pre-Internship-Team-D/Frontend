@@ -8,8 +8,7 @@ import AudioPlayer from 'components/Audio/audioPlayer';
 
 function EachMail({ content = '', imgfile = '', audiofile = '' }) {
   const opts = {
-    // logging: true,
-    // allowTaint: true,
+    allowTaint : false,
     useCORS: true
   };
   const onCapture = () => {
