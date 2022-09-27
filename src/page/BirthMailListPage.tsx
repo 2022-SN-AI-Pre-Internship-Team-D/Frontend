@@ -71,7 +71,7 @@ function BirthMailListPage() {
       <span className="text-white m-14 text-2xl">총 {mailCount}개의 편지를 받았습니다.</span>
 
       {Object.values(mailList)?.map((item: any) => (
-        <EachMail content={item.text} key={item.id} />
+        <EachMail content={item.text} imgfile={item.file} audiofile={item.media} divid={item.id} key={item.id} />
       ))}
       <div className="flex flex-row mb-8">
         <MoreButton handlePage={changeBeforePage} title="<" />
