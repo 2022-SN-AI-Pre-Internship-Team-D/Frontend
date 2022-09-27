@@ -8,10 +8,9 @@ import MailWritePage from 'page/MailWritePage';
 import SignupPage from 'page/SignupPage';
 import MyPage from 'page/Mypage';
 import BirthMailListPage from 'page/BirthMailListPage';
-import BirthRemainingDaysPage from 'page/BirthRemainingDaysPage';
+
 import MainPage from './page/MainPage';
 import MainPage2 from './page/MainPage2';
-import RemainingDaysPage from './page/RemainingDaysPage';
 
 function App() {
   return (
@@ -24,10 +23,8 @@ function App() {
 
         <Route element={<AuthRouter />}>
           <Route path="/mainpage" element={<MainPage />} />
-          <Route path="/remainingdayspage" element={<RemainingDaysPage />} />
           <Route path="/maillistpage" element={<MailListPage />} />
           <Route path="/mypage" element={<MyPage />} />
-          <Route path="/birthremainingdayspage" element={<BirthRemainingDaysPage />} />
           <Route path="/birthmaillistpage" element={<BirthMailListPage />} />
         </Route>
       </Routes>

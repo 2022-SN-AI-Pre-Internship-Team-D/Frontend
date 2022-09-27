@@ -93,11 +93,14 @@ function MainPage() {
         .then((res) => {
           if (res.data.status === 'true') {
             console.log('편지 확인 가능');
-            // navigate('/birthmaillistpage');
-            handleModal();
+            navigate('/birthmaillistpage');
           } else {
             console.log('편지 확인 불가');
-            navigate('/birthremainingdayspage');
+            setTest({
+              Dday: res.data.days,
+              eventID: '',
+            });
+            handleModal();
           }
         })
         .catch((error) => {

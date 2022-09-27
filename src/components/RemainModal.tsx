@@ -28,20 +28,33 @@ export default function RemainModal({ openinit, closeModal, test }: Props) {
   const { uuid } = getUUID();
 
   if (test !== undefined) {
-    (async () => {
-      await axios
-        .get(`/letters/users/${uuid}/events/${test!.eventID}/counts`)
-        .then((res) => {
-          if (res.data.length) {
+    if (test.eventID === '') {
+      (async () => {
+        await axios
+          .get(`/letters/users/${uuid}/birth/counts`)
+          .then((res) => {
             setMailNum(res.data[0].count);
-          } else {
-            setMailNum('0');
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    })();
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      })();
+    } else {
+      (async () => {
+        await axios
+          .get(`/letters/users/${uuid}/events/${test!.eventID}/counts`)
+          .then((res) => {
+            if (res.data.length) {
+              setMailNum(res.data[0].count);
+            } else {
+              setMailNum('0');
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      })();
+    }
   }
 
   return (
@@ -80,11 +93,11 @@ export default function RemainModal({ openinit, closeModal, test }: Props) {
                       <Dialog.Title as="h3" className="font-bold text-lg text-slate-100 md:w-52 w-24">
                         D - {test?.Dday}
                       </Dialog.Title>
-
-                      <img src="images/back3.png" alt="a" className="w-32 md:w-80 lg:96" />
                       <Dialog.Title as="h3" className=" text-ml text-slate-100 md:w-52 w-24">
                         받은편지 {mailNum}개
                       </Dialog.Title>
+                      <img src="images/back3.png" alt="a" className="w-32 md:w-80 lg:96" />
+
                       <div className="mt-2 flex justify-center">
                         <img
                           src="images/back2.png"
@@ -99,7 +112,7 @@ export default function RemainModal({ openinit, closeModal, test }: Props) {
                       </div>
                     </div>
                   </div>
-                  {/* <FooterCookies /> */}
+                  <FooterCookies />
                   <button
                     type="button"
                     className="absolute top-0 right-0 rounded-full m-2 bg-slate-700 px-3 py-1 font-medium text-white "
