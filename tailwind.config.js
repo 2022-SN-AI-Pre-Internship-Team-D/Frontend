@@ -5,7 +5,7 @@
 module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
-    extend:{
+    extend: {
       fontFamily: {
         'press-start': ['Itim', 'cursive;'],
         dear: ['SeaweedScript'],
@@ -21,6 +21,9 @@ module.exports = {
       },
       width: {
         128: '40rem',
+        w43: '43rem',
+        w38: '38rem',
+        winput: '580px',
       },
     },
   },

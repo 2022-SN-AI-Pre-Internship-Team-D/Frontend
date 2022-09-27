@@ -80,10 +80,11 @@ function LoginPage() {
       </div>
 
       <form
-        className="z-10 md:w-2/4 w-3/4 h-96 items-center flex-col flex justify-center center bg-grey rounded-lg"
+        className="md:w-2/4 md:h-2/4 w-80 h-96 items-center flex-col flex justify-center center bg-grey rounded-lg"
+
         onSubmit={handleLogin}
       >
-        <div className=" justify-center flex flex-col md:w-96 w-56">
+        <div className=" justify-center flex flex-col md:w-96 w-44">
           <label className=" text-background flex flex-col" htmlFor="email">
             <p className="mb-2">이메일</p>
             <input

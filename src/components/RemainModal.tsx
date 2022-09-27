@@ -96,19 +96,11 @@ export default function RemainModal({ openinit, closeModal, test }: Props) {
                       <Dialog.Title as="h3" className=" text-ml text-slate-100 md:w-52 w-24">
                         받은편지 {mailNum}개
                       </Dialog.Title>
-                      <img src="images/back3.png" alt="a" className="w-32 md:w-80 lg:96" />
+                      <img src="images/back3.png" alt="a" className="w-32 md:w-80 " />
 
                       <div className="mt-2 flex justify-center">
-                        <img
-                          src="images/back2.png"
-                          alt="a"
-                          className="absolute bottom-0 left-0 w-32 md:w-80 lg:w-2/6"
-                        />
-                        <img
-                          src="images/back1.png"
-                          alt="a"
-                          className="absolute bottom-0 right-0 w-40 md:w-96 lg:w-5/12"
-                        />
+                        <img src="images/back2.png" alt="a" className="absolute bottom-0 left-0 w-32 md:w-64 " />
+                        <img src="images/back1.png" alt="a" className="absolute bottom-0 right-0 w-40 md:w-72 " />
                       </div>
                     </div>
                   </div>
