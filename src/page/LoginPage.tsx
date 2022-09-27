@@ -72,7 +72,7 @@ function LoginPage() {
   };
 
   return (
-    <div className="absolute overflow-hidden w-screen h-screen bg-[#0E1733] flex justify-center flex-col items-center">
+    <div className="absolute overflow-hidden w-screen h-full bg-[#0E1733] flex justify-center flex-col items-center">
       <img src={star} alt="star" className="absolute bg-repeat" />
       <div style={{ marginLeft: '60px' }} className="flex">
         <h4 className=" text-[#9CA6C5] text-5xl font-press-start text-center ">LOGIN</h4>
@@ -80,10 +80,10 @@ function LoginPage() {
       </div>
 
       <form
-        className="md:w-2/4 w-3/4 h-2/4 items-center flex-col flex justify-center center bg-grey rounded-lg"
+        className="md:w-2/4 w-3/4 h-96 items-center flex-col flex justify-center center bg-grey rounded-lg"
         onSubmit={handleLogin}
       >
-        <div className=" justify-center flex flex-col md:w-96 w-44">
+        <div className=" justify-center flex flex-col md:w-96 w-56">
           <label className=" text-background flex flex-col" htmlFor="email">
             <p className="mb-2">이메일</p>
             <input
@@ -116,7 +116,7 @@ function LoginPage() {
 
           <button
             type="button"
-            className="flex-row flex justify-center items-center sm:ml-4 rounded-xl border-none bg-[#677DC6] h-fit  drop-shadow-lg px-4  text-white font-semibold  bg-button-500"
+            className="flex-row flex justify-center items-center md:ml-4 rounded-xl border-none bg-[#677DC6] h-fit  drop-shadow-lg px-4  text-white font-semibold  bg-button-500"
             onClick={goToSign}
           >
             <img className="w-7" src={Enter} alt="pencil" /> Sign Up

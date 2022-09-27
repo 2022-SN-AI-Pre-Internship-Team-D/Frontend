@@ -98,18 +98,18 @@ function MainPage() {
         onClick={handleClick}
         id={eventList[2]}
         type="button"
-        className="scaleup flex justify-center h-fit w-60 md:w-80 lg:w-1/4"
+        className="flex justify-center scaleup absolute md:top-0 top-1/4 md:m-10 w-80 md:w-2/4  "
       >
         <img src="images/newyearimg.png" alt="a" className="" />
       </button>
 
-      <div className="absolute top-5 left-10">
+      <div className="absolute top-5 left-2/5 md:left-20">
         <Link to="/mypage">
           <span className="flex justify-center text-white font-bold text-xl">{username} 님</span>
         </Link>
       </div>
       {/* 편지 */}
-      <div className="flex flex-col absolute top-5 left-5 md:m-10 w-20 md:w-28 lg:w-1/12 ">
+      <div className="flex flex-col absolute top-0  left-5 md:m-10 w-20 md:w-28 lg:w-1/12 ">
         <button onClick={handleBirthClick} type="button" className="scaleup">
           <img src="images/letterimg.png" alt="a" />
         </button>
@@ -117,7 +117,7 @@ function MainPage() {
       {/* 추석 */}
       <button
         onClick={() => alert('업데이트 예정입니다.')}
-        className="scaleup absolute bottom-0 left-0 w-60 md:w-80 lg:w-2/6"
+        className="scaleup absolute bottom-0 left-0 w-40 md:w-80 lg:w-2/6"
         type="button"
       >
         <img src="images/thankimg.png" alt="a" />
