@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 import Share from 'images/urlshare.png';
 import useCopyClipBoard from 'utils/useCopyClipBoard';
 import RemainModal from 'components/RemainModal';
+import star from 'images/star.svg';
 
 interface ModalInfo {
   Dday: string;
@@ -114,6 +115,7 @@ function MainPage() {
       className="flex justify-center font-press-start  h-screen"
       style={{ backgroundColor: ColorSystem.MainColor.Primary }}
     >
+      <img src={star} alt="star" className="absolute bg-repeat" />
       {/* 2023 */}
       <button
         onClick={handleClick}
