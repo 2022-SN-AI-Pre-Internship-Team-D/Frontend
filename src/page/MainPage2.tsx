@@ -16,7 +16,7 @@ function MainPage2() {
 
   useEffect(() => {
     axios.get(`/letters/events/all`).then((res) => {
-      for (let i = 0; i < 3; i += 1) {
+      for (let i = 0; i < 5; i += 1) {
         arrEvent[i] = res.data[i].uuid;
       }
       setEventList(arrEvent);
@@ -60,7 +60,7 @@ function MainPage2() {
       className="flex justify-center font-press-start  h-screen"
       style={{ backgroundColor: ColorSystem.MainColor.Primary }}
     >
-      <img src={star} alt="star" className="absolute bg-repeat" />
+      <img src={star} alt="star" className="absolute bg-repeat h-screen" />
       {/* 2023 */}
       <button
         onClick={handleClick}
@@ -79,9 +79,9 @@ function MainPage2() {
       </div>
       {/* 추석 */}
       <button
-        onClick={() => alert('업데이트 예정입니다.')}
-        className="scaleup absolute bottom-0 left-0 w-40 md:w-80 lg:w-2/6"
         type="button"
+        onClick={handleClick} id={eventList[3]}
+        className="scaleup absolute bottom-0 left-0 w-40 md:w-80 lg:w-2/6"
       >
         <img src="images/thankimg.png" alt="a" />
       </button>
@@ -98,7 +98,8 @@ function MainPage2() {
         <button onClick={handleClick} className="scaleup" type="button" id={eventList[1]}>
           <img src="images/halloweenimg.png" alt="a" className="origin-center hover:origin-top" />
         </button>
-        <button onClick={() => alert('업데이트 예정입니다.')} className="scaleup" type="button">
+        {/* 어린이날 */}
+        <button onClick={handleClick} className="scaleup" type="button" id={eventList[4]}>
           <img src="images/valentineimg.png" alt="a" />
         </button>
       </div>
