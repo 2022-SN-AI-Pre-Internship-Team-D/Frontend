@@ -214,14 +214,14 @@ function MailWritePage() {
             />
           </label>
         </div>
-        <div className="h-64 md:w-winput w-96 text-center bg-[url('images/letterbg.png')] h-fit rounded-lg h-fit ">
+        <div className="h-64 md:w-winput w-96 text-center bg-[url('images/letterbg.png')] rounded-lg h-fit ">
           <textarea
             placeholder="To.."
             cols={45}
             rows={6}
             maxLength={300}
-            className="md:w-winput w-96 p-4 h-56 rounded-lg bg-transparent text-xl leading-9 focus:outline-none "
-            style={{ resize: 'none' }}
+            className="md:w-50 p-4 h-30 rounded-lg bg-transparent text-xl leading-9 focus:outline-none "
+            style={{ width: '530px', height: '20rem', resize: 'none' }}
             onChange={(e) => {
               setContent(e.currentTarget.value);
             }}
