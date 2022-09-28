@@ -180,7 +180,7 @@ function SignupPage() {
                         <img
                           src={imageUrl}
                           alt="profile"
-                          className="object-cover cursor-pointer flex flex-col justify-center items-center md:w-80 w-30
+                          className="object-cover w-80 h-80 md:w-80 cursor-pointer flex flex-col justify-center items-center 
                       rounded-full border-4 border-[#677DC6] bg-white"
                         />
                       )}
