@@ -87,32 +87,32 @@
         <th>GitHub</th>
         <td width="100" align="center">
             <a href="https://github.com/Zzyoon">
-                <img src="http://img.shields.io/badge/phjppo0918-green?style=social&logo=github"/>
+                <img src="http://img.shields.io/badge/Zzyoon-green?style=social&logo=github"/>
             </a>
         </td>
         <td width="100" align="center">
             <a href="https://github.com/Ellie010707">
-                <img src="http://img.shields.io/badge/SEONMl-green?style=social&logo=github"/>
+                <img src="http://img.shields.io/badge/Ellie010707-green?style=social&logo=github"/>
             </a>
         </td>
         <td width="100" align="center">
-            <a href="https://github.com/asyooniverse">
-                <img src="http://img.shields.io/badge/asyooniverse-green?style=social&logo=github"/>
+            <a href="hhttps://github.com/bicco2">
+                <img src="http://img.shields.io/badge/bicco2-green?style=social&logo=github"/>
             </a>
         </td>
         <td width="100" align="center">
             <a href="https://github.com/suhyeon3484">
-                <img src="http://img.shields.io/badge/yjshin229-green?style=social&logo=github"/>
+                <img src="http://img.shields.io/badge/suhyeon3484-green?style=social&logo=github"/>
             </a>
         </td>
         <td width="100" align="center">
             <a href="https://github.com/gogo220">
-                <img src="http://img.shields.io/badge/hamin924-green?style=social&logo=github"/>
+                <img src="http://img.shields.io/badge/gogo220-green?style=social&logo=github"/>
             </a>
         </td>
          <td width="100" align="center">
             <a href="https://github.com/yura0302">
-                <img src="http://img.shields.io/badge/phjppo0918-green?style=social&logo=github"/>
+                <img src="http://img.shields.io/badge/yura0302-green?style=social&logo=github"/>
             </a>
     </tr>
     </tbody>
