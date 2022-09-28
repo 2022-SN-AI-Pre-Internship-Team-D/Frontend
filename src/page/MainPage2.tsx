@@ -5,6 +5,7 @@ import 'utils/pageStyle.css';
 import { useNavigate } from 'react-router';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import star from 'images/star.svg';
 
 function MainPage2() {
   const navigate = useNavigate();
@@ -59,6 +60,7 @@ function MainPage2() {
       className="flex justify-center font-press-start  h-screen"
       style={{ backgroundColor: ColorSystem.MainColor.Primary }}
     >
+      <img src={star} alt="star" className="absolute bg-repeat" />
       {/* 2023 */}
       <button
         onClick={handleClick}
