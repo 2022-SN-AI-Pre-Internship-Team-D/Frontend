@@ -6,7 +6,6 @@ import { useState, useEffect } from 'react';
 import MoreButton from 'components/MailList/MoreButton';
 import { useLocation, useNavigate } from 'react-router';
 import { getUUID } from 'utils/getUUID';
-import { useRecorder } from 'use-recorder';
 
 function MailListPage() {
   const { state } = useLocation();
@@ -62,7 +61,7 @@ function MailListPage() {
         className="flex justify-center items-center h-screen"
         style={{ backgroundColor: ColorSystem.MainColor.Primary }}
       >
-        <span className="text-white m-14 text-2xl">받은 편지가 없습니다.</span>
+        <span className="text-white m-14 text-2xl font-press-start">받은 편지가 없습니다.</span>
       </div>
     );
   }
