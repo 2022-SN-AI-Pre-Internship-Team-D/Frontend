@@ -1,5 +1,5 @@
 import 'tailwindcss/tailwind.css';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import back from 'images/back.png';
 import profile from 'images/profile.png';
