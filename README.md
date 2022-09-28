@@ -96,7 +96,7 @@
             </a>
         </td>
         <td width="100" align="center">
-            <a href="hhttps://github.com/bicco2">
+            <a href="https://github.com/bicco2">
                 <img src="http://img.shields.io/badge/bicco2-green?style=social&logo=github"/>
             </a>
         </td>
