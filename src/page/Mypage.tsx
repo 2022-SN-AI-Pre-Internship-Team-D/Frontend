@@ -17,6 +17,8 @@ function MyPage() {
   const [newYearMail, setNewYearMail] = useState('0');
   const [halloweenMail, sethalloweenMail] = useState('0');
   const [christmasMail, setChristmasMail] = useState('0');
+  const [chuseok, setChuseok] = useState('0');
+  const [children, setChildren] = useState('0');
 
   const arrEvent: any = [];
 
@@ -47,7 +49,7 @@ function MyPage() {
     })();
 
     axios.get('/letters/events/all').then((res) => {
-      for (let i = 0; i < 3; i += 1) {
+      for (let i = 0; i < 5; i += 1) {
         arrEvent[i] = res.data[i].uuid;
         console.log(arrEvent[i]);
       }
@@ -82,6 +84,30 @@ function MyPage() {
           .get(`letters/users/${uuid}/events/${arrEvent[0]}/counts`)
           .then((res) => {
             setChristmasMail(res.data[0].count);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      })();
+
+      // 추석
+      (async () => {
+        await axios
+          .get(`letters/users/${uuid}/events/${arrEvent[3]}/counts`)
+          .then((res) => {
+            setChuseok(res.data[0].count);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      })();
+
+      // 어린이날
+      (async () => {
+        await axios
+          .get(`letters/users/${uuid}/events/${arrEvent[4]}/counts`)
+          .then((res) => {
+            setChildren(res.data[0].count);
           })
           .catch((error) => {
             console.log(error);
@@ -124,6 +150,8 @@ function MyPage() {
             <li>New Year [{newYearMail}]</li>
             <li>Halloween [{halloweenMail}]</li>
             <li>Christmas [{christmasMail}]</li>
+            <li>Chuseok [{chuseok}]</li>
+            <li>Children&apos;s Day [{children}]</li>
           </ul>
         </div>
         {/* <button type="button" className="font-press-start mt-10">
