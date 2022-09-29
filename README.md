@@ -76,13 +76,15 @@
 - 메인페이지
 <img src="https://user-images.githubusercontent.com/105929978/192843700-9fe94778-f0df-4a35-bd02-b8ba6e97127d.png">
 메인페이지에서 우측 상단 공유버튼을 누르면 url이 복사되는데 url을 편지를 받고 싶은 사람에게 전송할 수 있습니다.
+<br>
+또한 이 페이지에서 아이콘을 클릭하면 받은 편지를 확인할 수 있습니다.
 
 <br>
 
-- 편지 작성하는 사람 메인페이지
+- 편지를 작성하는 사람의 메인페이지
 <img src="https://user-images.githubusercontent.com/105929978/192843705-4361566f-275e-4448-b555-c7ad150d7fc2.png">
-
-<br>
+이 페이지에서 아이콘을 클릭하여 원하는 이벤트에 편지를 작성할 수 있습니다.
+<br><br>
 
 - 편지 작성 페이지
 <img src="https://user-images.githubusercontent.com/105929978/192845003-1db16474-52c7-4fe3-951c-7e0e46dbb76e.gif">
@@ -92,9 +94,8 @@
 - 디데이 페이지
 <img src="https://user-images.githubusercontent.com/105929978/192845282-af830adf-ab4d-435b-afa8-31073c535329.gif">
 편지를 볼 수 있는 날짜가 아닐 때 편지를 확인하면 나타나는 페이지 입니다.
-
 <br>
-
+<br>
 - 편지 리스트 페이지
 <img src="https://user-images.githubusercontent.com/105929978/192844999-4ef22738-24d0-4fd5-8781-6793497057be.gif">
 
@@ -103,8 +104,14 @@
 - 편지 캡쳐
 <img src="https://user-images.githubusercontent.com/105929978/192844987-3af80481-e18c-46fc-bc22-e4db2325b859.gif">
 우측 상단의 공유버튼을 클릭하면 원하는 편지를 다운받을 수 있습니다.
-
 <br>
+
+<!-- 실행방법 -->
+## **실행방법**
+
+<!-- 데모영상 -->
+## **데모영상**
+
 
 ## **Team Member**
 <table width="950">
