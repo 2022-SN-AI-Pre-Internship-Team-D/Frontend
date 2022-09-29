@@ -81,6 +81,7 @@
 
 - 디데이 페이지
   <img src="https://user-images.githubusercontent.com/105929978/192845282-af830adf-ab4d-435b-afa8-31073c535329.gif">
+  <br>
   편지를 볼 수 있는 날짜가 아닐 때 편지를 확인하면 나타나는 페이지 입니다.
 
   <br>
