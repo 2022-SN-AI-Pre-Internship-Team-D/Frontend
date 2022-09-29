@@ -74,6 +74,11 @@
   이 페이지에서 아이콘을 클릭하여 원하는 이벤트에 편지를 작성할 수 있습니다.
   <br><br>
 
+- 마이 페이지
+<img src="https://user-images.githubusercontent.com/105929978/193088825-4e708a1f-a730-4c28-99f6-daf29b7389cb.png">
+
+<br>
+
 - 편지 작성 페이지
   <img src="https://user-images.githubusercontent.com/105929978/192845003-1db16474-52c7-4fe3-951c-7e0e46dbb76e.gif">
 
@@ -292,7 +297,6 @@ letterman-back
 </details>
 <hr>
 
-<!-- 세부 구성 페이지 -->
 
 > ### Clone Repository
 
