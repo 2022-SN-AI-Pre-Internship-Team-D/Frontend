@@ -60,10 +60,53 @@
 | **Monitoring** |                                                                                                                                                                                                                                                           <img src="https://img.shields.io/badge/Prometheus-E6522C?style=for-the-badge&logo=Prometheus&logoColor=black"> <img src="https://img.shields.io/badge/Grafana-F46800?style=for-the-badge&logo=Grafana&logoColor=black">                                                                                                                                                                                                                                                            |
 | **Others**     | <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=Git&logoColor=black"> <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"> <img src="https://img.shields.io/badge/GitKraken-179287?style=for-the-badge&logo=GitKraken&logoColor=black"> <img src="https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white"> <img src="https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=slack&logoColor=white"> <img src="https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=notion&logoColor=white"> <img src="https://img.shields.io/badge/Zoom-2D8CFF?style=for-the-badge&logo=zoom&logoColor=white"> |
 
-<!-- 레퍼런스  -->
+<!-- 세부 구성 페이지 -->
+## **Features**
+
+- 회원가입
+<img src="https://user-images.githubusercontent.com/105929978/192843587-70545735-2615-48b5-9ba1-eb2be2673591.gif">
+
+<br>
+
+- 로그인
+<img src="https://user-images.githubusercontent.com/105929978/192843692-48885379-ca8e-470d-999d-cef66d447b0f.gif">
+
+<br>
+
+- 메인페이지
+<img src="https://user-images.githubusercontent.com/105929978/192843700-9fe94778-f0df-4a35-bd02-b8ba6e97127d.png">
+메인페이지에서 우측 상단 공유버튼을 누르면 url이 복사되는데 url을 편지를 받고 싶은 사람에게 전송할 수 있습니다.
+
+<br>
+
+- 편지 작성하는 사람 메인페이지
+<img src="https://user-images.githubusercontent.com/105929978/192843705-4361566f-275e-4448-b555-c7ad150d7fc2.png">
+
+<br>
+
+- 편지 작성 페이지
+<img src="https://user-images.githubusercontent.com/105929978/192845003-1db16474-52c7-4fe3-951c-7e0e46dbb76e.gif">
+
+<br>
+
+- 디데이 페이지
+<img src="https://user-images.githubusercontent.com/105929978/192845282-af830adf-ab4d-435b-afa8-31073c535329.gif">
+편지를 볼 수 있는 날짜가 아닐 때 편지를 확인하면 나타나는 페이지 입니다.
+
+<br>
+
+- 편지 리스트 페이지
+<img src="https://user-images.githubusercontent.com/105929978/192844999-4ef22738-24d0-4fd5-8781-6793497057be.gif">
+
+<br>
+
+- 편지 캡쳐
+<img src="https://user-images.githubusercontent.com/105929978/192844987-3af80481-e18c-46fc-bc22-e4db2325b859.gif">
+우측 상단의 공유버튼을 클릭하면 원하는 편지를 다운받을 수 있습니다.
+
+<br>
 
 ## **Team Member**
-
 <table width="950">
     <thead>
     </thead>
