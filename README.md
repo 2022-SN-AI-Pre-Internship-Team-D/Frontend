@@ -108,6 +108,10 @@
 
 <!-- 실행방법 -->
 ## **실행방법**
+>### Clone Repository
+```
+git clone --recursive https://github.com/2022-SN-AI-Pre-Internship-Team-D/letterman.git
+```
 
 <!-- 데모영상 -->
 ## **데모영상**
