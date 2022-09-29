@@ -137,7 +137,7 @@ function MailWritePage() {
 
   return (
     <div
-      className="flex justify-center items-center py-20 h-screen"
+      className="flex justify-center items-center py-20 h-screen font-press-start"
       style={{ backgroundColor: ColorSystem.MainColor.Primary }}
     >
       <form
@@ -165,8 +165,8 @@ function MailWritePage() {
               <button
                 type="button"
                 onClick={() => handleAction(RecorderStarus.PLAYING)}
-                className="rounded-xl bg-subBackground"
-                style={{ height: '3rem', width: '13rem' }}
+                className="rounded-xl bg-subBackground text-2xl"
+                style={{ height: '3rem', width: '8rem' }}
               >
                 녹음결과 확인
               </button>
@@ -220,7 +220,7 @@ function MailWritePage() {
             cols={45}
             rows={6}
             maxLength={300}
-            className="md:w-50 p-4 h-30 rounded-lg bg-transparent text-xl leading-9 focus:outline-none "
+            className="md:w-50 p-4 h-30 rounded-lg bg-transparent text-3xl leading-9 focus:outline-none "
             style={{ width: '530px', height: '20rem', resize: 'none' }}
             onChange={(e) => {
               setContent(e.currentTarget.value);

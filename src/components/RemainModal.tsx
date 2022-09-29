@@ -90,10 +90,10 @@ export default function RemainModal({ openinit, closeModal, test }: Props) {
                     style={{ backgroundColor: ColorSystem.MainColor.Primary }}
                   >
                     <div className="mt-3 flex justify-center items-center flex-col md:w-128 md:h-96 w-32 h-48">
-                      <Dialog.Title as="h3" className="font-bold text-lg text-slate-100 md:w-52 w-24">
+                      <Dialog.Title as="h3" className="font-press-start font-bold text-3xl text-slate-100 md:w-52 w-24">
                         D - {test?.Dday}
                       </Dialog.Title>
-                      <Dialog.Title as="h3" className=" text-ml text-slate-100 md:w-52 w-24">
+                      <Dialog.Title as="h3" className="font-press-start text-2xl text-slate-100 md:w-52 w-24">
                         받은편지 {mailNum}개
                       </Dialog.Title>
                       <img src="images/back3.png" alt="a" className="w-32 md:w-80 " />

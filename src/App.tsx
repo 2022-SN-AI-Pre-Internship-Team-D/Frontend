@@ -21,12 +21,12 @@ function App() {
         <Route path="/mainpage2:uuid" element={<MainPage2 />} />
         <Route path="/mailwritepage" element={<MailWritePage />} />
 
-        <Route element={<AuthRouter />}>
-          <Route path="/mainpage" element={<MainPage />} />
-          <Route path="/maillistpage" element={<MailListPage />} />
-          <Route path="/mypage" element={<MyPage />} />
-          <Route path="/birthmaillistpage" element={<BirthMailListPage />} />
-        </Route>
+        {/* <Route element={<AuthRouter />}> */}
+        <Route path="/mainpage" element={<MainPage />} />
+        <Route path="/maillistpage" element={<MailListPage />} />
+        <Route path="/mypage" element={<MyPage />} />
+        <Route path="/birthmaillistpage" element={<BirthMailListPage />} />
+        {/* </Route> */}
       </Routes>
     </Router>
   );

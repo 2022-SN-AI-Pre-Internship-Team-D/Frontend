@@ -65,10 +65,10 @@ function BirthMailListPage() {
 
   return (
     <div
-      className="flex justify-center items-center flex-col "
+      className="font-press-start flex justify-center items-center flex-col "
       style={{ backgroundColor: ColorSystem.MainColor.Primary }}
     >
-      <span className="text-white m-14 text-2xl">총 {mailCount}개의 편지를 받았습니다.</span>
+      <span className="text-white m-14 text-4xl">총 {mailCount}개의 편지를 받았습니다.</span>
 
       {Object.values(mailList)?.map((item: any) => (
         <EachMail content={item.text} imgfile={item.file} audiofile={item.media} divid={item.id} key={item.id} />

@@ -112,7 +112,7 @@ function MainPage() {
 
   return (
     <div
-      className="flex justify-center font-press-start  h-screen"
+      className="flex justify-center font-press-start font-bold   h-screen"
       style={{ backgroundColor: ColorSystem.MainColor.Primary }}
     >
       <img src={star} alt="star" className="absolute bg-repeat h-screen" />
@@ -128,7 +128,7 @@ function MainPage() {
 
       <div className="absolute top-5 left-2/5 md:left-20">
         <Link to="/mypage">
-          <span className="flex justify-center text-white font-bold text-xl">{username} 님</span>
+          <span className="flex justify-center text-white text-3xl">{username} 님</span>
         </Link>
       </div>
       {/* 편지 */}

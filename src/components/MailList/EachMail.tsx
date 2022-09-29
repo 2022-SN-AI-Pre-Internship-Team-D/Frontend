@@ -32,7 +32,7 @@ function EachMail({ content = '', imgfile = '', audiofile = '', divid = '' }) {
 
   return (
     <div id={divid}>
-      <div className="md:w-w43 md:h-w38 w-fit relative m-20 rounded-xl items-center flex flex-col-reverse bg-white p-4 ">
+      <div className=" md:w-w43 md:h-w38 w-fit relative m-20 rounded-xl items-center flex flex-col-reverse bg-white p-4 ">
         <div className="absolute top-0 right-0 w-10 m-5">
           <button type="button" onClick={onCapture}>
             <img src={shareimg} alt="share" />
