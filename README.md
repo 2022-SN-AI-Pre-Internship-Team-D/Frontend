@@ -74,10 +74,16 @@
   이 페이지에서 아이콘을 클릭하여 원하는 이벤트에 편지를 작성할 수 있습니다.
   <br><br>
 
+- 마이 페이지
+<img src="https://user-images.githubusercontent.com/105929978/193104283-47264f00-4dde-42a4-8a1b-79e353f4f2d1.png">
+
+<br>
+
 - 편지 작성 페이지
   <img src="https://user-images.githubusercontent.com/105929978/192845003-1db16474-52c7-4fe3-951c-7e0e46dbb76e.gif">
 
 <br>
+
 
 - 디데이 페이지
   <img src="https://user-images.githubusercontent.com/105929978/192845282-af830adf-ab4d-435b-afa8-31073c535329.gif">
