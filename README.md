@@ -10,16 +10,16 @@
 
 ## **Contents**
 
-- [Purpose](**Purpose**)
-- [System Architecture](**System-Architecture**)
-- [Tech Stack](**Tech-Stack**)
-- [Features](**Features**)
+- [Purpose](#purpose)
+- [System Architecture](#system-architecture)
+- [Tech Stack](#tech-stack)
+- [Features](#features)
 <!-- - [Installation](#5-실행-방법) -->
-- [Database](**Database**)
-- [API](**API**)
-- [File Directory](**File-Directory**)
-- [Team Member](**Team-Member**)
-- [Reference](**Reference**)
+- [Database](#database)
+- [API](#api)
+- [File Directory](#file-directory)
+- [Team Member](#team-member)
+- [Reference](#reference)
 
 ---
 
