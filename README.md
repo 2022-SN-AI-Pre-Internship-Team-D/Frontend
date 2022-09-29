@@ -1,4 +1,54 @@
-<!-- 기술 스택  -->
+<!--헤더-->
+
+## **소중한 사람들과 편지를 주고받으며 기록하며 공유할 수 있는 서비스**
+
+---
+
+<!-- 목차  -->
+<!-- 목적  -->
+
+## **System Architecture**
+
+<img src="https://user-images.githubusercontent.com/97827316/192814535-1a36a80f-43ff-42d1-9d61-18fa73f6117b.png">
+
+---
+
+## **Database**
+
+<img src="https://user-images.githubusercontent.com/97827316/192815894-2d441009-c234-40fa-a3cb-1be2bc8bd79a.png">
+
+---
+
+## **API**
+
+<details>
+<summary>swagger</summary>
+<div markdown="1">
+<br>
+<img src="https://user-images.githubusercontent.com/97827316/192817400-72c4c11c-4f68-4d17-a1b7-52256f63d589.png">
+</div>
+</details>
+<hr>
+
+## **File Directory**
+
+<details>
+<summary>FRONTEND</summary>
+<div markdown="1">
+<br>
+<img src="">
+</div>
+</details>
+<hr>
+
+<details>
+<summary>BACKEND</summary>
+<div markdown="1">
+<br>
+<img src="https://user-images.githubusercontent.com/97827316/192821923-7cb25d7e-7706-411f-8ff5-2a8865de8549.png">
+</div>
+</details>
+<hr>
 
 ## **Tech Stack**
 
@@ -10,7 +60,9 @@
 | **Monitoring** |                                                                                                                                                                                                                                                           <img src="https://img.shields.io/badge/Prometheus-E6522C?style=for-the-badge&logo=Prometheus&logoColor=black"> <img src="https://img.shields.io/badge/Grafana-F46800?style=for-the-badge&logo=Grafana&logoColor=black">                                                                                                                                                                                                                                                            |
 | **Others**     | <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=Git&logoColor=black"> <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"> <img src="https://img.shields.io/badge/GitKraken-179287?style=for-the-badge&logo=GitKraken&logoColor=black"> <img src="https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white"> <img src="https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=slack&logoColor=white"> <img src="https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=notion&logoColor=white"> <img src="https://img.shields.io/badge/Zoom-2D8CFF?style=for-the-badge&logo=zoom&logoColor=white"> |
 
-<!-- 깃허브  -->
+<!-- 레퍼런스  -->
+
+## **Team Member**
 
 <table width="950">
     <thead>
