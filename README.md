@@ -1,8 +1,8 @@
 <img src="https://user-images.githubusercontent.com/97827316/193054865-ad2cd48a-53c8-46f7-b7a9-3c62bc96deed.png">
 
-## **💌비대면, 편지로 따뜻한 마음을 나누세요💌**
+💌비대면, 편지로 따뜻한 마음을 나누세요💌
 
-## **소중한 사람들과 편지를 주고받으며 기록하며 공유할 수 있는 서비스**
+소중한 사람들과 편지를 주고받으며 기록하며 공유할 수 있는 서비스
 
 ---
 
@@ -298,6 +298,8 @@ letterman-back
 ```
 git clone --recursive https://github.com/2022-SN-AI-Pre-Internship-Team-D/letterman.git
 ```
+
+---
 
 <!-- 데모영상 -->
 
