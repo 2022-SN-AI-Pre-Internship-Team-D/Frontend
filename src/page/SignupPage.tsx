@@ -5,6 +5,7 @@ import axios from 'axios';
 import { useRef, useState, useCallback } from 'react';
 import profile from 'images/profile.png';
 import star from 'images/star.svg';
+import BackBtn from 'components/BackBtn';
 
 interface SignUpInfo {
   username: FormDataEntryValue | null;
@@ -167,7 +168,10 @@ function SignupPage() {
           style={{ height: '50rem', width: '70rem' }}
         >
           <div className="flex justify-center mt-3 mb-14 text-white text-5xl">
-            <span>회원가입</span>
+            <span>회원가입</span>{' '}
+            <div className="absolute top-3 right-3">
+              <BackBtn />
+            </div>
           </div>
 
           <form onSubmit={handleSignUp}>

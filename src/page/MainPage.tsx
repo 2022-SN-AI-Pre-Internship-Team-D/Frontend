@@ -62,6 +62,10 @@ function MainPage() {
 
   const handleCopyClipBoard = (text: string) => {
     onCopy(text);
+    console.log(isCopy);
+    if (isCopy === false) {
+      navigate(`/mainpage2${uuid}`);
+    }
   };
 
   const handleClick = async (event: React.MouseEvent<HTMLElement>) => {
@@ -140,7 +144,8 @@ function MainPage() {
       {/* 추석 */}
       <button
         type="button"
-        onClick={handleClick} id={eventList[3]}
+        onClick={handleClick}
+        id={eventList[3]}
         className="scaleup absolute bottom-0 left-0 w-40 md:w-80 lg:w-2/6"
       >
         <img src="images/thankimg.png" alt="a" />
@@ -159,7 +164,7 @@ function MainPage() {
           <img src="images/halloweenimg.png" alt="a" className="origin-center hover:origin-top" />
         </button>
         {/* 어린이 날 */}
-        <button  onClick={handleClick} className="scaleup" type="button" id={eventList[4]}>
+        <button onClick={handleClick} className="scaleup" type="button" id={eventList[4]}>
           <img src="images/valentineimg.png" alt="a" />
         </button>
       </div>
@@ -167,8 +172,7 @@ function MainPage() {
       <div onMouseOver={handleMouseOver} onMouseOut={handleMouseOut} className="flex absolute top-4 right-4 w-10 ">
         <button
           onClick={() => {
-            handleCopyClipBoard(`http://localhost:3000/mainpage2${uuid}`);
-            // alert('링크가 복사되었습니다!');
+            handleCopyClipBoard(`http://localhost/mainpage2${uuid}`);
           }}
           type="button"
           className="scaleup"

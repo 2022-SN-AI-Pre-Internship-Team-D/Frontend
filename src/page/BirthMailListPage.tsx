@@ -55,10 +55,10 @@ function BirthMailListPage() {
   if (mailCount === '0') {
     return (
       <div
-        className="flex justify-center items-center h-screen"
+        className="flex justify-center items-center h-screen font-press-start"
         style={{ backgroundColor: ColorSystem.MainColor.Primary }}
       >
-        <span className="text-white m-14 text-2xl">받은 편지가 없습니다.</span>
+        <span className="text-white m-14 text-5xl">받은 편지가 없습니다.</span>
       </div>
     );
   }
