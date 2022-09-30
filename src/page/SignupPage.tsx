@@ -167,7 +167,7 @@ function SignupPage() {
       items-center justify-center"
           style={{ height: '50rem', width: '70rem' }}
         >
-          <div className="flex justify-center mt-3 mb-14 text-white text-5xl">
+          <div className="flex justify-center mt-3 mb-0 md:mb-14 text-white text-5xl">
             <span>회원가입</span>{' '}
             <div className="absolute top-3 right-3">
               <BackBtn />
@@ -184,7 +184,7 @@ function SignupPage() {
                         <img
                           src={imageUrl}
                           alt="profile"
-                          className="object-cover w-80 h-80 md:w-80 cursor-pointer flex flex-col justify-center items-center 
+                          className="object-cover w-32 h-32 md:h-80 md:w-80 cursor-pointer flex flex-col justify-center items-center 
                       rounded-full border-4 border-[#677DC6] bg-white"
                         />
                       )}
