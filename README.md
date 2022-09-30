@@ -14,10 +14,11 @@
 - [System Architecture](#system-architecture)
 - [Tech Stack](#tech-stack)
 - [Features](#features)
-<!-- - [Installation](#5-실행-방법) -->
+- [Installation](#Installation)
 - [Database](#database)
 - [API](#api)
 - [File Directory](#file-directory)
+- [Demo](#Demo)
 - [Team Member](#team-member)
 - [Reference](#reference)
 
@@ -33,7 +34,7 @@
 
 ## **System Architecture**
 
-<img src="https://user-images.githubusercontent.com/97827316/192814535-1a36a80f-43ff-42d1-9d61-18fa73f6117b.png">
+<img src="https://user-images.githubusercontent.com/105929978/193292189-dc9ac884-2ca6-4934-8afd-464de9562ef6.png">
 
 ---
 
@@ -52,17 +53,21 @@
 ## **Features**
 
 - 회원가입
+<p align="center">
   <img src="https://user-images.githubusercontent.com/105929978/192843587-70545735-2615-48b5-9ba1-eb2be2673591.gif">
-
+</p>
 <br>
 
 - 로그인
+<p align="center">
   <img src="https://user-images.githubusercontent.com/105929978/192843692-48885379-ca8e-470d-999d-cef66d447b0f.gif">
-
+</p>
 <br>
 
 - 메인페이지
+<p align="center">
   <img src="https://user-images.githubusercontent.com/105929978/192843700-9fe94778-f0df-4a35-bd02-b8ba6e97127d.png">
+</p>
   메인페이지에서 우측 상단 공유버튼을 누르면 url이 복사되는데 url을 편지를 받고 싶은 사람에게 전송할 수 있습니다.
   <br>
   또한 이 페이지에서 아이콘을 클릭하면 받은 편지를 확인할 수 있습니다.
@@ -70,42 +75,62 @@
 <br>
 
 - 편지를 작성하는 사람의 메인페이지
+<p align="center">
   <img src="https://user-images.githubusercontent.com/105929978/192843705-4361566f-275e-4448-b555-c7ad150d7fc2.png">
+</p>
   이 페이지에서 아이콘을 클릭하여 원하는 이벤트에 편지를 작성할 수 있습니다.
   <br><br>
 
 - 마이 페이지
-<img src="https://user-images.githubusercontent.com/105929978/193104283-47264f00-4dde-42a4-8a1b-79e353f4f2d1.png">
-
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/105929978/193104283-47264f00-4dde-42a4-8a1b-79e353f4f2d1.png">
+</p>
 <br>
 
 - 편지 작성 페이지
+<p align="center">
   <img src="https://user-images.githubusercontent.com/105929978/192845003-1db16474-52c7-4fe3-951c-7e0e46dbb76e.gif">
-
+</p>
 <br>
 
-
 - 디데이 페이지
-  <img src="https://user-images.githubusercontent.com/105929978/192845282-af830adf-ab4d-435b-afa8-31073c535329.gif">
+  <p align="center">
+    <img src="https://user-images.githubusercontent.com/105929978/192845282-af830adf-ab4d-435b-afa8-31073c535329.gif">
+  </p>
+    편지를 볼 수 있는 날짜가 아닐 때 편지를 확인하면 나타나는 페이지 입니다.
 
-  편지를 볼 수 있는 날짜가 아닐 때 편지를 확인하면 나타나는 페이지 입니다.
-
-  <br>
+    <br>
 
 - 편지 리스트 페이지
+<p align="center">
   <img src="https://user-images.githubusercontent.com/105929978/192844999-4ef22738-24d0-4fd5-8781-6793497057be.gif">
-
+</p>
 <br>
 
 - 편지 캡쳐
-  <img src="https://user-images.githubusercontent.com/105929978/192844987-3af80481-e18c-46fc-bc22-e4db2325b859.gif">
-  우측 상단의 공유버튼을 클릭하면 원하는 편지를 다운받을 수 있습니다.
-  <br>
+  <p align="center">
+    <img src="https://user-images.githubusercontent.com/105929978/192844987-3af80481-e18c-46fc-bc22-e4db2325b859.gif">
+  </p>
+    우측 상단의 공유버튼을 클릭하면 원하는 편지를 다운받을 수 있습니다.
+    <br>
 
   ***
 
-  <!-- Installation -->
-  <!-- Demo -->
+## **Installation**
+
+> ### Clone Repository
+
+```
+git clone --recursive https://github.com/2022-SN-AI-Pre-Internship-Team-D/letterman.git
+```
+
+> ### Run
+
+```
+docker-compose -f docker-compose.prod.yml up --build
+```
+
+---
 
 ## **Database**
 
@@ -298,19 +323,11 @@ letterman-back
 </details>
 <hr>
 
-<!-- 세부 구성 페이지 -->
-
-> ### Clone Repository
-
-```
-git clone --recursive https://github.com/2022-SN-AI-Pre-Internship-Team-D/letterman.git
-```
-
----
-
 <!-- 데모영상 -->
 
-## **데모영상**
+## **Demo**
+
+---
 
 ## **Team Member**
 
