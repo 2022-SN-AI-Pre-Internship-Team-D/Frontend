@@ -34,8 +34,9 @@
 
 ## **System Architecture**
 
-<img src="https://user-images.githubusercontent.com/105929978/193292189-dc9ac884-2ca6-4934-8afd-464de9562ef6.png">
-
+<p align="center">
+    <img src="https://user-images.githubusercontent.com/105929978/193292189-dc9ac884-2ca6-4934-8afd-464de9562ef6.png">
+</p>
 ---
 
 ## **Tech Stack**
@@ -72,7 +73,7 @@
   <br>
   또한 이 페이지에서 아이콘을 클릭하면 받은 편지를 확인할 수 있습니다.
 
-<br>
+<br><br>
 
 - 편지를 작성하는 사람의 메인페이지
 <p align="center">
@@ -99,7 +100,7 @@
   </p>
     편지를 볼 수 있는 날짜가 아닐 때 편지를 확인하면 나타나는 페이지 입니다.
 
-<br><br>
+<br>
 
 - 편지 리스트 페이지
 <p align="center">
@@ -134,8 +135,9 @@ docker-compose -f docker-compose.prod.yml up --build
 
 ## **Database**
 
-<img src="https://user-images.githubusercontent.com/97827316/192815894-2d441009-c234-40fa-a3cb-1be2bc8bd79a.png">
-
+<p align="center">
+    <img src="https://user-images.githubusercontent.com/105929978/193294253-8a4ea2a5-5ae7-4a54-8392-f8d20f34d890.png">
+</p>
 ---
 
 ## **API**
